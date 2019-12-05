@@ -76,14 +76,31 @@ border-radius: 5px;
 }
 
 
+#formContactanos>input:last-child{
+    background-color: rgb(52, 66, 255);
+    width: 30vw;
+    height: 10vh;
+    color: white;
+    border:3px solid rgb(140, 147, 245);
+    transition: 1s background-color;
+}
+#formContactanos>input:last-child:hover{
+    background-color: rgb(66, 250, 112);
+    color: white;
+    border:3px solid rgb(140, 245, 157);
+}
+
+
 
 /*---------------------MEDIAQUERY-----------------------*/
 @media (max-width: 500px) {
 
-#formContactanos span{
+#formContactanos span {
     display: block;
-    margin: 5px;
+    margin: 5px 0;
 }
+
+
 #formContactanos{
     text-align: center;
 }
@@ -91,7 +108,7 @@ border-radius: 5px;
     width: 100%;
 }
 
-#formContactanos input:last-child{
+#formContactanos>input:last-child{
     margin: 10px;
 }
 
