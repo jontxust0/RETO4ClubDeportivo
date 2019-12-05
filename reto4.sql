@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2019 a las 10:00:36
+-- Tiempo de generación: 05-12-2019 a las 10:42:08
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -37,6 +37,49 @@ CREATE TABLE `categorias` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `cuerpomedico`
+--
+
+CREATE TABLE `cuerpomedico` (
+  `id` int(11) NOT NULL,
+  `funcion` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `direccion` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `tlf` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datosmedicos`
+--
+
+CREATE TABLE `datosmedicos` (
+  `id` int(11) NOT NULL,
+  `lesiones` int(11) NOT NULL,
+  `tipoSangre` varchar(18) COLLATE utf8_unicode_ci NOT NULL,
+  `enfermedades` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `id_jugador` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `entrenadores`
+--
+
+CREATE TABLE `entrenadores` (
+  `id` int(11) NOT NULL,
+  `tlf` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
+  `direccion` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `sueldo` decimal(10,0) NOT NULL,
+  `fechaContratacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `equipos`
 --
 
@@ -45,6 +88,23 @@ CREATE TABLE `equipos` (
   `femenino/masculino` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
   `nombre` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `id_categoria` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `jugadores`
+--
+
+CREATE TABLE `jugadores` (
+  `id` int(11) NOT NULL,
+  `direccion` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `dorsal` int(11) NOT NULL,
+  `posicion` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `tlf` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
+  `altura` decimal(10,2) NOT NULL,
+  `id_datosMedicos` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -71,11 +131,8 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `apellido` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `edad` int(2) NOT NULL,
   `sexo` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
-  `tlf` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
-  `direccion` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `tipo` int(1) NOT NULL,
+  `admin` tinyint(1) NOT NULL,
   `id_equipo` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -90,11 +147,40 @@ ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `cuerpomedico`
+--
+ALTER TABLE `cuerpomedico`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `datosmedicos`
+--
+ALTER TABLE `datosmedicos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_jugador`);
+
+--
+-- Indices de la tabla `entrenadores`
+--
+ALTER TABLE `entrenadores`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
 -- Indices de la tabla `equipos`
 --
 ALTER TABLE `equipos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_categoria` (`id_categoria`);
+
+--
+-- Indices de la tabla `jugadores`
+--
+ALTER TABLE `jugadores`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_datosMedicos` (`id_datosMedicos`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `quejas`
@@ -120,9 +206,33 @@ ALTER TABLE `categorias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `cuerpomedico`
+--
+ALTER TABLE `cuerpomedico`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `datosmedicos`
+--
+ALTER TABLE `datosmedicos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `entrenadores`
+--
+ALTER TABLE `entrenadores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `jugadores`
+--
+ALTER TABLE `jugadores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -146,6 +256,30 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `categorias`
   ADD CONSTRAINT `categorias_ibfk_1` FOREIGN KEY (`id`) REFERENCES `equipos` (`id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `cuerpomedico`
+--
+ALTER TABLE `cuerpomedico`
+  ADD CONSTRAINT `cuerpomedico_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `datosmedicos`
+--
+ALTER TABLE `datosmedicos`
+  ADD CONSTRAINT `datosmedicos_ibfk_1` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `entrenadores`
+--
+ALTER TABLE `entrenadores`
+  ADD CONSTRAINT `entrenadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `jugadores`
+--
+ALTER TABLE `jugadores`
+  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
