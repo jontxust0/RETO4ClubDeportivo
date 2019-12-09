@@ -6,35 +6,30 @@ body *{
     margin: auto;
 }
 
-.header{
-    background-color: rgb(155, 74, 74);
-    border: 3px solid blue;
-    box-sizing: border-box;
-    height: 200px;
-    width: 99%;
-    margin: 3px auto;
-    
-}
+
 /*-----------------NAVBAR-------------------*/
 #navContactanos{
     background-color: black;
-    max-width: 99%;
+    max-width: 100%;
     margin: auto;
 
 }
 
-#navContactanos ul{
+#navContactanos div{
    
     margin: 0;
     display: flex;
-    color: white;
+   
     list-style-type: none;
     justify-content: space-around;
     padding: 0;
     height: 100px;
     
+    
 }
-#navContactanos ul li{
+#navContactanos div a{
+    color: white;
+    text-decoration: none;
     display: flex;
     text-align: center;
     width: 100%;
@@ -43,7 +38,7 @@ body *{
     transition: 1s;
     height: 100%;
 }
-#navContactanos ul li:hover{
+#navContactanos div a:hover{
 background-color: teal;
 
 }
