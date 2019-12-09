@@ -99,7 +99,13 @@ a {
 }
 .card{
     margin: 5px;
+    transition: 1s;
 }
+.card:hover{
+    background-color: royalblue;
+    color: white;
+}
+
 h4:nth-child(1){
     margin-left: 50px;
 }
