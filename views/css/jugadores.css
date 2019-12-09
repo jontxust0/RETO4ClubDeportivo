@@ -1,0 +1,63 @@
+
+/* Esto es para la vista vJugadores*/
+#infoEquipos {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: rgb(209, 209, 209);
+}
+#infoJugadores{
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-left: 40px;
+}
+#infoEntrenadores{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+#infoEquipos h4{
+    margin-top: 150px;
+    font-family: Impact;
+    color: rgb(134, 108, 108);
+    text-shadow: 2px 2px black;
+}
+#infoEquipos img{
+    margin: 10px;
+}
+#inputGroupSelect01{
+    position: absolute;
+    top: 250px;
+    left: 30px;
+    height: 30px;
+    width: 100px;
+}
+#footer{
+    background-image: linear-gradient(black, white);
+    text-align: center;
+}
+.card{
+    margin: 5px;
+}
+h4:nth-child(1){
+    margin-left: 50px;
+}
+@media(max-width:800px){
+    #infoEquipos {
+        grid: none;
+    }
+    #infoEquipos h4{
+        text-align: center;
+    }
+    #infoEntrenadores{
+        margin-left: 37px;
+    }
+}
+@media(max-width:600px){
+    #infoJugadores{
+        grid: none;
+    }
+    #infoEntrenadores{
+        grid: none;
+    }
+}
+/* Esto es para la vista vJugadores*/
+
