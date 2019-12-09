@@ -55,6 +55,7 @@ a {
 
 /*-----------------------------------*/
 
+
 /* Esto es para la vista vJugadores*/
 #infoEquipos {
     display: grid;
@@ -123,31 +124,3 @@ h4:nth-child(1){
 }
 /* Esto es para la vista vJugadores*/
 
-
-
-/*Esto es para la vista vPresentacion*/
-
-
-/*-----------------------*/
-
-
-/* Esto es para la vista vInstalaciones*/
-
-.vInstalacionesImagen{
-  padding: 5px;
-  text-align: center;
-
-}
-.rowImagen{
-  padding: 5px;
-}
-.vImg{
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-.vCenter{
-  text-align: center;
-  size: 18px;
-}
-/*-----------------------*/
