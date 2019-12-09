@@ -2,13 +2,6 @@ body{
     margin: 0px;
     padding: 0px;
 }
-#header {
-    width: 100%;
-    height: 150px;
-    background-image: url("https://www.partners.net/sites/default/files/hep2017/header-sponsorship-es.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-}
 
 /*estilo para la vista INDEX*/
 
@@ -58,7 +51,7 @@ a {
 }
 
 
-  /*----------------*/
+  /*---------------*/
 
 /*-----------------------------------*/
 
