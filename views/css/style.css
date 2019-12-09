@@ -7,6 +7,9 @@
 }
 
 /*estilo para la vista INDEX*/
+/* #bodyInicio{
+  background-image: linear-gradient(-90deg,  rgb(233, 153, 49),rgb(186, 186, 186));
+} */
 
   /*estilo para categorias*/
 .iCategorias{
@@ -100,12 +103,17 @@ a {
 
 
 /*Esto es para la vista vPresentacion*/
-
+/* #bodyPresentacion{
+  background-image: linear-gradient(-90deg,  rgb(233, 153, 49),rgb(186, 186, 186));
+} */
 
 /*-----------------------*/
 
 
 /* Esto es para la vista vInstalaciones*/
+/* #bodyInstalaciones{
+  background-image: linear-gradient(-90deg,  rgb(233, 153, 49),rgb(186, 186, 186));
+} */
 
 .vInstalacionesImagen{
   padding: 5px;
