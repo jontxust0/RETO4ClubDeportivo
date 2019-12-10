@@ -1,0 +1,16 @@
+
+h2{
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+}
+#fotoPresentacion img{
+    width: 75%;
+    height: 500px;
+}
+.pTexto p{
+   margin-left: 50px;
+   margin-right: 10px;
+}
