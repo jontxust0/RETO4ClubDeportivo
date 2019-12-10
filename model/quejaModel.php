@@ -34,7 +34,7 @@ class quejaModel extends quejaClass{
         $asunto=$this->getAsunto();
         $descripcion=$this->getDescripcion();
         
-        $sql = "INSERT INTO `quejas`(`nombre`, `apellido`, `asunto`, `descripcion`) VALUES ($nombre,$apellido,$asunto,$descripcion)";
+        $sql = "INSERT INTO `quejas`(`nombre`, `apellido`, `asunto`, `descripcion`) VALUES ('$nombre','$apellido','$asunto','$descripcion')";
         
         if ($this->link->query($sql)>=1) // insert egiten da
         {
