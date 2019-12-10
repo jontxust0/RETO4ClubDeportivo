@@ -1,12 +1,15 @@
 function enviarDatos(params) {
+    
+    var nombre="";
+    var apellido="";
     var asunto = document.getElementById("asunto").value;
     var queja = document.getElementById("queja").value;
     if (document.getElementById("nombre").value!=""){
-    var nombre = document.getElementById("nombre").value;
+    nombre = document.getElementById("nombre").value;
     }
 
     if (document.getElementById("apellido").value!=""){
-    var apellido = document.getElementById("nombre").value;
+    apellido = document.getElementById("nombre").value;
     }
 
     if (asunto == "" || queja==""){
@@ -15,20 +18,30 @@ function enviarDatos(params) {
     else{
 
 
-    //------llamada JSON---------------------//
-    var http = new XMLHttpRequest();
-    var url = "../controller/cInsertQueja.php";
+//------llamada JSON--------------------------//
 
-    http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    http.open("GET", url, true);
 
-    http.onreadystatechange = function() {
-        if(http.readyState == 4 && http.status == 200) { 
-        //aqui obtienes la respuesta de tu peticion
+
+
+var http = new XMLHttpRequest();
+var url = "../controller/cInsertQueja.php";
+
+
+
+var params = 'nombre='+nombre+'&apellido='+apellido+"&asunto="+asunto+"&queja="+queja;
+http.open('POST', url, true);
+
+//Send the proper header information along with the request
+http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+http.onreadystatechange = function() {//Call a function when the state changes.
+    if(http.readyState == 4 && http.status == 200) {
+         //aqui obtienes la respuesta de tu peticion
          alert(http.responseText);
-        }
+    }
 }
-http.send(JSON.stringify({email:email, password: password}));
+http.send(params);
+
 //--------------------------------------------//
 
 

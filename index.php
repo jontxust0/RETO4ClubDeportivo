@@ -43,7 +43,7 @@ session_start();
 		<!--Hay que hacer una imagen de patrocinadores con 150px para que quede bien-->
 		<img src="views/img/header.png" id="header">
 	</div>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded-bottom">
 		<a class="navbar-brand" href="#"> <img
 			src="views/img/logoSinTitulo.png" alt="Zornotza Hawks" height="42"
 			width="42">
@@ -61,7 +61,7 @@ session_start();
 					href="index.html">Inicio <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item "><a class="nav-link"
-					href="views/vPresentacion.html">Presentación <span
+					href="views/vPresentacion.html">Presentacion <span
 						class="sr-only"></span></a></li>
 
 				<li class="nav-item"><a class="nav-link"
@@ -91,6 +91,9 @@ session_start();
                 <a id="logout" class="dropdown-item">Cerrar SesiÃ³n </a>
               </div>
             </li>
+					<li class="nav-item">
+						<a class="nav-link" href="views/vJugadores.html">Jugadores</a>
+					  </li>
 			</ul>
 			<div class="divider"></div>
 			<div class="navbar-center">
@@ -115,7 +118,7 @@ session_start();
 					aria-controls="v-pills-messages" aria-selected="false">Juvenil</a>
 				<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
 					href="#v-pills-settings" role="tab"
-					aria-controls="v-pills-settings" aria-selected="false">Sénior</a>
+					aria-controls="v-pills-settings" aria-selected="false">Senior</a>
 			</div>
 		</div>
 		<div class="col-9 ">
@@ -266,10 +269,10 @@ session_start();
 				</div>
 				<div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
 					aria-labelledby="v-pills-settings-tab">
-					<h2>Séniors</h2>
+					<h2>Sï¿½niors</h2>
 					<br>
 					<div class="row">
-						<!--CARROUSEL SÉNIOR-->
+						<!--CARROUSEL Sï¿½NIOR-->
 						<div class="col-8 ">
 							<div id="carouselSenior" class="carousel slide"
 								data-ride="carousel">
@@ -304,7 +307,7 @@ session_start();
 						</div>
 						<!--TEXTO CADETE-->
 						<div class="col-4 ">
-							<h4>Equipos Séniors</h4>
+							<h4>Equipos Sï¿½niors</h4>
 							<a href="#"> Senior A</a> <a href="#"> Senior B</a> <a href="#">
 								Senior C</a> <a href="#"> Senior D</a>
 						</div>
