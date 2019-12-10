@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
 <html>
 
 <head>
 <title>Zornotza Hawks</title>
 <link rel="icon" type="image/png" href="views/img/logoSinTitulo.png">
-<script src="views/js/jsFuntions.js" type="text/javascript"></script>
-<link href="views/css/index.css" rel="stylesheet" type="text/css" />
-<link href="views/css/style.css" rel="stylesheet" type="text/css" />
+
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -26,6 +27,14 @@
 	x
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	
+	<script src="views/js/jsFuntions.js" type="text/javascript"></script>
+<link href="views/css/index.css" rel="stylesheet" type="text/css" />
+<link href="views/css/style.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body id="bodyInicio">
@@ -60,6 +69,28 @@
 						class="sr-only"></span></a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="views/vContactanos.html">Contacto</a></li>
+					
+				<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?php 
+                
+                
+                if(isset($_SESSION['name'])){
+                    echo $_SESSION["name"];
+                }else{
+                    
+                    echo "Usuario";
+                }
+                    
+                ?>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Perfil</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a id="logout" class="dropdown-item">Cerrar Sesión </a>
+              </div>
+            </li>
 			</ul>
 			<div class="divider"></div>
 			<div class="navbar-center">
@@ -310,23 +341,23 @@
 						aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-					<form action="/examples/actions/confirmation.php" method="post">
+					
 						<div class="form-group">
-							<input type="text" class="form-control" name="username"
+							<input type="text" class="form-control" id="name" name="usuario"
 								placeholder="Username" required="required">
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" name="password"
+							<input type="password" class="form-control" id="password" name="contrasena"
 								placeholder="Password" required="required">
 						</div>
 						<div class="form-group">
-							<button type="submit"
+							<button id="login" 
 								class="btn btn-primary btn-lg btn-block login-btn">Login</button>
 						</div>
-					</form>
+					
 				</div>
 				<div class="modal-footer">
-					<a href="#">Forgot Password?</a>
+					<a href="views/vNewUser.html">New User</a>
 				</div>
 			</div>
 		</div>

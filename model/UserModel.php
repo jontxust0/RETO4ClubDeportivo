@@ -1,16 +1,16 @@
 <?php
 require_once 'connect_data.php';
-require_once 'usuarioClass.php';
+require_once 'UserClass.php';
 
-class usuarioModel extends usuarioClass {
+class UserModel extends UserClass{
     
     private $list;
-    
+
     public function getList()
     {
         return $this->list;
     }
-    
+
     public function setList($list)
     {
         $this->list = $list;
@@ -43,20 +43,21 @@ class usuarioModel extends usuarioClass {
     {
         $this->OpenConnect();
         
-        $username=$this->usuario;
-        
+        $username=$this->username;
+        //echo $username;
         $sql="call spFindUserByUsername('$username')";
         $result= $this->link->query($sql);
-        
+
         $userExists=false;
         
         if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         {
+
             $passwordEncripted=$row['password'];
             
             if (password_verify($this->getPassword(), $passwordEncripted))
             {
-                $this->setAdmin($row['admin']);
+                $this->setAdmin($row['admin']); 
                 
                 $userExists=true;
             }
@@ -65,8 +66,8 @@ class usuarioModel extends usuarioClass {
         mysqli_free_result($result);
         $this->CloseConnect();
     }
-    
-    public function insertUser()
+  
+ public function insertUser()
     {
         $this->OpenConnect();
         
@@ -87,3 +88,4 @@ class usuarioModel extends usuarioClass {
     }  
     
 }
+

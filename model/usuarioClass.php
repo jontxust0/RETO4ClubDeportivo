@@ -3,13 +3,17 @@ class usuarioClass{
 protected $id;
 protected $nombre;
 protected $apellido;
-protected $edad;
 protected $sexo;
-protected $tlf;
-protected $direccion;
-protected $tipo;
 protected $id_equipo;
-/**
+protected $contrasena;
+protected $usuario;
+
+
+
+
+   
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -36,14 +40,6 @@ protected $id_equipo;
 /**
      * @return mixed
      */
-    public function getEdad()
-    {
-        return $this->edad;
-    }
-
-/**
-     * @return mixed
-     */
     public function getSexo()
     {
         return $this->sexo;
@@ -52,33 +48,17 @@ protected $id_equipo;
 /**
      * @return mixed
      */
-    public function getTlf()
-    {
-        return $this->tlf;
-    }
-
-/**
-     * @return mixed
-     */
-    public function getDireccion()
-    {
-        return $this->direccion;
-    }
-
-/**
-     * @return mixed
-     */
-    public function getTipo()
-    {
-        return $this->tipo;
-    }
-
-/**
-     * @return mixed
-     */
     public function getId_equipo()
     {
         return $this->id_equipo;
+    }
+
+/**
+     * @return mixed
+     */
+    public function getContrasena()
+    {
+        return $this->contrasena;
     }
 
 /**
@@ -106,43 +86,11 @@ protected $id_equipo;
     }
 
 /**
-     * @param mixed $edad
-     */
-    public function setEdad($edad)
-    {
-        $this->edad = $edad;
-    }
-
-/**
      * @param mixed $sexo
      */
     public function setSexo($sexo)
     {
         $this->sexo = $sexo;
-    }
-
-/**
-     * @param mixed $tlf
-     */
-    public function setTlf($tlf)
-    {
-        $this->tlf = $tlf;
-    }
-
-/**
-     * @param mixed $direccion
-     */
-    public function setDireccion($direccion)
-    {
-        $this->direccion = $direccion;
-    }
-
-/**
-     * @param mixed $tipo
-     */
-    public function setTipo($tipo)
-    {
-        $this->tipo = $tipo;
     }
 
 /**
@@ -153,6 +101,30 @@ protected $id_equipo;
         $this->id_equipo = $id_equipo;
     }
 
+/**
+     * @param mixed $contrasena
+     */
+    public function setContrasena($contrasena)
+    {
+        $this->contrasena = $contrasena;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+    
+    /**
+     * @param mixed $usuario
+     */
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
+    }
+    
 
     public function getObjectVars()
     {
