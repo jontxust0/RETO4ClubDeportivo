@@ -1,14 +1,42 @@
 /*estilo para la vista INDEX*/
 
   /*estilo para categorias*/
+  body{
+	  overflow-x: hidden;
+  }
+  #categoriasContainer{
+	  background-color: rgb(21, 167, 45);
+	  padding: 5px;
+	  margin-top: -3px;
+  }
 .iCategorias{
 height: 250px;
 color: white;
 text-align: center;
 }
+
+#footer{
+	background-color: #212529 !important;
+	display: flex !important;
+	flex-direction: column;
+}
+.iconos img{
+	width: 64px;
+	height: 64px;
+}
+
+.iconos a:nth-child(2) img{
+	border-radius: 50%;
+}
+
+.tab-content{
+	background-color:#28a745;
+	padding: 5px;
+	border: 5px #66f189 ridge ;
+}
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
   color: #fff !important;
-  background-color: gray !important;
+  background-color: rgb(76, 245, 98) !important;
   text-align: center !important;
 }
 .nav-pills .nav-link {
@@ -21,10 +49,18 @@ text-align: center;
 }
 
 a {
-  color: rgb(119, 121, 123) !important;
+  color: rgb(255, 255, 255) !important;
   background-color: transparent !important;
   text-decoration: none !important;
 }
+
+
+.tab-pane h2{
+	color: rgb(136, 255, 255);
+}
+.col-4 h4{
+	color: white !important;
+} 
 
 *, ::after, ::before {
   box-sizing: border-box !important;
