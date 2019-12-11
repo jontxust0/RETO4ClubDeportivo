@@ -27,11 +27,12 @@ session_start();
 	x
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
-	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
-	
-	<script src="views/js/jsFuntions.js" type="text/javascript"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<script src="views/js/jsFuntions.js" type="text/javascript"></script>
 <link href="views/css/index.css" rel="stylesheet" type="text/css" />
 <link href="views/css/style.css" rel="stylesheet" type="text/css" />
 
@@ -57,48 +58,59 @@ session_start();
 
 		<div class="collapse navbar-collapse " id="navbarSupportedContent">
 			<ul class="navbar-nav navbar-center mr-auto">
-				<li class="nav-item active"><a class="nav-link "
-					href="index.html">Inicio <span class="sr-only">(current)</span></a>
-				</li>
+				<li class="nav-item active"><a class="nav-link " href="index.php">Inicio
+						<span class="sr-only">(current)</span>
+				</a></li>
 				<li class="nav-item "><a class="nav-link"
-					href="views/vPresentacion.html">Presentación <span
-						class="sr-only"></span></a></li>
+					href="views/vPresentacion.html">Presentación <span class="sr-only"></span></a></li>
 
 				<li class="nav-item"><a class="nav-link"
 					href="views/vInstalaciones.html">Instalaciones <span
 						class="sr-only"></span></a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="views/vContactanos.html">Contacto</a></li>
-					
+
 				<li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <?php 
+					<a class="nav-link dropdown-toggle"
+    					href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+    					aria-haspopup="true" aria-expanded="false">
+                            <?php
+            
+                                if (isset($_SESSION['name'])) {
+                                    echo $_SESSION["name"];
+                                } else {
                 
-                
-                if(isset($_SESSION['name'])){
-                    echo $_SESSION["name"];
-                }else{
-                    
-                    echo "Usuario";
-                }
-                    
-                ?>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Perfil</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a id="logout" class="dropdown-item">Cerrar Sesión </a>
-              </div>
-            </li>
-					<li class="nav-item">
-						<a class="nav-link" href="views/vJugadores.html">Jugadores</a>
-					  </li>
+                                    echo "Usuario";
+                                }
+            
+                            ?>
+                  </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#">Perfil</a> <a
+							class="dropdown-item" href="#">Another action</a>
+						<div class="dropdown-divider"></div>
+						<a id="logout" class="dropdown-item">Cerrar Sesión </a>
+					</div></li>
+				<li class="nav-item"><a class="nav-link"
+					href="views/vJugadores.html">Jugadores</a></li>
 			</ul>
 			<div class="divider"></div>
 			<div class="navbar-center">
-				<button class="btn btn-outline-light my-2 my-sm-0" 
-					data-toggle="modal" data-target="#myModal">Log In</button>
+			
+
+					
+					<?php
+
+    if (isset($_SESSION['name'])) {
+        echo "<button id='btnLogout' class='btn btn-login btn-outline-light my-2 my-sm-0' 
+					>Logout</button>";
+    } else {
+
+        echo "<button id='btnLogin' class='btn btn-login btn-outline-light my-2 my-sm-0'
+					data-toggle='modal' data-target='#myModal'>Login</button>";
+    }
+
+    ?>
 			</div>
 		</div>
 	</nav>
@@ -224,7 +236,8 @@ session_start();
 					<div class="row">
 						<!--CARROUSEL JUVENIL-->
 						<div class="col-12 col-lg-9">
-							<div id="carouselJuvenil" class="carousel slide" data-ride="carousel">
+							<div id="carouselJuvenil" class="carousel slide"
+								data-ride="carousel">
 								<div class="carousel-inner" role="listbox">
 									<div class="carousel-item active">
 										<img class="d-block w-100"
@@ -303,8 +316,8 @@ session_start();
 						<!--TEXTO SENIOR-->
 						<div class="col-12 col-lg-3">
 							<h4>Equipos S&eacute;niors</h4>
-							<a href="#"> S&eacute;nior A</a> <a href="#"> S&eacute;nior B</a> <a href="#">
-								S&eacute;nior C</a> <a href="#"> S&eacute;nior D</a>
+							<a href="#"> S&eacute;nior A</a> <a href="#"> S&eacute;nior B</a>
+							<a href="#"> S&eacute;nior C</a> <a href="#"> S&eacute;nior D</a>
 						</div>
 					</div>
 
@@ -314,15 +327,15 @@ session_start();
 	</div>
 	<!--Footer-->
 	<div>
-		<p>Lorem Ipsum is simply dummy text of the printing and
-			typesetting industry. Lorem Ipsum has been the industry's standard
-			dummy text ever since the 1500s, when an unknown printer took a
-			galley of type and scrambled it to make a type specimen book. It has
-			survived not only five centuries, but also the leap into electronic
-			typesetting, remaining essentially unchanged. It was popularised in
-			the 1960s with the release of Letraset sheets containing Lorem Ipsum
-			passages, and more recently with desktop publishing software like
-			Aldus PageMaker including versions of Lorem Ipsum.</p>
+		<p>Lorem Ipsum is simply dummy text of the printing and typesetting
+			industry. Lorem Ipsum has been the industry's standard dummy text
+			ever since the 1500s, when an unknown printer took a galley of type
+			and scrambled it to make a type specimen book. It has survived not
+			only five centuries, but also the leap into electronic typesetting,
+			remaining essentially unchanged. It was popularised in the 1960s with
+			the release of Letraset sheets containing Lorem Ipsum passages, and
+			more recently with desktop publishing software like Aldus PageMaker
+			including versions of Lorem Ipsum.</p>
 	</div>
 
 
@@ -339,20 +352,20 @@ session_start();
 						aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-					
-						<div class="form-group">
-							<input type="text" class="form-control" id="name" name="usuario"
-								placeholder="Username" required="required">
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" id="password" name="contrasena"
-								placeholder="Password" required="required">
-						</div>
-						<div class="form-group">
-							<button id="login" 
-								class="btn btn-primary btn-lg btn-block login-btn">Login</button>
-						</div>
-					
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="name" name="usuario"
+							placeholder="Username" required="required">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="password"
+							name="contrasena" placeholder="Password" required="required">
+					</div>
+					<div class="form-group">
+						<button id="login"
+							class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+					</div>
+
 				</div>
 				<div class="modal-footer">
 					<a href="views/vNewUser.html">New User</a>
