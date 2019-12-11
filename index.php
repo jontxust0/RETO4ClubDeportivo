@@ -1,13 +1,23 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
 <html>
 
 <head>
 <title>Zornotza Hawks</title>
 <link rel="icon" type="image/png" href="views/img/logoSinTitulo.png">
+<<<<<<< HEAD:index.html
 <!------------------------------CSS------------------------------------------------------------>
 <script src="views/js/jsFuntions.js" type="text/javascript"></script>
 <link href="views/css/index.css" rel="stylesheet" type="text/css" />
 <link href="views/css/style.css" rel="stylesheet" type="text/css" />
+=======
+
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+>>>>>>> 308ff9ccba5b370b01e37898463ac2e273cded15:index.php
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -27,7 +37,18 @@
 	x
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
+<<<<<<< HEAD:index.html
 	<!----------------------------------------------------------------------------------------->
+=======
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<script src="views/js/jsFuntions.js" type="text/javascript"></script>
+<link href="views/css/index.css" rel="stylesheet" type="text/css" />
+<link href="views/css/style.css" rel="stylesheet" type="text/css" />
+>>>>>>> 308ff9ccba5b370b01e37898463ac2e273cded15:index.php
 
 </head>
 
@@ -48,26 +69,65 @@
 
 		<div class="collapse navbar-collapse " id="navbarSupportedContent">
 			<ul class="navbar-nav navbar-center mr-auto">
+<<<<<<< HEAD:index.html
 				<li class="nav-item active"><a class="nav-link"
 					href="index.html">Inicio <span class="sr-only">(current)</span></a>
 				</li>
+=======
+				<li class="nav-item active"><a class="nav-link " href="index.php">Inicio
+						<span class="sr-only">(current)</span>
+				</a></li>
+>>>>>>> 308ff9ccba5b370b01e37898463ac2e273cded15:index.php
 				<li class="nav-item "><a class="nav-link"
-					href="views/vPresentacion.html">Presentacion <span
-						class="sr-only"></span></a></li>
+					href="views/vPresentacion.html">Presentación <span class="sr-only"></span></a></li>
 
 				<li class="nav-item"><a class="nav-link"
 					href="views/vInstalaciones.html">Instalaciones <span
 						class="sr-only"></span></a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="views/vContactanos.html">Contacto</a></li>
-					<li class="nav-item">
-						<a class="nav-link" href="views/vJugadores.html">Jugadores</a>
-					  </li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle"
+    					href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+    					aria-haspopup="true" aria-expanded="false">
+                            <?php
+            
+                                if (isset($_SESSION['name'])) {
+                                    echo $_SESSION["name"];
+                                } else {
+                
+                                    echo "Usuario";
+                                }
+            
+                            ?>
+                  </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#">Perfil</a> <a
+							class="dropdown-item" href="#">Another action</a>
+						<div class="dropdown-divider"></div>
+						<a id="logout" class="dropdown-item">Cerrar Sesión </a>
+					</div></li>
+				<li class="nav-item"><a class="nav-link"
+					href="views/vJugadores.html">Jugadores</a></li>
 			</ul>
 			<div class="divider"></div>
 			<div class="navbar-center">
-				<button class="btn btn-outline-light my-2 my-sm-0" 
-					data-toggle="modal" data-target="#myModal">Log In</button>
+			
+
+					
+					<?php
+
+    if (isset($_SESSION['name'])) {
+        echo "<button id='btnLogout' class='btn btn-login btn-outline-light my-2 my-sm-0' 
+					>Logout</button>";
+    } else {
+
+        echo "<button id='btnLogin' class='btn btn-login btn-outline-light my-2 my-sm-0'
+					data-toggle='modal' data-target='#myModal'>Login</button>";
+    }
+
+    ?>
 			</div>
 		</div>
 	</nav>
@@ -86,7 +146,7 @@
 					aria-controls="v-pills-messages" aria-selected="false">Juvenil</a>
 				<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
 					href="#v-pills-settings" role="tab"
-					aria-controls="v-pills-settings" aria-selected="false">Senior</a>
+					aria-controls="v-pills-settings" aria-selected="false">S&eacute;nior</a>
 			</div>
 		</div>
 		<div class="col-9 ">
@@ -97,11 +157,10 @@
 					
 					<div class="row rowImagen">
 						<!--CARROUSEL INFANTIL-->
-						<div class="col-8 ">
+						<div class="col-12 col-lg-9">
 							<div id="carouselInfantil" class="carousel slide"
 								data-ride="carousel">
-								<div class="carousel-inner" role="listbox"
-									style="width: 100%; height: 500px !important;">
+								<div class="carousel-inner" role="listbox">
 									<div class="carousel-item active">
 										<img class="d-block w-100"
 											src="https://lh5.googleusercontent.com/IYfwSkmAkk5O7RVtmJtot05kduhEzKNOmuIUfF3gR159bqN2QGOU75QL3CsGfeGubO_RojxfaAZm-3RAB49yxxT_KqXXYSlls9PQbm88MCcLl2qPa6bcwtIgNjC9wO4I49f_I2nI"
@@ -130,7 +189,7 @@
 							</div>
 						</div>
 						<!--TEXTO INFANTIL-->
-						<div class="col-4">
+						<div class="col-12 col-lg-3">
 							<h4>Equipos Infantiles</h4>
 							<a href="#"> Infantil A</a> <a href="#"> Infantil B</a> <a
 								href="#"> Infantil C</a> <a href="#"> Infantil D</a>
@@ -146,11 +205,10 @@
 					<br>
 					<div class="row">
 						<!--CARROUSEL CADETE-->
-						<div class="col-8 ">
+						<div class="col-12 col-lg-9">
 							<div id="carouselCadete" class="carousel slide"
 								data-ride="carousel">
-								<div class="carousel-inner" role="listbox"
-									style="width: 100%; height: 500px !important;">
+								<div class="carousel-inner" role="listbox">
 									<div class="carousel-item active">
 										<img class="d-block w-100"
 											src="http://www.ardoibaloncesto.com/wp-content/uploads/2017/05/cadete-masc.jpg"
@@ -179,7 +237,7 @@
 							</div>
 						</div>
 						<!--TEXTO CADETE-->
-						<div class="col-4 ">
+						<div class="col-12 col-lg-3">
 							<h4>Equipos CADETES</h4>
 							<a href="#"> Cadete A</a> <a href="#"> Cadete B</a> <a href="#">
 								Cadete C</a> <a href="#"> Cadete D</a>
@@ -193,11 +251,10 @@
 					<br>
 					<div class="row">
 						<!--CARROUSEL JUVENIL-->
-						<div class="col-8 ">
+						<div class="col-12 col-lg-9">
 							<div id="carouselJuvenil" class="carousel slide"
 								data-ride="carousel">
-								<div class="carousel-inner" role="listbox"
-									style="width: 100%; height: 500px !important;">
+								<div class="carousel-inner" role="listbox">
 									<div class="carousel-item active">
 										<img class="d-block w-100"
 											src="http://www.extremadura.com/uploads/pg_models/media/photo/derivative/image/72154/equipo-juvenil-zafra-baloncesto-equipo-juvenil-baloncesto-zafra_md.jpg"
@@ -226,7 +283,7 @@
 							</div>
 						</div>
 						<!--TEXTO CADETE-->
-						<div class="col-4 ">
+						<div class="col-12 col-lg-3">
 							<h4>Equipos Juveniles</h4>
 							<a href="#"> Juvenil A</a> <a href="#"> Juvenil B</a> <a href="#">
 								Juvenil C</a> <a href="#"> Juvenil D</a>
@@ -237,15 +294,14 @@
 				</div>
 				<div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
 					aria-labelledby="v-pills-settings-tab">
-					<h2>S�niors</h2>
+					<h2>S&eacute;niors</h2>
 					<br>
 					<div class="row">
-						<!--CARROUSEL S�NIOR-->
-						<div class="col-8 ">
+						<!--CARROUSEL SENIOR-->
+						<div class="col-12 col-lg-9">
 							<div id="carouselSenior" class="carousel slide"
 								data-ride="carousel">
-								<div class="carousel-inner" role="listbox"
-									style="width: 100%; height: 500px !important;">
+								<div class="carousel-inner" role="listbox">
 									<div class="carousel-item active">
 										<img class="d-block w-100"
 											src="https://1.bp.blogspot.com/-CSmhviSOUr4/WMEfrWH6ekI/AAAAAAAAJSI/FCXYiTUy5gAn2YBu3-UdEtzl4TRc3Dp5ACLcB/s1600/Senior%2B1%25C2%25BA%2B%2B2016.2017%2Brecortado.jpeg"
@@ -273,11 +329,11 @@
 								</a>
 							</div>
 						</div>
-						<!--TEXTO CADETE-->
-						<div class="col-4 ">
-							<h4>Equipos S�niors</h4>
-							<a href="#"> Senior A</a> <a href="#"> Senior B</a> <a href="#">
-								Senior C</a> <a href="#"> Senior D</a>
+						<!--TEXTO SENIOR-->
+						<div class="col-12 col-lg-3">
+							<h4>Equipos S&eacute;niors</h4>
+							<a href="#"> S&eacute;nior A</a> <a href="#"> S&eacute;nior B</a>
+							<a href="#"> S&eacute;nior C</a> <a href="#"> S&eacute;nior D</a>
 						</div>
 					</div>
 
@@ -287,15 +343,15 @@
 	</div>
 	<!--Footer-->
 	<div>
-		<p>Lorem Ipsum is simply dummy text of the printing and
-			typesetting industry. Lorem Ipsum has been the industry's standard
-			dummy text ever since the 1500s, when an unknown printer took a
-			galley of type and scrambled it to make a type specimen book. It has
-			survived not only five centuries, but also the leap into electronic
-			typesetting, remaining essentially unchanged. It was popularised in
-			the 1960s with the release of Letraset sheets containing Lorem Ipsum
-			passages, and more recently with desktop publishing software like
-			Aldus PageMaker including versions of Lorem Ipsum.</p>
+		<p>Lorem Ipsum is simply dummy text of the printing and typesetting
+			industry. Lorem Ipsum has been the industry's standard dummy text
+			ever since the 1500s, when an unknown printer took a galley of type
+			and scrambled it to make a type specimen book. It has survived not
+			only five centuries, but also the leap into electronic typesetting,
+			remaining essentially unchanged. It was popularised in the 1960s with
+			the release of Letraset sheets containing Lorem Ipsum passages, and
+			more recently with desktop publishing software like Aldus PageMaker
+			including versions of Lorem Ipsum.</p>
 	</div>
 
 
@@ -312,23 +368,23 @@
 						aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-					<form action="/examples/actions/confirmation.php" method="post">
-						<div class="form-group">
-							<input type="text" class="form-control" name="username"
-								placeholder="Username" required="required">
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" name="password"
-								placeholder="Password" required="required">
-						</div>
-						<div class="form-group">
-							<button type="submit"
-								class="btn btn-primary btn-lg btn-block login-btn">Login</button>
-						</div>
-					</form>
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="name" name="usuario"
+							placeholder="Username" required="required">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="password"
+							name="contrasena" placeholder="Password" required="required">
+					</div>
+					<div class="form-group">
+						<button id="login"
+							class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+					</div>
+
 				</div>
 				<div class="modal-footer">
-					<a href="#">Forgot Password?</a>
+					<a href="views/vNewUser.html">New User</a>
 				</div>
 			</div>
 		</div>

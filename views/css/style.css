@@ -9,3 +9,22 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+/*Footer*/
+    .textwidget p a img{
+        width: 250px;
+    }
+    .redesImg{
+        text-align: center;
+    }
+    .redesImg img{
+        width: 130px;
+        
+    }
+    @media only screen and (max-width: 991px) {
+        .containerFooter .row{
+            width: 100%;
+            text-align: center;
+            align-content: center;
+        }
+    }
+/*-------------------*/
