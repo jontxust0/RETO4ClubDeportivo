@@ -427,7 +427,7 @@ session_start();
 							name="email" placeholder="Email" required="required">
 					</div>
 					<div class="form-group">
-						<input type="checkbox" id="admin" value="1" checked /><br/><br/>
+						<input type="checkbox" id="admin"  checked /><br/><br/>
 					</div>
 					<div class="form-group">
 						<button id="register"
