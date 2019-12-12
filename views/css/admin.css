@@ -1,0 +1,29 @@
+.adminContainer{
+    width: 100% !important;
+    text-align: center;
+    background-color: rgb(139, 155, 230)!important;
+    
+}
+
+.containerButtons{
+    padding-top: 20px ;
+    background-color: rgb(139, 155, 230)!important;
+    
+
+}
+.containerButtons .custom-btn{
+    padding: 25px ;
+    width: 100%;
+
+}
+.adminEntrenadores{
+    display: none;
+
+}
+.adminJugadores{
+    display: none;
+}
+.adminUsuario{
+    display: none;
+    
+}
