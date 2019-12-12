@@ -56,6 +56,30 @@ class jugadoresModel extends jugadoresClass{
         $this->CloseConnect();
         // return $this->usuario;
     }
+    
+    public function setListByIdEquipo(int $id){
+        
+        $this->OpenConnect();
+        $sql="call  findJugadorByIdEquipo($id)";
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+            $new=new self();
+            
+            $new->setId($row['id']);
+            $new->setDireccion($row['direccion']);
+            $new->setDorsal($row['dorsal']);
+            $new->setPosicion($row['posicion']);
+            $new->setTlf($row['tlf']);
+            $new->setDuracion($row['duracion']);
+            $new->setCartel($row['cartel']);
+            
+            array_push($this->list, $new);
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        
+    }
 }
 
 

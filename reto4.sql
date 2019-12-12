@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-12-2019 a las 09:38:05
+-- Tiempo de generación: 12-12-2019 a las 12:40:16
 -- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.1.32
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -26,6 +26,9 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `findJugadorByIdEquipo` (IN `inId` INT)  NO SQL
+SELECT * FROM `jugadores` WHERE id =inId$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `maxId` ()  NO SQL
 select max(user.idUser) as maxId
 from user$$
@@ -62,7 +65,8 @@ CREATE TABLE `cuerpomedico` (
   `funcion` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `direccion` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `tlf` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `id_usuario` int(11) NOT NULL,
+  `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -91,7 +95,8 @@ CREATE TABLE `entrenadores` (
   `direccion` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `sueldo` decimal(10,0) NOT NULL,
   `fechaContratacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `id_usuario` int(11) NOT NULL
+  `id_usuario` int(11) NOT NULL,
+  `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -121,7 +126,8 @@ CREATE TABLE `jugadores` (
   `tlf` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
   `altura` decimal(10,2) NOT NULL,
   `id_datosMedicos` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `id_usuario` int(11) NOT NULL,
+  `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -152,50 +158,8 @@ CREATE TABLE `user` (
   `surname` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `admin` tinyint(1) DEFAULT NULL,
-  `pic` varchar(100) DEFAULT '../images/default.jpg',
-  `url` varchar(100) DEFAULT 'http://eu.wikipedia.org',
-  `id_equipo` int(11) NOT NULL
+  `pic` varchar(100) DEFAULT '../images/default.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `user`
---
-
-INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`, `admin`, `pic`, `url`, `id_equipo`) VALUES
-(1, 'ana', '$2y$10$jNiP5vCy4oYEkNmyBaKD6uszRLncoSRduADoQhBUYJ4LTvIX/IikG', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
-(2, 'leire', '$2y$10$8u43.B3IRlPjbAWqMan17u3Kxi/Wm0JpLP6yf/38iML1SJyNx0aAC', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
-(3, 's', '$2y$10$XRy.fG/FHIKgqX43Ifpb9uSmNGlchlISO88Fan9IUCzLMyhZtNkDW', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
-(4, 'gotzon', 'aaa', 'gotzon', 'sdfsaf', 'asdfsdf', 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
-(5, 'aaa', '$2y$10$koBLsceWiSB4o3XRhbPNAuv7hbqrSxikZ/zFzrpl2DCVPrbNPSekO', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
-(6, 'bbb', '$2y$10$1PIgA.LzV8JdTFSXeOSifOeH/b25WbjN9/his8WIrK6SjusLCxpEy', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
-(7, 'ccc', '$2y$10$Efqm3/tTaRWEKkQoL1lGO.rjTG250GrfUDKABIw6SXBDJGdQokiXK', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
-(8, 'ddd', '$2y$10$zLlldvt0L24fZcR3xohfrOQsv7pNtjzWDi5IkacGc/obYbgvuqFz.', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
-(9, 'zzz', '$2y$10$bzBFXPMFnV4ON5Howe.d8.K5KcntzXhG7OXQjaPiSI2j/NzK2Fw6q', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
-(10, 'xxx', '$2y$10$FfwI9RqU9R6NXGL7.Bd2KeGn1/aH9hg.6I6zSpta2juyM16R10VZe', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `apellido` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `sexo` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
-  `admin` tinyint(1) NOT NULL,
-  `id_equipo` int(1) DEFAULT NULL,
-  `contrasena` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `usuario` varchar(50) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `sexo`, `admin`, `id_equipo`, `contrasena`, `usuario`) VALUES
-(1, 'sdfsdf', 'sdfsdf', 'h', 1, NULL, 'aaa', 'gotzon');
 
 --
 -- Índices para tablas volcadas
@@ -212,7 +176,8 @@ ALTER TABLE `categorias`
 --
 ALTER TABLE `cuerpomedico`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_usuario` (`id_usuario`);
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_equipo` (`id_equipo`);
 
 --
 -- Indices de la tabla `datosmedicos`
@@ -226,7 +191,8 @@ ALTER TABLE `datosmedicos`
 --
 ALTER TABLE `entrenadores`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_usuario` (`id_usuario`);
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_equipo` (`id_equipo`);
 
 --
 -- Indices de la tabla `equipos`
@@ -241,7 +207,8 @@ ALTER TABLE `equipos`
 ALTER TABLE `jugadores`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_datosMedicos` (`id_datosMedicos`),
-  ADD KEY `id_usuario` (`id_usuario`);
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_equipo` (`id_equipo`);
 
 --
 -- Indices de la tabla `quejas`
@@ -253,15 +220,7 @@ ALTER TABLE `quejas`
 -- Indices de la tabla `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`idUser`),
-  ADD KEY `id_equipo` (`id_equipo`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_equipo` (`id_equipo`);
+  ADD PRIMARY KEY (`idUser`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -316,12 +275,6 @@ ALTER TABLE `user`
   MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- Restricciones para tablas volcadas
 --
 
@@ -335,7 +288,8 @@ ALTER TABLE `categorias`
 -- Filtros para la tabla `cuerpomedico`
 --
 ALTER TABLE `cuerpomedico`
-  ADD CONSTRAINT `cuerpomedico_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `cuerpomedico_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cuerpomedico_ibfk_2` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `datosmedicos`
@@ -347,13 +301,16 @@ ALTER TABLE `datosmedicos`
 -- Filtros para la tabla `entrenadores`
 --
 ALTER TABLE `entrenadores`
-  ADD CONSTRAINT `entrenadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `entrenadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `entrenadores_ibfk_2` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`id_datosMedicos`) REFERENCES `datosmedicos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `jugadores_ibfk_3` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

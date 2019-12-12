@@ -5,6 +5,7 @@ protected $funcion;
 protected $direccion;
 protected $tlf;
 protected $id_usuario;
+protected $id_equipo;
 /**
      * @return mixed
      */

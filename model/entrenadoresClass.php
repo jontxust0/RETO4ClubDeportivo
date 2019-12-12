@@ -6,6 +6,7 @@ protected $direccion;
 protected $sueldo;
 protected $fechaContratacion;
 protected $id_usuario;
+protected $id_equipo;
 /**
      * @return mixed
      */

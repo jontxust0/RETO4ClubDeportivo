@@ -10,7 +10,8 @@ class UserClass{
     protected $email;
     protected $admin;
     protected $pic;
-    protected $url;
+
+
 
     public function getIdUser()
     {

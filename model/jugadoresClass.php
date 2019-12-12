@@ -8,6 +8,7 @@ protected $tlf;
 protected $altura;
 protected $id_datosMedicos;
 protected $id_usuario;
+protected $id_equipos;
 /**
      * @return mixed
      */

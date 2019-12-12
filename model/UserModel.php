@@ -91,7 +91,13 @@ class UserModel extends UserClass{
         
         $this->CloseConnect();
         
-    }  
+    }
+    
+    public function findUserByIdEquipo(int $id){
+        
+        
+        
+    }
     
 }
 
