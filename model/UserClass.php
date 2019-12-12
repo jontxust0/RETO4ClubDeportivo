@@ -10,11 +10,8 @@ class UserClass{
     protected $email;
     protected $admin;
     protected $pic;
-<<<<<<< HEAD
- 
-=======
-    protected $url;
->>>>>>> 9c1d61161042422e5668a4cefde7eaeeff333414
+
+
 
     public function getIdUser()
     {
