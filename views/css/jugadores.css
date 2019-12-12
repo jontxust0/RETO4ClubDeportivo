@@ -1,0 +1,126 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+/*estilo para la vista INDEX*/
+
+  /*estilo para categorias*/
+.iCategorias{
+height: 250px;
+color: white;
+text-align: center;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff !important;
+  background-color: gray !important;
+  text-align: center !important;
+}
+.nav-pills .nav-link {
+  border-radius: 0.25rem;
+}
+
+.nav-link {
+  display: block !important; 
+  padding: 0.5rem 1rem !important;
+}
+
+a {
+  color: rgb(119, 121, 123) !important;
+  background-color: transparent !important;
+  text-decoration: none !important;
+}
+
+*, ::after, ::before {
+  box-sizing: border-box !important;
+}
+/*----------------*/
+
+/*para centrar el NAVBAR*/
+@media (max-width: 991px) {
+  .navbar-center {
+    text-align: center;
+    font-size: 25px;
+  }
+  .divider{
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+  }
+}
+
+
+  /*---------------*/
+
+/*-----------------------------------*/
+
+
+/* Esto es para la vista vJugadores*/
+#infoEquipos {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: rgb(209, 209, 209);
+}
+#infoJugadores{
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-left: 40px;
+}
+#infoEntrenadores{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+#infoEquipos h4{
+    margin-top: 150px;
+    font-family: Impact;
+    color: rgb(134, 108, 108);
+    text-shadow: 2px 2px black;
+}
+#infoEquipos img{
+    margin: 10px;
+}
+#inputGroupSelect01{
+    position: absolute;
+    top: 250px;
+    left: 30px;
+    height: 30px;
+    width: 100px;
+}
+#footer{
+    background-image: linear-gradient(black, white);
+    text-align: center;
+}
+.card{
+    margin: 5px;
+    transition: 1s;
+}
+.card:hover{
+    background-color: royalblue;
+    color: white;
+}
+
+h4:nth-child(1){
+    margin-left: 50px;
+}
+@media(max-width:800px){
+    #infoEquipos {
+        grid: none;
+    }
+    #infoEquipos h4{
+        text-align: center;
+    }
+    #infoEntrenadores{
+        margin-left: 37px;
+    }
+}
+@media(max-width:600px){
+    #infoJugadores{
+        grid: none;
+    }
+    #infoEntrenadores{
+        grid: none;
+    }
+}
+/* Esto es para la vista vJugadores*/
+

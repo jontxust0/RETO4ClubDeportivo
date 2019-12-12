@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!------------------------------CSS------------------------------------------------------------>
+    <link rel="stylesheet" href="css/contactanos.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!----------------------------SCRIPTS---------------------------------------------------------->
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js'></script>
+    <script src="js/vContactanos.js"></script>
+    <!--------------------------------------------------------------------------------------------->
+    <title>Document</title>
+    
+</head>
+<body>
+	<div>
+    	<img src="img/header.png" id="header">
+	</div>
+    <nav id="navContactanos">
+    <div>
+        <a href="../index.html">Inicio</a>
+        <a href="vPresentacion.html">Presentacion</a>
+        <a href="vInstalaciones.html">Instalaciones</a>
+        <a href="vJugadores.html">Jugadores</a>
+        
+    </div>
+    
+
+</nav>
+<div id="container">
+
+        <form action="" id="formContactanos">
+            <span><label>Nombre: </label>
+            <input type="text" id="nombre"></span>
+            <span><label>Apellido: </label> 
+            <input type="text" id="apellido"></span><br>
+            <label>Asunto: </label> <br><input type="text" size="35" id="asunto"><br>
+
+            <label>Tu mensaje: </label> <br><textarea id="queja"></textarea><br>
+            <input type="button" value="Enviar" id="" onclick="enviarDatos()">
+            </form>
+
+    </div>
+</body>
+</html>
