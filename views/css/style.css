@@ -28,3 +28,18 @@ body{
         }
     }
 /*-------------------*/
+/*FOOTER*/
+#footer{
+	background-color: #212529 !important;
+	display: flex !important;
+	flex-direction: column;
+}
+.iconos img{
+	width: 64px;
+	height: 64px;
+}
+
+.iconos a:nth-child(2) img{
+	border-radius: 50%;
+}
+/*-----------------------------*/
