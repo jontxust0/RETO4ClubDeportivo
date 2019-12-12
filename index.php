@@ -7,17 +7,14 @@ session_start();
 <head>
 <title>Zornotza Hawks</title>
 <link rel="icon" type="image/png" href="views/img/logoSinTitulo.png">
-<!------------------------------CSS------------------------------------------------------------>
-<script src="views/js/jsFuntions.js" type="text/javascript"></script>
-<link href="views/css/index.css" rel="stylesheet" type="text/css" />
-<link href="views/css/style.css" rel="stylesheet" type="text/css" />
+
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<!----------------------------SCRIPTS---------------------------------------------------------->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 	crossorigin="anonymous"></script>
@@ -30,7 +27,13 @@ session_start();
 	x
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
-	<!----------------------------------------------------------------------------------------->
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	
+	<script src="views/js/jsFuntions.js" type="text/javascript"></script>
+<link href="views/css/index.css" rel="stylesheet" type="text/css" />
+<link href="views/css/style.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -41,7 +44,10 @@ session_start();
 		<img src="views/img/header.png" id="header">
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded-bottom">
-		
+		<a class="navbar-brand" href="#"> <img
+			src="views/img/logoSinTitulo.png" alt="Zornotza Hawks" height="42"
+			width="42">
+		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -51,75 +57,58 @@ session_start();
 
 		<div class="collapse navbar-collapse " id="navbarSupportedContent">
 			<ul class="navbar-nav navbar-center mr-auto">
-				<li class="nav-item active"><a class="nav-link"
+				<li class="nav-item active"><a class="nav-link "
 					href="index.html">Inicio <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item "><a class="nav-link"
-					href="views/vPresentacion.html">Presentación <span class="sr-only"></span></a></li>
+					href="views/vPresentacion.html">Presentación <span
+						class="sr-only"></span></a></li>
 
 				<li class="nav-item"><a class="nav-link"
 					href="views/vInstalaciones.html">Instalaciones <span
 						class="sr-only"></span></a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="views/vContactanos.html">Contacto</a></li>
-
-				
-				<li class="nav-item"><a class="nav-link"
-					href="views/vJugadores.html">Jugadores</a></li>
-					 
 					
-			</ul>
-			<div id="usuario"></div>
-			<?php
-            
-                if (isset($_SESSION['name'])) {
-                    echo "<ul class='navbar-nav navbar-right'>
-                        <li class='nav-item dropdown'>
-                            <a class='nav-link dropdown-toggle '
-                            href='#' id='navbarDropdown' role='button' data-toggle='dropdown'
-                    	    aria-haspopup='true' aria-expanded='false'>";
-                            echo $_SESSION['name'];
-                    	echo "</a>";
-                	    echo "<div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                    	    <a class='dropdown-item' href='#'>Perfil</a> <a
-                    	    class='dropdown-item' href='#'>Another action</a>
-                    	   
-                	    </div>
-                	    </li>
-            	    </ul>";
-                } else {
-
+				<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?php 
+                
+                
+                if(isset($_SESSION['name'])){
+                    echo $_SESSION["name"];
+                }else{
                     
+                    echo "Usuario";
                 }
-
-            ?>
-			
+                    
+                ?>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Perfil</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a id="logout" class="dropdown-item">Cerrar Sesión </a>
+              </div>
+            </li>
+					<li class="nav-item">
+						<a class="nav-link" href="views/vJugadores.html">Jugadores</a>
+					  </li>
+			</ul>
 			<div class="divider"></div>
 			<div class="navbar-center">
-			
-
-					
-					<?php
-
-    if (isset($_SESSION['name'])) {
-        echo "<button id='btnLogout' class='btn btn-login btn-outline-light my-2 my-sm-0' 
-					>Logout</button>";
-    } else {
-
-        echo "<button id='btnLogin' class='btn btn-login btn-outline-light my-2 my-sm-0'
-					data-toggle='modal' data-target='#myModal'>Login</button>";
-    }
-
-    ?>
+				<button class="btn btn-outline-light my-2 my-sm-0" 
+					data-toggle="modal" data-target="#myModal">Log In</button>
 			</div>
 		</div>
 	</nav>
-	<div class="row" id="categoriasContainer">
-		<div class="iCategorias col-2 bg-success">
-			<p><b>Categorias</b></p>
+	<br>
+	<div class="row">
+		<div class="iCategorias col-2 bg-dark">
+			<p>Categorias</p>
 			<div class="nav flex-column nav-pills" id="v-pills-tab"
 				role="tablist" aria-orientation="vertical">
-				<a class="nav-link" id="v-pills-home-tab" data-toggle="pill"
+				<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill"
 					href="#v-pills-home" role="tab" aria-controls="v-pills-home"
 					aria-selected="true">Infantil</a> <a class="nav-link "
 					id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
@@ -137,7 +126,7 @@ session_start();
 				<div class="tab-pane fade show active" id="v-pills-home"
 					role="tabpanel" aria-labelledby="v-pills-home-tab">
 					<h2>Infantiles</h2>
-					
+					<br>
 					<div class="row rowImagen">
 						<!--CARROUSEL INFANTIL-->
 						<div class="col-12 col-lg-9">
@@ -235,8 +224,7 @@ session_start();
 					<div class="row">
 						<!--CARROUSEL JUVENIL-->
 						<div class="col-12 col-lg-9">
-							<div id="carouselJuvenil" class="carousel slide"
-								data-ride="carousel">
+							<div id="carouselJuvenil" class="carousel slide" data-ride="carousel">
 								<div class="carousel-inner" role="listbox">
 									<div class="carousel-item active">
 										<img class="d-block w-100"
@@ -315,8 +303,8 @@ session_start();
 						<!--TEXTO SENIOR-->
 						<div class="col-12 col-lg-3">
 							<h4>Equipos S&eacute;niors</h4>
-							<a href="#"> S&eacute;nior A</a> <a href="#"> S&eacute;nior B</a>
-							<a href="#"> S&eacute;nior C</a> <a href="#"> S&eacute;nior D</a>
+							<a href="#"> S&eacute;nior A</a> <a href="#"> S&eacute;nior B</a> <a href="#">
+								S&eacute;nior C</a> <a href="#"> S&eacute;nior D</a>
 						</div>
 					</div>
 
@@ -324,21 +312,30 @@ session_start();
 			</div>
 		</div>
 	</div>
-	<!--Footer-->
+	
 	<div>
-		<p>Lorem Ipsum is simply dummy text of the printing and typesetting
-			industry. Lorem Ipsum has been the industry's standard dummy text
-			ever since the 1500s, when an unknown printer took a galley of type
-			and scrambled it to make a type specimen book. It has survived not
-			only five centuries, but also the leap into electronic typesetting,
-			remaining essentially unchanged. It was popularised in the 1960s with
-			the release of Letraset sheets containing Lorem Ipsum passages, and
-			more recently with desktop publishing software like Aldus PageMaker
-			including versions of Lorem Ipsum.</p>
+		<p>Lorem Ipsum is simply dummy text of the printing and
+			typesetting industry. Lorem Ipsum has been the industry's standard
+			dummy text ever since the 1500s, when an unknown printer took a
+			galley of type and scrambled it to make a type specimen book. It has
+			survived not only five centuries, but also the leap into electronic
+			typesetting, remaining essentially unchanged. It was popularised in
+			the 1960s with the release of Letraset sheets containing Lorem Ipsum
+			passages, and more recently with desktop publishing software like
+			Aldus PageMaker including versions of Lorem Ipsum.</p>
 	</div>
+	<!--Footer-->
+	<nav class="navbar sticky-bottom navbar-light bg-light" id="footer">
+          <a class="navbar-brand" href="vContactanos.html">¿Tienes alguna queja/problema? haz click aquí</a>
+          <div class="iconos">
+            <a href="https://www.facebook.com/"><img src="views/img/iconos/facebook.png" alt="" srcset=""></a>
+            <a href="https://www.twitter.com"><img src="views/img/iconos/twitter.jpg" alt="" srcset=""></a>
+            <a href="https://www.instagram.com/"><img src="views/img/iconos/instagram.png" alt="" srcset=""></a>
+          </div>
+    </nav>
 
 
-	<!-- Modal Login-->
+	<!-- Modal -->
 	<div id="myModal" class="modal fade">
 		<div class="modal-dialog modal-login">
 			<div class="modal-content">
@@ -346,86 +343,35 @@ session_start();
 					<div class="avatar">
 						<img src="views/img/logo.png" alt="Avatar">
 					</div>
-					<h4 class="modal-title">Login</h4>
+					<h4 class="modal-title">Member Login</h4>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
-
-					<div class="form-group">
-						<input type="text" class="form-control" id="name" name="usuario"
-							placeholder="Username" required="required">
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" id="password"
-							name="contrasena" placeholder="Password" required="required">
-					</div>
-					<div class="form-group">
-						<button id="login"
-							class="btn btn-primary btn-lg btn-block login-btn">Login</button>
-					</div>
-
+					
+						<div class="form-group">
+							<input type="text" class="form-control" id="name" name="usuario"
+								placeholder="Username" required="required">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" id="password" name="contrasena"
+								placeholder="Password" required="required">
+						</div>
+						<div class="form-group">
+							<button id="login" 
+								class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+						</div>
+					
 				</div>
 				<div class="modal-footer">
-					<a href="views/vNewUser.html" data-toggle='modal' data-target='#myModalRegister'>New User</a>
+					<a href="views/vNewUser.html">New User</a>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 
-    <!-- Modal Login-->
-    
-    <!-- Modal Register-->
-    <div id="myModalRegister" class="modal fade">
-   		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
 
-					<h4 class="modal-title">Registrate</h4>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">
-
-					<div class="form-group">
-						<input type="text" class="form-control" id="username" name="usuario"
-							placeholder="Username" required="required">
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" id="newPassword"
-							name="contrasena" placeholder="Password" required="required">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="name"
-							name="nombre" placeholder="Nombre" required="required">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="surname"
-							name="apellido" placeholder="Apellido" required="required">
-					</div>
-					<div class="form-group">
-						<input type="email" class="form-control" id="email"
-							name="email" placeholder="Email" required="required">
-					</div>
-					<div class="form-group">
-						<input type="checkbox" id="admin" value="1" checked /><br/><br/>
-					</div>
-					<div class="form-group">
-						<button id="register"
-							class="btn btn-primary btn-lg btn-block login-btn">Registrarse</button>
-					</div>
-					
-					
-					
-					
-
-				</div>
-				
-			</div>
-		</div>
-    </div>
-    <!-- Modal Register-->
-    
 </body>
 
 </html>
