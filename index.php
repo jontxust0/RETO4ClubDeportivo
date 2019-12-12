@@ -70,30 +70,37 @@ session_start();
 				<li class="nav-item"><a class="nav-link"
 					href="views/vContactanos.html">Contacto</a></li>
 
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle"
-    					href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-    					aria-haspopup="true" aria-expanded="false">
-                            <?php
-            
-                                if (isset($_SESSION['name'])) {
-                                    echo $_SESSION["name"];
-                                } else {
-                
-                                    echo "Usuario";
-                                }
-            
-                            ?>
-                  </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Perfil</a> <a
-							class="dropdown-item" href="#">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a id="logout" class="dropdown-item">Cerrar Sesión </a>
-					</div></li>
+				
 				<li class="nav-item"><a class="nav-link"
 					href="views/vJugadores.html">Jugadores</a></li>
+					 
+					
 			</ul>
+			<div id="usuario"></div>
+			<?php
+            
+                if (isset($_SESSION['name'])) {
+                    echo "<ul class='navbar-nav navbar-right'>
+                        <li class='nav-item dropdown'>
+                            <a class='nav-link dropdown-toggle '
+                            href='#' id='navbarDropdown' role='button' data-toggle='dropdown'
+                    	    aria-haspopup='true' aria-expanded='false'>";
+                            echo $_SESSION['name'];
+                    	echo "</a>";
+                	    echo "<div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                    	    <a class='dropdown-item' href='#'>Perfil</a> <a
+                    	    class='dropdown-item' href='#'>Another action</a>
+                    	   
+                	    </div>
+                	    </li>
+            	    </ul>";
+                } else {
+
+                    
+                }
+
+            ?>
+			
 			<div class="divider"></div>
 			<div class="navbar-center">
 			
@@ -339,7 +346,7 @@ session_start();
 	</div>
 
 
-	<!-- Modal -->
+	<!-- Modal Login-->
 	<div id="myModal" class="modal fade">
 		<div class="modal-dialog modal-login">
 			<div class="modal-content">
@@ -347,7 +354,7 @@ session_start();
 					<div class="avatar">
 						<img src="views/img/logo.png" alt="Avatar">
 					</div>
-					<h4 class="modal-title">Member Login</h4>
+					<h4 class="modal-title">Login</h4>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
 				</div>
@@ -368,13 +375,65 @@ session_start();
 
 				</div>
 				<div class="modal-footer">
-					<a href="views/vNewUser.html">New User</a>
+					<a href="views/vNewUser.html" data-toggle='modal' data-target='#myModalRegister'>New User</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
+    <!-- Modal Login-->
+    
+    <!-- Modal Register-->
+    <div id="myModalRegister" class="modal fade">
+   		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
 
+					<h4 class="modal-title">Registrate</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="username" name="usuario"
+							placeholder="Username" required="required">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="newPassword"
+							name="contrasena" placeholder="Password" required="required">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="name"
+							name="nombre" placeholder="Nombre" required="required">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="surname"
+							name="apellido" placeholder="Apellido" required="required">
+					</div>
+					<div class="form-group">
+						<input type="email" class="form-control" id="email"
+							name="email" placeholder="Email" required="required">
+					</div>
+					<div class="form-group">
+						<input type="checkbox" id="admin" value="1" checked /><br/><br/>
+					</div>
+					<div class="form-group">
+						<button id="register"
+							class="btn btn-primary btn-lg btn-block login-btn">Registrarse</button>
+					</div>
+					
+					
+					
+					
+
+				</div>
+				
+			</div>
+		</div>
+    </div>
+    <!-- Modal Register-->
+    
 </body>
 
 </html>

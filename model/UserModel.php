@@ -73,6 +73,7 @@ class UserModel extends UserClass{
         
         $username=$this->username;
         $password=$this->password;
+        $name=$this->name;
         $admin=$this->admin;        // all the fields.....
         
         $options=['cost'=>10];

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-12-2019 a las 08:45:38
+-- Tiempo de generación: 12-12-2019 a las 09:38:05
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.1.32
 
@@ -166,7 +166,12 @@ INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`
 (2, 'leire', '$2y$10$8u43.B3IRlPjbAWqMan17u3Kxi/Wm0JpLP6yf/38iML1SJyNx0aAC', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
 (3, 's', '$2y$10$XRy.fG/FHIKgqX43Ifpb9uSmNGlchlISO88Fan9IUCzLMyhZtNkDW', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
 (4, 'gotzon', 'aaa', 'gotzon', 'sdfsaf', 'asdfsdf', 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
-(5, 'aaa', '$2y$10$koBLsceWiSB4o3XRhbPNAuv7hbqrSxikZ/zFzrpl2DCVPrbNPSekO', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0);
+(5, 'aaa', '$2y$10$koBLsceWiSB4o3XRhbPNAuv7hbqrSxikZ/zFzrpl2DCVPrbNPSekO', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
+(6, 'bbb', '$2y$10$1PIgA.LzV8JdTFSXeOSifOeH/b25WbjN9/his8WIrK6SjusLCxpEy', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
+(7, 'ccc', '$2y$10$Efqm3/tTaRWEKkQoL1lGO.rjTG250GrfUDKABIw6SXBDJGdQokiXK', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
+(8, 'ddd', '$2y$10$zLlldvt0L24fZcR3xohfrOQsv7pNtjzWDi5IkacGc/obYbgvuqFz.', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
+(9, 'zzz', '$2y$10$bzBFXPMFnV4ON5Howe.d8.K5KcntzXhG7OXQjaPiSI2j/NzK2Fw6q', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
+(10, 'xxx', '$2y$10$FfwI9RqU9R6NXGL7.Bd2KeGn1/aH9hg.6I6zSpta2juyM16R10VZe', NULL, NULL, NULL, 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0);
 
 -- --------------------------------------------------------
 
@@ -249,7 +254,6 @@ ALTER TABLE `quejas`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`idUser`),
-  ADD UNIQUE KEY `username` (`username`),
   ADD KEY `id_equipo` (`id_equipo`);
 
 --
@@ -309,7 +313,7 @@ ALTER TABLE `quejas`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
