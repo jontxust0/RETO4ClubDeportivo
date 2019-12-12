@@ -1,16 +1,6 @@
-
-h2{
-    text-align: center;
+body{
+    background-color: rgb(139, 155, 230) !important;
 }
-
-h3{
-    text-align: center;
-}
-#fotoPresentacion img{
-    width: 75%;
-    height: 500px;
-}
-.pTexto p{
-   margin-left: 50px;
-   margin-right: 10px;
+.container{
+    background-color: white;
 }

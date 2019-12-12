@@ -7,14 +7,17 @@ session_start();
 <head>
 <title>Zornotza Hawks</title>
 <link rel="icon" type="image/png" href="views/img/logoSinTitulo.png">
-
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!------------------------------CSS------------------------------------------------------------>
+<script src="views/js/jsFuntions.js" type="text/javascript"></script>
+<link href="views/css/index.css" rel="stylesheet" type="text/css" />
+<link href="views/css/style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<!----------------------------SCRIPTS---------------------------------------------------------->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 	crossorigin="anonymous"></script>
@@ -27,14 +30,7 @@ session_start();
 	x
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
-<script src="views/js/jsFuntions.js" type="text/javascript"></script>
-<link href="views/css/index.css" rel="stylesheet" type="text/css" />
-<link href="views/css/style.css" rel="stylesheet" type="text/css" />
+	<!----------------------------------------------------------------------------------------->
 
 </head>
 
@@ -45,10 +41,7 @@ session_start();
 		<img src="views/img/header.png" id="header">
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded-bottom">
-		<a class="navbar-brand" href="#"> <img
-			src="views/img/logoSinTitulo.png" alt="Zornotza Hawks" height="42"
-			width="42">
-		</a>
+		
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -58,9 +51,9 @@ session_start();
 
 		<div class="collapse navbar-collapse " id="navbarSupportedContent">
 			<ul class="navbar-nav navbar-center mr-auto">
-				<li class="nav-item active"><a class="nav-link " href="index.php">Inicio
-						<span class="sr-only">(current)</span>
-				</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="index.html">Inicio <span class="sr-only">(current)</span></a>
+				</li>
 				<li class="nav-item "><a class="nav-link"
 					href="views/vPresentacion.html">Presentación <span class="sr-only"></span></a></li>
 
@@ -121,13 +114,12 @@ session_start();
 			</div>
 		</div>
 	</nav>
-	<br>
-	<div class="row">
-		<div class="iCategorias col-2 bg-dark">
-			<p>Categorias</p>
+	<div class="row" id="categoriasContainer">
+		<div class="iCategorias col-2 bg-success">
+			<p><b>Categorias</b></p>
 			<div class="nav flex-column nav-pills" id="v-pills-tab"
 				role="tablist" aria-orientation="vertical">
-				<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill"
+				<a class="nav-link" id="v-pills-home-tab" data-toggle="pill"
 					href="#v-pills-home" role="tab" aria-controls="v-pills-home"
 					aria-selected="true">Infantil</a> <a class="nav-link "
 					id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
@@ -145,7 +137,7 @@ session_start();
 				<div class="tab-pane fade show active" id="v-pills-home"
 					role="tabpanel" aria-labelledby="v-pills-home-tab">
 					<h2>Infantiles</h2>
-					<br>
+					
 					<div class="row rowImagen">
 						<!--CARROUSEL INFANTIL-->
 						<div class="col-12 col-lg-9">

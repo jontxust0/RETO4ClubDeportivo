@@ -17,38 +17,6 @@ protected $id_usuario;
 /**
      * @return mixed
      */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-/**
-     * @return mixed
-     */
-    public function getApellido()
-    {
-        return $this->apellido;
-    }
-
-/**
-     * @return mixed
-     */
-    public function getEdad()
-    {
-        return $this->edad;
-    }
-
-/**
-     * @return mixed
-     */
-    public function getSexo()
-    {
-        return $this->sexo;
-    }
-
-/**
-     * @return mixed
-     */
     public function getTlf()
     {
         return $this->tlf;
@@ -65,57 +33,34 @@ protected $id_usuario;
 /**
      * @return mixed
      */
-    public function getTipo()
+    public function getSueldo()
     {
-        return $this->tipo;
+        return $this->sueldo;
     }
 
 /**
      * @return mixed
      */
-    public function getId_equipo()
+    public function getFechaContratacion()
     {
-        return $this->id_equipo;
+        return $this->fechaContratacion;
     }
 
 /**
+     * @return mixed
+     */
+    public function getId_usuario()
+    {
+        return $this->id_usuario;
+    }
+
+/**
+    
      * @param mixed $id
      */
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-/**
-     * @param mixed $nombre
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-    }
-
-/**
-     * @param mixed $apellido
-     */
-    public function setApellido($apellido)
-    {
-        $this->apellido = $apellido;
-    }
-
-/**
-     * @param mixed $edad
-     */
-    public function setEdad($edad)
-    {
-        $this->edad = $edad;
-    }
-
-/**
-     * @param mixed $sexo
-     */
-    public function setSexo($sexo)
-    {
-        $this->sexo = $sexo;
     }
 
 /**
@@ -135,19 +80,27 @@ protected $id_usuario;
     }
 
 /**
-     * @param mixed $tipo
+     * @param mixed $sueldo
      */
-    public function setTipo($tipo)
+    public function setSueldo($sueldo)
     {
-        $this->tipo = $tipo;
+        $this->sueldo = $sueldo;
     }
 
 /**
-     * @param mixed $id_equipo
+     * @param mixed $fechaContratacion
      */
-    public function setId_equipo($id_equipo)
+    public function setFechaContratacion($fechaContratacion)
     {
-        $this->id_equipo = $id_equipo;
+        $this->fechaContratacion = $fechaContratacion;
+    }
+
+/**
+     * @param mixed $id_usuario
+     */
+    public function setId_usuario($id_usuario)
+    {
+        $this->id_usuario = $id_usuario;
     }
 
 
