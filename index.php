@@ -7,6 +7,8 @@ session_start();
 <head>
 <title>Zornotza Hawks</title>
 <link rel="icon" type="image/png" href="views/img/logoSinTitulo.png">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!------------------------------CSS------------------------------------------------------------>
 <script src="views/js/jsFuntions.js" type="text/javascript"></script>
 <link href="views/css/index.css" rel="stylesheet" type="text/css" />
@@ -30,6 +32,8 @@ session_start();
 	x
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!----------------------------------------------------------------------------------------->
 
 </head>
@@ -69,7 +73,7 @@ session_start();
 					 
 					
 			</ul>
-			<div id="usuario"></div>
+			<!--  
 			<?php
             
                 if (isset($_SESSION['name'])) {
@@ -87,6 +91,21 @@ session_start();
                 	    </div>
                 	    </li>
             	    </ul>";
+                } else {
+
+                    
+                }
+
+            ?>-->
+            
+            <?php
+            
+                if (isset($_SESSION['name'])) {
+                    echo "<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0'
+					>";
+					echo $_SESSION['name'];
+					echo "</button>";
+                    
                 } else {
 
                     
@@ -396,7 +415,7 @@ session_start();
 							name="contrasena" placeholder="Password" required="required">
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="name"
+						<input type="text" class="form-control" id="newName"
 							name="nombre" placeholder="Nombre" required="required">
 					</div>
 					<div class="form-group">
@@ -408,7 +427,7 @@ session_start();
 							name="email" placeholder="Email" required="required">
 					</div>
 					<div class="form-group">
-						<input type="checkbox" id="admin" value="1" checked /><br/><br/>
+						<input type="checkbox" id="admin"  checked /><br/><br/>
 					</div>
 					<div class="form-group">
 						<button id="register"

@@ -58,7 +58,10 @@ class UserModel extends UserClass{
             if (password_verify($this->getPassword(), $passwordEncripted))
             {
                 $this->setAdmin($row['admin']); 
-                
+                $this->setEmail($row['email']);
+                $this->setSurname($row['surname']);
+                $this->setName($row['name']);
+                $this->setPic($row['pic']);
                 $userExists=true;
             }
         }
@@ -74,12 +77,14 @@ class UserModel extends UserClass{
         $username=$this->username;
         $password=$this->password;
         $name=$this->name;
-        $admin=$this->admin;        // all the fields.....
+        $surname=$this->surname;
+        $admin=$this->admin;  
+        $email=$this->email;// all the fields.....
         
         $options=['cost'=>10];
         $encriptedPass=password_hash ($password,PASSWORD_BCRYPT,$options) ;
         
-        $sql="call spInsertUser('$username',$admin,'$encriptedPass')";
+        $sql="call spInsertUser('$username','$admin','$encriptedPass','$name','$surname','$email')";
         $result= $this->link->query($sql);
         
         return $this->link->affected_rows;

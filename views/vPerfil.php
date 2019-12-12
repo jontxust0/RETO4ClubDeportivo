@@ -17,22 +17,26 @@ session_start();
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
+                            <img src= <?php
+                                        echo $_SESSION['img'];
+                                        ?> 
+                                        alt=""/>
+                            
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>
-                                        Kshiti Ghelani
+                                       <?php
+                                        echo $_SESSION['nombre'];
+                                        ?>
+                                                
                                     </h5>
-                                    <h6>
-                                        Web Developer and Designer
-                                    </h6>
-                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                                    <h5>
+                                        <?php
+                                        echo $_SESSION['surname'];
+                                        ?>
+                                    </h5>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos</a>
@@ -41,9 +45,7 @@ session_start();
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                    </div>
+                   
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -65,23 +67,28 @@ session_start();
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Nombre</label>
+                                                <label>Nombre de Usuario</label>
                                             </div>
                                             <div class="col-md-6">
                                                 <p>
                                                 <?php
                                                 echo $_SESSION['name'];
                                                 ?>
+                                      
                                                 
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Apellido</label>
+                                                <label>Contrasena</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Kshiti Ghelani</p>
+                                                <p>
+                                                <?php
+                                                echo $_SESSION['password'];
+                                                ?>
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -89,20 +96,15 @@ session_start();
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>kshitighelani@gmail.com</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Telefono</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>123 456 7890</p>
+                                                <p>
+                                                 <?php
+                                                    echo $_SESSION['email'];
+                                                ?>
+                                                </p>
                                             </div>
                                         </div>
                                         
-                         
-                            
+                                             
                             </div>
                         </div>
                     </div>
