@@ -118,6 +118,51 @@ class UserModel extends UserClass{
         $this->CloseConnect();
         
     }
+    
+    public function delete(){
+        echo "estoy";
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexión
+        
+        $id=$this->getIdUser();
+        
+        $sql="CALL spDeleteUser($id)";
+        
+        $numFilas=$this->link->query($sql);
+        
+        if ($numFilas>=1)
+        {
+            echo "borrado";
+        } else {
+            echo "Error al borrar";
+        }
+        $this->CloseConnect();
+        
+    }
+    
+    public function Update(){
+        
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexión
+        
+        $idUpdate=$this->getIdUser();
+        $nombreUpdate=$this->getUsername();
+        $contraseniaUpdate=$this->getPassword();
+        $nickNameUpdate=$this->getName();
+        $residenciaUpdate=$this->getSurname();
+        $emailUpdate=$this->getEmail();
+        
+        
+        $sql="CALL spUpdateUser('$idUpdate','$nombreUpdate','$contraseniaUpdate','$nickNameUpdate','$residenciaUpdate','$emailUpdate')";
+        
+        $numFilas=$this->link->query($sql);
+        
+        if ($numFilas>=1){
+            return "cambiado";
+        } else {
+            return "Error al cambiar".$sql.print_r($numFilas,true);
+        }
+        
+        $this->CloseConnect();
+    }
 
     
     public function findUserByIdEquipo(int $id){
