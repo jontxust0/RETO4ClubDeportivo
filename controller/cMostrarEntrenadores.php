@@ -1,4 +1,4 @@
-<?php // 
+<?php //
 
 require_once("../model/entrenadoresClass.php");
 require_once("../model/entrenadoresModel.php");
@@ -7,5 +7,5 @@ $cont->setList();
 $datos=$cont->getJSONList();
 
 $entrenadores=json_encode($datos);
-echo($entrenadores);   
+echo($entrenadores);
 ?>
