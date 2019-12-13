@@ -3,9 +3,9 @@
 include("connect_data.php");
 
 class jugadoresModel extends jugadoresClass{
-    
+    private $list = array();
     private $link;
-    private $usuario;
+    private $objUser;
     
     function getList() {
         return $this->list;
@@ -57,11 +57,19 @@ class jugadoresModel extends jugadoresClass{
         // return $this->usuario;
     }
     
+    /**
+     * @param multitype: $list
+     */
+    public function setList($list)
+    {
+        $this->list = $list;
+    }
+
     public function setListByIdEquipo(int $id){
         
         $this->OpenConnect();
-        $sql="call  findJugadorByIdEquipo($id)";
-        
+        $sql="call  spFindJugadorByIdEquipo($id)";
+        $result = $this->link->query($sql);
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             
             $new=new self();
@@ -71,12 +79,15 @@ class jugadoresModel extends jugadoresClass{
             $new->setDorsal($row['dorsal']);
             $new->setPosicion($row['posicion']);
             $new->setTlf($row['tlf']);
-            $new->setDuracion($row['duracion']);
-            $new->setCartel($row['cartel']);
+            $new->setAltura($row['altura']);
+            $new->setId_datosMedicos($row['id_datosMedicos']);
+            $new->setId_usuario($row['id_usuario']);
+            $new->setId_equipos($row['id_equipo']);
             
             array_push($this->list, $new);
         }
         mysqli_free_result($result);
+        $this->CloseConnect();
         $this->CloseConnect();
         
     }

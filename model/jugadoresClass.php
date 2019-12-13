@@ -8,8 +8,24 @@ protected $tlf;
 protected $altura;
 protected $id_datosMedicos;
 protected $id_usuario;
-protected $id_equipos;
+protected $id_equipo;
 /**
+     * @return mixed
+     */
+    public function getId_equipo()
+    {
+        return $this->id_equipo;
+    }
+
+/**
+     * @param mixed $id_equipos
+     */
+    public function setId_equipo($id_equipo)
+    {
+        $this->id_equipo = $id_equipo;
+    }
+
+    /**
      * @return mixed
      */
     public function getId()

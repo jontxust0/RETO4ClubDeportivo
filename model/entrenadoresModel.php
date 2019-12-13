@@ -3,13 +3,16 @@
 include("connect_data.php");
 
 class entrenadoresModel extends entrenadoresClass{
-    
+    private $list;
     private $link;
-    private $usuario;
+    private $objUser;
     
     function getList() {
         return $this->list;
     }
+    
+    
+    
     
     public function OpenConnect() {
         $konDat = new connect_data();
@@ -53,6 +56,32 @@ class entrenadoresModel extends entrenadoresClass{
         mysqli_free_result($result);
         $this->CloseConnect();
         // return $this->usuario;
+    }
+    public function setByIdEquipo(int $id)
+    {
+        $this->OpenConnect();
+        
+       
+        
+        $sql="call  spFindEntrenadorByIdEquipo('$id)";
+        $result= $this->link->query($sql);
+        
+        
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+        {
+            $this->setId($row['id']);
+            $this->setTlf($row['tlf']);
+            $this->setDireccion($row['direccion']);
+            $this->setSueldo($row['sueldo']);
+            $this->setFechaContratacion($row['fechaContratacion']);
+            $this->setId_usuario($row['id_usuario']);
+            $this->setId_equipo($row['id_equipo']);
+            
+            
+        }
+       
+        mysqli_free_result($result);
+        $this->CloseConnect();
     }
 
 }
