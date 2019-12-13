@@ -4,17 +4,15 @@ require_once 'UserClass.php';
 
 class UserModel extends UserClass{
     
-    private $list;
+    private $link;
+    private $list= array();
 
     public function getList()
     {
         return $this->list;
     }
 
-    public function setList($list)
-    {
-        $this->list = $list;
-    }
+    
     ////////////////////////////////////////////////
     public function OpenConnect()
     {
@@ -38,6 +36,34 @@ class UserModel extends UserClass{
     }
     
     ////////////////////////////////////////////////
+    
+    public function setList()
+    {
+        $this->OpenConnect(); // Abrir la conexion
+        
+        $sql= "call spAllUsers()";
+        
+        $result = $this->link->query($sql); //Almacena los datos recibidos de la llamada a la base de datos
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+            $user= new UserClass();
+            
+            $user->setIdUser($row['idUser']);
+            $user->setUsername($row['username']);
+            $user->setPassword($row['password']);
+            $user->setName($row['name']);
+            $user->setSurname($row['surname']);
+            $user->setEmail($row['email']);
+            
+            
+            
+            array_push($this->list, $user);
+        }
+        mysqli_free_result($result);
+        unset($user);
+        $this->CloseConnect();  //Cerrar la conexion
+    }
     
     public function findUserByUsername()
     {
@@ -92,11 +118,24 @@ class UserModel extends UserClass{
         $this->CloseConnect();
         
     }
+
     
     public function findUserByIdEquipo(int $id){
         
         
         
+    }
+    
+    function getListJsonString() {
+        $arr=array();
+        
+        foreach ($this->list as $object)
+        {
+            $vars = get_object_vars($object);
+            
+            array_push($arr, $vars);
+        }
+        return json_encode($arr);
     }
     
 }
