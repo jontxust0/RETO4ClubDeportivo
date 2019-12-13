@@ -1,8 +1,8 @@
 <?php
 require_once 'connect_data.php';
-require_once 'UserClass.php';
+require_once 'userClass.php';
 
-class UserModel extends UserClass{
+class userModel extends userClass{
     
     private $link;
     private $list= array();
@@ -13,6 +13,14 @@ class UserModel extends UserClass{
     }
 
     
+    /**
+     * @param multitype: $list
+     */
+    public function setList($list)
+    {
+        $this->list = $list;
+    }
+
     ////////////////////////////////////////////////
     public function OpenConnect()
     {
@@ -47,7 +55,7 @@ class UserModel extends UserClass{
         
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             
-            $user= new UserClass();
+            $user= new userClass();
             
             $user->setIdUser($row['idUser']);
             $user->setUsername($row['username']);
@@ -165,8 +173,34 @@ class UserModel extends UserClass{
     }
 
     
-    public function findUserByIdEquipo(int $id){
+    public function findUserByIdUser(){
         
+        
+        $id=$this->getIdUser();
+            $this->OpenConnect();
+            
+            
+            
+            $sql="call spFindUserById('$id)";
+            $result= $this->link->query($sql);
+            
+            
+            if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+            {
+                
+                $this->setUsername($row['username']);
+                $this->setPassword($row['password']);
+                $this->setName($row['name']);
+                $this->setSurname($row['surname']);
+                $this->setEmail($row['email']);
+                $this->setAdmin($row['admin']);
+                $this->setPic($row['pic']);
+                
+                
+            }
+            
+            mysqli_free_result($result);
+            $this->CloseConnect();
         
         
     }

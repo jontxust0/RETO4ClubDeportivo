@@ -1,12 +1,21 @@
 <?php 
 
 include("connect_data.php");
+include_once ('userModel.php');
 
 class entrenadoresModel extends entrenadoresClass{
     private $list;
     private $link;
     private $objUser;
     
+    /**
+     * @param multitype: $list
+     */
+    public function setList($list)
+    {
+        $this->list = $list;
+    }
+
     function getList() {
         return $this->list;
     }
@@ -27,6 +36,22 @@ class entrenadoresModel extends entrenadoresClass{
         //                  //databasearen artean UTF -8 erabiltzera datuak trukatzeko
     }
     
+    /**
+     * @return mixed
+     */
+    public function getObjUser()
+    {
+        return $this->objUser;
+    }
+
+    /**
+     * @param mixed $objUser
+     */
+    public function setObjUser($objUser)
+    {
+        $this->objUser = $objUser;
+    }
+
     public function CloseConnect() {
         mysqli_close($this->link);
     }
@@ -51,34 +76,44 @@ class entrenadoresModel extends entrenadoresClass{
             $new->setfechaContratacion($row['fechaContratacion']);
             $new->setid_usuario($row['id_usuario']);
             array_push($this->list, $new);
-            array_push($this->JSONList, $row);
+          
         }
         mysqli_free_result($result);
         $this->CloseConnect();
         // return $this->usuario;
     }
-    public function setByIdEquipo(int $id)
+    public function setListByIdEquipo()
     {
         $this->OpenConnect();
         
-       
+       $id=$this->getId_equipo();
         
         $sql="call  spFindEntrenadorByIdEquipo('$id)";
         $result= $this->link->query($sql);
         
         
-        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-        {
-            $this->setId($row['id']);
-            $this->setTlf($row['tlf']);
-            $this->setDireccion($row['direccion']);
-            $this->setSueldo($row['sueldo']);
-            $this->setFechaContratacion($row['fechaContratacion']);
-            $this->setId_usuario($row['id_usuario']);
-            $this->setId_equipo($row['id_equipo']);
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             
+            $new=new self();
+            
+            $new->setId($row['id']);
+            $new->setTlf($row['tlf']);
+            $new->setDireccion($row['direccion']);
+            $new->setSueldo($row['sueldo']);
+            $new->setFechaContratacion($row['fechaContratacion']);
+            $new->setId_usuario($row['id_usuario']);
+            $new->setId_equipo($row['id_equipo']);
+            $newUser = new userModel();
+            $newUser->setIdUser($new->getId_usuario());
+            $newUser->findUserByIdUser();
+            $new->setObjUser($newUser);
+            array_push($this->list, $new);
             
         }
+        
+        
+        
+        
        
         mysqli_free_result($result);
         $this->CloseConnect();

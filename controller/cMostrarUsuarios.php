@@ -1,7 +1,7 @@
 <?php
-include_once ("../model/UserModel.php");
+include_once ("../model/userModel.php");
 
-$usuario= new UserModel();
+$usuario= new userModel();
 $usuario->setList(); 
 
 $listaUsuariosJson=$usuario->getListJsonString();

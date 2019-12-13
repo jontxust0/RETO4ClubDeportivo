@@ -1,7 +1,7 @@
 <?php
 
 
-class UserClass{
+class userClass{
     protected $idUser;
     protected $username;
     protected $password;

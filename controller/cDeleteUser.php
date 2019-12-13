@@ -1,8 +1,8 @@
 <?php
 
-include_once ("../model/UserModel.php");
+include_once ("../model/userModel.php");
 
-$usuario=new UserModel();
+$usuario=new userModel();
 
 $id=filter_input(INPUT_GET,"id");
 
