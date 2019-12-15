@@ -1,7 +1,8 @@
 <?php 
-
+include_once ('userModel.php');
+include_once ('cuerpoMedicoClass.php');
 class cuerpoMedicoModel extends cuerpoMedicoClass{
-    private $list;
+    private $list = array();
     private $link;
     private $objUser;
     
@@ -38,13 +39,17 @@ class cuerpoMedicoModel extends cuerpoMedicoClass{
     }
     
     
+    public function CloseConnect() {
+        mysqli_close($this->link);
+    }
+    
     public function setListByIdEquipo()
     {
         $this->OpenConnect();
         
         $id=$this->getId_equipo();
         
-        $sql="call spFindCuerpoByIdEquipo('$id)";
+        $sql="call spFindCuerpoByIdEquipo($id)";
         $result= $this->link->query($sql);
         
         
@@ -68,10 +73,24 @@ class cuerpoMedicoModel extends cuerpoMedicoClass{
         mysqli_free_result($result);
         $this->CloseConnect();
     }
-    
-    public function CloseConnect() {
-        mysqli_close($this->link);
+    /**
+     * @return mixed
+     */
+    public function getObjUser()
+    {
+        return $this->objUser;
     }
+
+    /**
+     * @param mixed $objUser
+     */
+    public function setObjUser($objUser)
+    {
+        $this->objUser = $objUser;
+    }
+
+    
+    
 }
 
 

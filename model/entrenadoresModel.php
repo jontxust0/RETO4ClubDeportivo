@@ -1,20 +1,18 @@
 <?php 
 
-include("connect_data.php");
+include_once("connect_data.php");
 include_once ('userModel.php');
+include_once ('entrenadoresClass.php');
 
 class entrenadoresModel extends entrenadoresClass{
-    private $list;
+    private $list = array();
     private $link;
     private $objUser;
     
     /**
      * @param multitype: $list
      */
-    public function setList($list)
-    {
-        $this->list = $list;
-    }
+
 
     function getList() {
         return $this->list;
@@ -88,7 +86,7 @@ class entrenadoresModel extends entrenadoresClass{
         
        $id=$this->getId_equipo();
         
-        $sql="call  spFindEntrenadorByIdEquipo('$id)";
+        $sql="call spFindEntrenadorByIdEquipo($id)";
         $result= $this->link->query($sql);
         
         

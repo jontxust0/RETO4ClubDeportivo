@@ -16,10 +16,7 @@ class userModel extends userClass{
     /**
      * @param multitype: $list
      */
-    public function setList($list)
-    {
-        $this->list = $list;
-    }
+ 
 
     ////////////////////////////////////////////////
     public function OpenConnect()
@@ -181,10 +178,10 @@ class userModel extends userClass{
             
             
             
-            $sql="call spFindUserById('$id)";
+            $sql="call spFindUserById($id)";
             $result= $this->link->query($sql);
             
-            
+        
             if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
             {
                 

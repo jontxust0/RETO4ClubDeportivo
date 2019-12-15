@@ -1,7 +1,8 @@
 <?php 
 
-include("connect_data.php");
+include_once("connect_data.php");
 include_once("userModel.php");
+include_once("jugadoresClass.php");
 
 class jugadoresModel extends jugadoresClass{
     private $list = array();
@@ -77,10 +78,7 @@ class jugadoresModel extends jugadoresClass{
     /**
      * @param multitype: $list
      */
-    public function setList($list)
-    {
-        $this->list = $list;
-    }
+    
 
     public function setListByIdEquipo(){
         $id=$this->getId_equipo();
@@ -99,7 +97,7 @@ class jugadoresModel extends jugadoresClass{
             $new->setAltura($row['altura']);
             $new->setId_datosMedicos($row['id_datosMedicos']);
             $new->setId_usuario($row['id_usuario']);
-            $new->setId_equipos($row['id_equipo']);
+            $new->setId_equipo($row['id_equipo']);
             $newUser = new userModel();
             $newUser->setIdUser($new->getId_usuario());
             $newUser->findUserByIdUser();

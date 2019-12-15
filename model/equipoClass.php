@@ -68,7 +68,7 @@ class equipoClass{
         $this->id_categoria = $id_categoria;
     }
 
-    function getObjectVars()
+    public function getObjectVars()
     {
         $vars = get_object_vars($this);
         return  $vars;
