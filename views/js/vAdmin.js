@@ -22,7 +22,7 @@ $(document).ready(function(){
 
 		        var newRow="";
 		       newRow +="<table class='table table-hover table-dark'> ";
-		     newRow +="<tr><th scope='col'>ID</th><th scope='col'>TELEFONO</th><th scope='col'>DIRECCIÓN</th><th scope='col'>SUELDO</th><th scope='col'>FECHA CONTRATACION</th></tr>";
+		     newRow +="<tr><th scope='col'>ID</th><th scope='col'>DIRECCIÓN</th><th scope='col'>DORSAL</th><th scope='col'>POSICION</th><th scope='col'>TELEFONO</th><th scope='col'>ALTURA</th></tr>";
 
 		     $.each(jugadores,function(index,info) { 
 
@@ -32,8 +32,8 @@ $(document).ready(function(){
 		                             +"<td>"+info.posicion+"</td>"
 		                             +"<td>"+info.tlf+"</td>"//Undefined
 		                             +"<td>"+info.altura+"</td>"//Undefined
-		                             +"<td><button type='button' class='btn btn-warning' value='"+info.id+"'>Editar</button></td>"
-		                             +"<td><button type='button' class='btn btn-danger' value='"+info.id+"'>Borrar</button></td>"
+		                             +"<td><button type='button' class='btnUpdateJugadores btn-warning' value='"+info.id+"' data-toggle='modal' data-target='#updateJugadores'>Editar</button></td>"
+		                             +"<td><button type='button' class='btnDeleteJugadores btn-danger' value='"+info.id+"'>Borrar</button></td>"
 		                         +"</tr>";
 		         
 		     });
@@ -41,28 +41,79 @@ $(document).ready(function(){
 		        newRow +="</table>";
 
 		        $("#tablaJugador").append(newRow); // add the new row to the container
-		        /*
+		        
 		        //Boton delete
-		        $(".btnDelete").click(function(){
+		        $(".btnDeleteJugadores").click(function(){
 		        	var id=$(this).val();
-		        	deleteFunction(id);
+		        	deleteFunctionJugadores(id);
 		        });
 		        //Modal Update
-		        $(".btnUpdate").click(function(){
+		        $(".btnUpdateJugadores").click(function(){
 
 		        	$('#idUpdate').val($(this).closest("tr").children().eq(0).text());
-					$('#nombreUpdate').val($(this).closest("tr").children().eq(1).text());
-					$('#contraseniaUpdate').val($(this).closest("tr").children().eq(2).text());
-					$('#nickNameUpdate').val($(this).closest("tr").children().eq(3).text());
-					$('#residenciaUpdate').val($(this).closest("tr").children().eq(4).text());
-					$('#emailUpdate').val($(this).closest("tr").children().eq(5).text());
-		        });*/
+					$('#direccionUpdate').val($(this).closest("tr").children().eq(1).text());
+					$('#dorsalUpdate').val($(this).closest("tr").children().eq(2).text());
+					$('#posicionUpdate').val($(this).closest("tr").children().eq(3).text());
+					$('#tlfUpdate').val($(this).closest("tr").children().eq(4).text());
+					$('#alturaUpdate').val($(this).closest("tr").children().eq(5).text());
+		        });
 		        	
 		 },
 		    error : function(xhr) {
 		        alert("An error occured: " + xhr.status + " " + xhr.statusText);
 		    }
 		});
+		function deleteFunctionJugadores(id) {
+			
+			console.log(id);
+			alert(id);
+			
+			$.ajax({
+		       	type: "GET",
+		       	data:{ 'id':id},
+		       	url: "../controller/cDeleteJugador.php", 
+
+		       	success: function(result){  
+		       		
+		       		console.log(result);
+		       		
+		       		location.reload(true);  
+		       	},
+		       	error : function(xhr) {
+		   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
+		   		}
+		   });
+		  		
+		}
+		$("#btnExecUpdateJugador").click(function(){
+			alert("lsknsnf");
+			var id=$('#idUpdate').val();
+			var direccion=$('#direccionUpdate').val();
+			var dorsal=$('#dorsalUpdate').val();
+			var posicion=$('#posicionUpdate').val();
+			var tlf=$('#tlfUpdate').val();
+			var altura=$('#alturaUpdate').val();
+
+		  	$.ajax({
+		       	type: "GET",
+		       	data:{ 'id':id, 'direccion':direccion, 'dorsal':dorsal, 'posicion':posicion,'tlf':tlf,'altura':altura},
+		       	url: "../Controller/cUpdateJugador.php", 
+		       	dataType: "text",  //type of the result
+		       	success: function(result){  
+		       		
+		       		console.log(result);
+
+		       		location.reload(true);  //recarga la pagina
+		       		
+		       		
+			        
+		       	},
+		       	error : function(xhr) {
+		   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
+		   		}
+		    });
+		  		
+		 });
 
 		
 	});
@@ -248,6 +299,7 @@ $(document).ready(function(){
 		    });
 		  		
 		 });
+		 
 	
 	});
 	

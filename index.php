@@ -6,6 +6,7 @@ session_start();
 
 <head>
 <title>Zornotza Hawks</title>
+<meta charset="UTF-8">
 <link rel="icon" type="image/png" href="views/img/logoSinTitulo.png">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -344,7 +345,7 @@ session_start();
 			</div>
 		</div>
 	</div>
-	<!--Footer-->
+	
 	<div>
 		<p>Lorem Ipsum is simply dummy text of the printing and typesetting
 			industry. Lorem Ipsum has been the industry's standard dummy text
@@ -356,6 +357,16 @@ session_start();
 			more recently with desktop publishing software like Aldus PageMaker
 			including versions of Lorem Ipsum.</p>
 	</div>
+	<br>
+	<!--Footer-->
+	<nav class="navbar sticky-bottom navbar-light bg-light" id="footer">
+          <a class="navbar-brand" href="vContactanos.html">¿Tienes alguna queja/problema? haz click aquí</a>
+          <div class="iconos">
+            <a href="https://www.facebook.com/"><img src="views/img/iconos/facebook.png" alt="" srcset=""></a>
+            <a href="https://www.twitter.com"><img src="views/img/iconos/twitter.jpg" alt="" srcset=""></a>
+            <a href="https://www.instagram.com/"><img src="views/img/iconos/instagram.png" alt="" srcset=""></a>
+          </div>
+          </nav>
 
 
 	<!-- Modal Login-->
@@ -434,16 +445,12 @@ session_start();
 						<button id="register"
 							class="btn btn-primary btn-lg btn-block login-btn">Registrarse</button>
 					</div>
-					
-					
-					
-					
 
 				</div>
 				
 			</div>
 		</div>
-    </div>
+	</div>
     <!-- Modal Register-->
     
 </body>
