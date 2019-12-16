@@ -18,8 +18,7 @@ session_start();
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <!----------------------------SCRIPTS---------------------------------------------------------->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 	crossorigin="anonymous"></script>
@@ -427,7 +426,7 @@ session_start();
 							name="email" placeholder="Email" required="required">
 					</div>
 					<div class="form-group">
-						<input type="checkbox" id="admin" value="1" checked /><br/><br/>
+						<input type="checkbox" id="admin"  checked /><br/><br/>
 					</div>
 					<div class="form-group">
 						<button id="register"

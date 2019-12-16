@@ -1,11 +1,13 @@
-<?php //
+<?php
+include_once ("../model/entrenadoresModel.php");
 
-require_once("../model/entrenadoresClass.php");
-require_once("../model/entrenadoresModel.php");
-$cont=new entrenadoresModel();
-$cont->setList();
-$datos=$cont->getJSONList();
+$entrenador= new entrenadoresModel();
+$entrenador->setList(); 
 
-$entrenadores=json_encode($datos);
-echo($entrenadores);
+$listaEntrenadoresJson=$entrenador->getListJsonString();
+
+echo $listaEntrenadoresJson;
+
+unset ($entrenador);
+
 ?>

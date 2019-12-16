@@ -1,15 +1,18 @@
 <?php 
 
-include("connect_data.php");
+require_once 'connect_data.php';
+require_once 'entrenadoresClass.php';
 
 class entrenadoresModel extends entrenadoresClass{
-    
     private $link;
-    private $usuario;
+    private $list= array();
     
     function getList() {
         return $this->list;
     }
+    
+    
+    
     
     public function OpenConnect() {
         $konDat = new connect_data();
@@ -28,31 +31,67 @@ class entrenadoresModel extends entrenadoresClass{
         mysqli_close($this->link);
     }
     
-    public function getJSONList() {
-        return $this->JSONList;
-    }
-    
-    public function setList() {
-        $this->OpenConnect();
-        $sql = "CALL spMostrarEntrenadores()";
-        $this->list = array();
-        $this->JSONList = array();
-        $result = $this->link->query($sql);
+   
+    public function setList()
+    {
+        $this->OpenConnect(); // Abrir la conexion
+        
+        $sql= "call spAllEntrenadores()";
+        
+        $result = $this->link->query($sql); //Almacena los datos recibidos de la llamada a la base de datos
         
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $new = new self();
-            $new->setid($row['id']);
-            $new->settlf($row['tlf']);
-            $new->setdireccion($row['direccion']);
-            $new->setsueldo($row['sueldo']);
-            $new->setfechaContratacion($row['fechaContratacion']);
-            $new->setid_usuario($row['id_usuario']);
-            array_push($this->list, $new);
-            array_push($this->JSONList, $row);
+            
+            $entrenador= new entrenadoresClass();
+            
+            $entrenador->setId($row['id']);
+            $entrenador->setTlf($row['tlf']);
+            $entrenador->setDireccion($row['direccion']);
+            $entrenador->setSueldo($row['sueldo']);
+            $entrenador->setFechaContratacion($row['fechaContratacion']);
+            
+            array_push($this->list, $entrenador);
         }
         mysqli_free_result($result);
+        unset($entrenador);
+        $this->CloseConnect();  //Cerrar la conexion
+    }
+    public function setByIdEquipo(int $id)
+    {
+        $this->OpenConnect();
+        
+       
+        
+        $sql="call  spFindEntrenadorByIdEquipo('$id)";
+        $result= $this->link->query($sql);
+        
+        
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+        {
+            $this->setId($row['id']);
+            $this->setTlf($row['tlf']);
+            $this->setDireccion($row['direccion']);
+            $this->setSueldo($row['sueldo']);
+            $this->setFechaContratacion($row['fechaContratacion']);
+            $this->setId_usuario($row['id_usuario']);
+            $this->setId_equipo($row['id_equipo']);
+            
+            
+        }
+       
+        mysqli_free_result($result);
         $this->CloseConnect();
-        // return $this->usuario;
+    }
+    function getListJsonString() {
+        $arr=array();
+        
+        foreach ($this->list as $object)
+        {
+            $vars = get_object_vars($object);
+            
+            array_push($arr, $vars);
+        }
+        return json_encode($arr);
     }
 
 }

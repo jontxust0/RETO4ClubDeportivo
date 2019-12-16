@@ -9,6 +9,22 @@ protected $id_equipo;
 /**
      * @return mixed
      */
+    public function getId_equipo()
+    {
+        return $this->id_equipo;
+    }
+
+/**
+     * @param mixed $id_equipo
+     */
+    public function setId_equipo($id_equipo)
+    {
+        $this->id_equipo = $id_equipo;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;

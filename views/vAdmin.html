@@ -22,6 +22,8 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js'></script>
+  	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="js/jsFuntions.js" type="text/javascript"></script>
   <script src="js/vAdmin.js" type="text/javascript"></script>
 </head>
@@ -79,135 +81,16 @@
     </div>
   </div>
   <br>
+  <!--Mostrar datos en tabla desde BD-->
   <div class="container adminContainer">
-    <div class="adminJugadores col-12">
-      <table class="table table-hover table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#ID</th>
-            <th scope="col">Dirección</th>
-            <th scope="col">Dorsal</th>
-            <th scope="col">Posicion</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Altura</th>
-            <th scope="col">id_datosMedicos</th>
-            <th scope="col">id_usuario</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Jugador</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td><button type="button" class="btn btn-warning">Editar</button></td>
-            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td><button type="button" class="btn btn-warning">Editar</button></td>
-            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td><button type="button" class="btn btn-warning">Editar</button></td>
-            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-          </tr>
-        </tbody>
-      </table>
+    <div id="tablaJugador" class="adminJugadores col-12">
+      
     </div>
-    <div class="adminEntrenadores col-12" >
-      <table class="table table-hover table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#ID</th>
-            <th scope="col">Dirección</th>
-            <th scope="col">Dorsal</th>
-            <th scope="col">Posicion</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Altura</th>
-            <th scope="col">id_datosMedicos</th>
-            <th scope="col">id_usuario</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Entrenador</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td><button type="button" class="btn btn-warning">Editar</button></td>
-            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-
-          </tr>
-        </tbody>
-      </table>
+    <div id="tablaEntrenador" class="adminEntrenadores col-12" >
+      
     </div>
-    <div class="adminUsuario col-12" >
-      <table class="table table-hover table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#ID</th>
-            <th scope="col">Dirección</th>
-            <th scope="col">Dorsal</th>
-            <th scope="col">Posicion</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Altura</th>
-            <th scope="col">id_datosMedicos</th>
-            <th scope="col">id_usuario</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Usuario</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td><button type="button" class="btn btn-warning">Editar</button></td>
-            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td><button type="button" class="btn btn-warning">Editar</button></td>
-            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-          </tr>
-        </tbody>
-      </table>
+    <div id="tablaUser" class="adminUsuario col-12" >
+     
     </div>
   </div>
 
