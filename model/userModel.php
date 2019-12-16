@@ -125,7 +125,7 @@ class userModel extends userClass{
     }
     
     public function delete(){
-        echo "estoy";
+
         $this->OpenConnect();  // konexio zabaldu  - abrir conexión
         
         $id=$this->getIdUser();

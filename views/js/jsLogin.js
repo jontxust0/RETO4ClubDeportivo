@@ -1,7 +1,6 @@
-
 $(document).ready(function(){
 
-
+	
 
 	$("#login").click(function(){	
 		
@@ -13,7 +12,7 @@ $(document).ready(function(){
 			$.ajax({
 				type:"GET",
 				data:{'name':name,'password':password},
-		       	url: "controller/cSessionVars.php", 
+		       	url: "../controller/cSessionVars.php", 
 		       	dataType:"text",
 		    	success: function(result){ 
 		    		
@@ -24,8 +23,10 @@ $(document).ready(function(){
 		       			alert("Sesion iniciada")
 		       			
 		       			//$("#btnLogin").css("display", "none");
-		       			//$("#btnLogout").css("display", "block");	       			
-		       			window.location.reload();
+		       			//$("#btnLogout").css("display", "block");	  
+		       			
+		       			
+		       			//window.location.reload();
 		       			
 		       		} else {
 		       			alert("Usuario o contraseña incorrectas");

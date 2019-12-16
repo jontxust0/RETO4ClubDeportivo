@@ -106,14 +106,56 @@ class entrenadoresModel extends entrenadoresClass{
             array_push($this->list, $new);
             
         }
-        
-        
-        
-        
-       
+
         mysqli_free_result($result);
         $this->CloseConnect();
     }
+    
+    public function delete(){
+        
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexión
+        
+        $id=$this->getId();
+        
+        $sql="CALL spDeleteEntrenador($id)";
+        
+        $numFilas=$this->link->query($sql);
+        
+        if ($numFilas>=1)
+        {
+            echo "borrado";
+        } else {
+            echo "Error al borrar";
+        }
+        $this->CloseConnect();
+        
+    }
+    
+    public function Update(){
+        
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexión
+        
+        $idUpdate=$this->getId();
+        $tlfUpdate=$this->getTlf();
+        $direccionUpdate=$this->getDireccion();
+        $sueldoUpdate=$this->getSueldo();
+        $contratacionUpdate=$this->getFechaContratacion();
+      
+        
+        
+        $sql="CALL spUpdateEntrenador('$idUpdate','$tlfUpdate','$direccionUpdate','$sueldoUpdate','$contratacionUpdate')";
+        
+        $numFilas=$this->link->query($sql);
+        
+        if ($numFilas>=1){
+            return "cambiado";
+        } else {
+            return "Error al cambiar".$sql.print_r($numFilas,true);
+        }
+        
+        $this->CloseConnect();
+    }
+    
     function getListJsonString() {
         $arr=array();
         
