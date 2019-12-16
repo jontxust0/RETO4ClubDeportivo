@@ -99,21 +99,10 @@ class jugadoresModel extends jugadoresClass{
     /**
      * @param multitype: $list
      */
-<<<<<<< HEAD
-    /**
-    public function setList($list)
-    {
-        $this->list = $list;
-    }
-*/
-    public function setListByIdEquipo(int $id){
-        
-=======
     
 
     public function setListByIdEquipo(){
         $id=$this->getId_equipo();
->>>>>>> 1d4cb4d3752df60fc6d3cceddbb4a7072d3a2be6
         $this->OpenConnect();
         $sql="call  spFindJugadorByIdEquipo($id)";
         $result = $this->link->query($sql);

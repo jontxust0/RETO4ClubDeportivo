@@ -1,20 +1,13 @@
 <?php 
 
-<<<<<<< HEAD
-require_once 'connect_data.php';
-require_once 'entrenadoresClass.php';
-
-class entrenadoresModel extends entrenadoresClass{
-=======
 include_once("connect_data.php");
 include_once ('userModel.php');
 include_once ('entrenadoresClass.php');
 
 class entrenadoresModel extends entrenadoresClass{
     private $list = array();
->>>>>>> 1d4cb4d3752df60fc6d3cceddbb4a7072d3a2be6
     private $link;
-    private $list= array();
+
     
     /**
      * @param multitype: $list
@@ -71,18 +64,6 @@ class entrenadoresModel extends entrenadoresClass{
         $result = $this->link->query($sql); //Almacena los datos recibidos de la llamada a la base de datos
         
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-<<<<<<< HEAD
-            
-            $entrenador= new entrenadoresClass();
-            
-            $entrenador->setId($row['id']);
-            $entrenador->setTlf($row['tlf']);
-            $entrenador->setDireccion($row['direccion']);
-            $entrenador->setSueldo($row['sueldo']);
-            $entrenador->setFechaContratacion($row['fechaContratacion']);
-            
-            array_push($this->list, $entrenador);
-=======
             $new = new self();
             $new->setid($row['id']);
             $new->settlf($row['tlf']);
@@ -92,7 +73,6 @@ class entrenadoresModel extends entrenadoresClass{
             $new->setid_usuario($row['id_usuario']);
             array_push($this->list, $new);
           
->>>>>>> 1d4cb4d3752df60fc6d3cceddbb4a7072d3a2be6
         }
         mysqli_free_result($result);
         unset($entrenador);
