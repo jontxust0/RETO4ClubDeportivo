@@ -57,13 +57,15 @@ $(document).ready(function(){
 		        
 		        //Boton delete
 		        $(".btnDelete").click(function(){
+		        	
 		        	var id=$(this).val();
 		        	deleteFunction(id);
 		        });
 		        
 		        //Modal Update
 		        $(".btnUpdate").click(function(){
-
+		        	alert("fdas");
+		        	$('#update').modal('show');
 		        	$('#idUpdate').val($(this).closest("tr").children().eq(0).text());
 					$('#usernameUpdate').val($(this).closest("tr").children().eq(1).text());
 					$('#contraseniaUpdate').val($(this).closest("tr").children().eq(2).text());
