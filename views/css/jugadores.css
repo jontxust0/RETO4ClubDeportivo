@@ -6,58 +6,20 @@ body{
 /*estilo para la vista INDEX*/
 
   /*estilo para categorias*/
-.iCategorias{
-height: 250px;
-color: white;
-text-align: center;
-}
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-  color: #fff !important;
-  background-color: gray !important;
-  text-align: center !important;
-}
-.nav-pills .nav-link {
-  border-radius: 0.25rem;
-}
 
-.nav-link {
-  display: block !important; 
-  padding: 0.5rem 1rem !important;
-}
 
-a {
-  color: rgb(119, 121, 123) !important;
-  background-color: transparent !important;
-  text-decoration: none !important;
-}
-
-*, ::after, ::before {
-  box-sizing: border-box !important;
-}
-/*----------------*/
 
 /*para centrar el NAVBAR*/
-@media (max-width: 991px) {
-  .navbar-center {
-    text-align: center;
-    font-size: 25px;
-  }
-  .divider{
-    height: 1px;
-    margin: 9px 0;
-    overflow: hidden;
-    background-color: #e5e5e5;
-  }
-}
 
 
-  /*---------------*/
+
+
 
 /*-----------------------------------*/
 
 
 /* Esto es para la vista vJugadores*/
-#infoEquipos {
+/* #infoEquipos {
     display: grid;
     grid-template-columns: auto auto auto;
     background-color: rgb(209, 209, 209);
@@ -86,11 +48,8 @@ a {
     left: 30px;
     height: 30px;
     width: 100px;
-}
-#footer{
-    background-image: linear-gradient(black, white);
-    text-align: center;
-}
+} */
+
 .card{
     margin: 5px;
     transition: 1s;

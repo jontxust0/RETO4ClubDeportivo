@@ -49,9 +49,39 @@ $(document).ready(function(){
         url: "../controller/cMostrarEquipos.php",
         dataType: "json",  //type of the result
     	success: function(result){
-       		console.log(result)
-       		
-		},
+			   console.log(result)
+			   
+
+			   for (let index = 0; index < array.length; index++) {
+				   const element = array[index];
+				   
+			   
+			   htmlzatia=`
+				<h1>`+result[index].nombre+`</h1>
+			   <div class="infoEquipos">
+			  <div class="row">
+			   <div class="infoJugadores">
+					   
+				
+
+			   </div> 
+		   </div>
+		   
+		   <div>
+			   <h4>Cuerpo tecnico</h4>
+		   
+		   <div class="infoEntrenadores">
+		   </div>
+		   <div classInfoCuerpo>
+
+		   </div>
+
+		   </div>
+		 </div>  `
+		   ;
+		}
+		
+	},
        	error : function(xhr) {
    			alert("An error occured: " + xhr.status + " " + xhr.statusText);
    		}
