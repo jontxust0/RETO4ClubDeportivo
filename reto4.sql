@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-12-2019 a las 09:00:15
+-- Tiempo de generación: 16-12-2019 a las 09:25:40
 -- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.1.32
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,6 +33,9 @@ from user$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllEntrenadores` ()  NO SQL
 SELECT * FROM entrenadores$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllEquipos` ()  NO SQL
+select * from equipos$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllJugadores` ()  NO SQL
 SELECT * FROM jugadores$$
 
@@ -41,6 +44,18 @@ SELECT * FROM user$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spDeleteUser` (IN `pId` INT)  NO SQL
 DELETE FROM USER WHERE USER.idUser=pId$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindCuerpoByIdEquipo` (IN `inId` INT)  NO SQL
+SELECT * FROM cuerpomedico WHERE id_equipo=inId$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindEntrenadorByIdEquipo` (IN `inId` INT)  NO SQL
+SELECT * FROM entrenadores WHERE id_equipo=inId$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindJugadorByIdEquipo` (IN `inId` INT)  NO SQL
+SELECT * FROM jugadores WHERE id_equipo = inId$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindUserById` (IN `inId` INT)  NO SQL
+SELECT * FROM user WHERE idUser = inId$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindUserByUsername` (IN `pUsername` VARCHAR(50))  NO SQL
 SELECT user.*  FROM user WHERE user.username=pUsername$$
@@ -190,39 +205,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `user`
---
-
-INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`, `admin`, `pic`, `url`, `id_equipo`) VALUES
-(1, 'gotzon95', '1234', 'gotzon', 'gotzon', 'gotzon@gmail.com', 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
-(2, 'gotzon', 'gdfg', 'dfg', 'dfgfd', 'gdfg', 1, '../images/default.jpg', 'http://eu.wikipedia.org', 0),
-(25, 'aaa', '$2y$10$3VBR51C1p9XbR0pPjGlelOGGlT1jsPKpxfq1nmZU91s9t9q27lcUG', 'aaa', 'aaa', 'aaa', 0, '../images/default.jpg', 'http://eu.wikipedia.org', 0);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `apellido` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `sexo` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
-  `admin` tinyint(1) NOT NULL,
-  `id_equipo` int(1) DEFAULT NULL,
-  `contrasena` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `usuario` varchar(50) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `sexo`, `admin`, `id_equipo`, `contrasena`, `usuario`) VALUES
-(1, 'sdfsdf', 'sdfsdf', 'h', 1, NULL, 'aaa', 'gotzon');
-
---
 -- Índices para tablas volcadas
 --
 
@@ -282,13 +264,6 @@ ALTER TABLE `user`
   ADD KEY `id_equipo` (`id_equipo`);
 
 --
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_equipo` (`id_equipo`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -341,12 +316,6 @@ ALTER TABLE `user`
   MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- Restricciones para tablas volcadas
 --
 
@@ -379,6 +348,12 @@ ALTER TABLE `entrenadores`
 --
 ALTER TABLE `jugadores`
   ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

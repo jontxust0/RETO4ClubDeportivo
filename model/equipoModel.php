@@ -87,7 +87,7 @@ class equipoModel extends equipoClass{
         $this->OpenConnect();  // konexio zabaldu  - abrir conexión
         
         //$sql = "CALL sp_pelicula_load()"; // SQL sententzia - sentencia SQL
-        $sql = "select * from equipos";
+        $sql = "call spAllEquipos()";
         $result = $this->link->query($sql); // result-en ddbb-ari eskatutako informazio dena gordetzen da
         // se guarda en result toda la información solicitada a la bbdd
         
