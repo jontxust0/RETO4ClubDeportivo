@@ -130,6 +130,51 @@ class jugadoresModel extends jugadoresClass{
        
         
     }
+    public function delete(){
+        echo "estoy";
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexión
+        
+        $id=$this->getId();
+        
+        $sql="CALL spDeleteJugador($id)";
+        
+        $numFilas=$this->link->query($sql);
+        
+        if ($numFilas>=1)
+        {
+            echo "borrado";
+        } else {
+            echo "Error al borrar";
+        }
+        $this->CloseConnect();
+        
+    }
+    
+    public function Update(){
+        
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexión
+        
+        $idUpdate=$this->getId();
+        $direccionUpdate=$this->getDireccion();
+        $dorsalUpdate=$this->getDorsal();
+        $posicionUpdate=$this->getPosicion();
+        $tlfUpdate=$this->getTlf();
+        $alturaUpdate=$this->getAltura();
+        
+        
+        $sql="CALL spUpdateJugador('$idUpdate','$direccionUpdate','$dorsalUpdate','$posicionUpdate','$tlfUpdate','$alturaUpdate')";
+        
+        $numFilas=$this->link->query($sql);
+        
+        if ($numFilas>=1){
+            return "cambiado";
+        } else {
+            return "Error al cambiar".$sql.print_r($numFilas,true);
+        }
+        
+        $this->CloseConnect();
+    }
+    
     function getListJsonString() {
         $arr=array();
         
