@@ -4,3 +4,13 @@ body{
 .container{
     background-color: white;
 }
+
+h2{
+    text-align: center;
+}
+h3{
+    text-align: center;
+}
+p{
+    padding-left: 80px;
+}

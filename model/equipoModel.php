@@ -6,9 +6,9 @@ include_once "cuerpoMedicoModel.php";
 include_once ('equipoClass.php');
 class equipoModel extends equipoClass{
     private $list = array();
-    private $arrJugadores;
-    private $arrEntrenadores;
-    private $arrCuerpoMedico;
+    private $arrJugadores = array();
+    private $arrEntrenadores = array();
+    private $arrCuerpoMedico = array();
     
 
     /**
@@ -87,7 +87,7 @@ class equipoModel extends equipoClass{
         $this->OpenConnect();  // konexio zabaldu  - abrir conexiÃ³n
         
         //$sql = "CALL sp_pelicula_load()"; // SQL sententzia - sentencia SQL
-        $sql = "select * from equipos";
+        $sql = "call spAllEquipos()";
         $result = $this->link->query($sql); // result-en ddbb-ari eskatutako informazio dena gordetzen da
         // se guarda en result toda la informaciÃ³n solicitada a la bbdd
         
@@ -104,17 +104,17 @@ class equipoModel extends equipoClass{
             $newJugadores = new jugadoresModel();
             $newJugadores->setId_equipo($new->getId());
             $newJugadores->setListByIdEquipo();
-            $new->setArrJugadores($newJugadores);
+            $new->setArrJugadores($newJugadores->getList());
             //-------------------------añadir entrenador---------------//
             $newEntrenadores = new entrenadoresModel();
             $newEntrenadores->setId_equipo($new->getId());
             $newEntrenadores->setListByIdEquipo();
-            $new->setArrEntrenadores($newEntrenadores);
+            $new->setArrEntrenadores($newEntrenadores->getList());
             //-------------------------añadir cuerpo medico---------------//
             $newCuerpo = new cuerpoMedicoModel();
             $newCuerpo->setId_equipo($new->getId());
             $newCuerpo->setListByIdEquipo();
-            $new->setArrCuerpoMedico($newCuerpo);
+            $new->setArrCuerpoMedico($newCuerpo->getList());
 
             
             array_push($this->list, $new);
@@ -145,15 +145,20 @@ class equipoModel extends equipoClass{
         
         $arr=array();
         
-        foreach ($this->list as $object)
+        foreach ($this->list as $equipo)
         {
-            $vars = $object->getObjectVars();
+            $vars = $equipo->getObjectVars();
+            $arrJugadores=array();
+            foreach ($equipo->getArrJugadores() as $jugador)
+            {
+                //linea diferente de ejemplo
+                $varsJugadores['objJugador'] = $jugador->getObjectVars();
+                array_push($arrJugadores, $varsJugadores);
+                
+            }
+                
+            $vars['listJugadores']=$arrJugadores;
             
-           
-                $vars['arrJugadores']=$object->arrJugadores->getObjectVars();
-                $vars['arrEntrenadores']=$object->arrEntrenadores->getObjectVars();
-                $vars['arrCuerpoMedico']=$object->arrCuerpoMedico->getObjectVars();
-    
             array_push($arr, $vars);
         }
         return json_encode($arr);
