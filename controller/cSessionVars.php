@@ -1,5 +1,5 @@
 <?php
-require_once '../model/UserModel.php';
+require_once '../model/userModel.php';
 
 $name=filter_input(INPUT_GET, "name");
 $password=filter_input(INPUT_GET, "password");
@@ -7,7 +7,7 @@ $password=filter_input(INPUT_GET, "password");
 
 if (( $name !=null ) && ( $password !=null )){
  
-    $user=new UserModel();
+    $user=new userModel();
     $user->setUsername($name);
     $user->setPassword($password);
 

@@ -8,6 +8,22 @@ class jugadoresModel extends jugadoresClass{
     private $link;
     private $objUser;
     
+    /**
+     * @return mixed
+     */
+    public function getObjUser()
+    {
+        return $this->objUser;
+    }
+
+    /**
+     * @param mixed $objUser
+     */
+    public function setObjUser($objUser)
+    {
+        $this->objUser = $objUser;
+    }
+
     function getList() {
         return $this->list;
     }
@@ -83,6 +99,7 @@ class jugadoresModel extends jugadoresClass{
     /**
      * @param multitype: $list
      */
+<<<<<<< HEAD
     /**
     public function setList($list)
     {
@@ -91,6 +108,12 @@ class jugadoresModel extends jugadoresClass{
 */
     public function setListByIdEquipo(int $id){
         
+=======
+    
+
+    public function setListByIdEquipo(){
+        $id=$this->getId_equipo();
+>>>>>>> 1d4cb4d3752df60fc6d3cceddbb4a7072d3a2be6
         $this->OpenConnect();
         $sql="call  spFindJugadorByIdEquipo($id)";
         $result = $this->link->query($sql);
@@ -106,13 +129,16 @@ class jugadoresModel extends jugadoresClass{
             $new->setAltura($row['altura']);
             $new->setId_datosMedicos($row['id_datosMedicos']);
             $new->setId_usuario($row['id_usuario']);
-            $new->setId_equipos($row['id_equipo']);
-            
+            $new->setId_equipo($row['id_equipo']);
+            $newUser = new userModel();
+            $newUser->setIdUser($new->getId_usuario());
+            $newUser->findUserByIdUser();
+            $new->setObjUser($newUser);
             array_push($this->list, $new);
         }
         mysqli_free_result($result);
         $this->CloseConnect();
-        $this->CloseConnect();
+       
         
     }
     function getListJsonString() {

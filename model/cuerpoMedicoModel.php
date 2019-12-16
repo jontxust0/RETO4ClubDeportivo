@@ -1,13 +1,30 @@
 <?php 
-
+include_once ('userModel.php');
+include_once ('cuerpoMedicoClass.php');
 class cuerpoMedicoModel extends cuerpoMedicoClass{
-    private $list;
+    private $list = array();
     private $link;
     private $objUser;
     
     
     
     
+    /**
+     * @return mixed
+     */
+    public function getList()
+    {
+        return $this->list;
+    }
+
+    /**
+     * @param mixed $list
+     */
+    public function setList($list)
+    {
+        $this->list = $list;
+    }
+
     public function OpenConnect() {
         $konDat = new connect_data();
         try {
@@ -21,9 +38,59 @@ class cuerpoMedicoModel extends cuerpoMedicoClass{
         //                  //databasearen artean UTF -8 erabiltzera datuak trukatzeko
     }
     
+    
     public function CloseConnect() {
         mysqli_close($this->link);
     }
+    
+    public function setListByIdEquipo()
+    {
+        $this->OpenConnect();
+        
+        $id=$this->getId_equipo();
+        
+        $sql="call spFindCuerpoByIdEquipo($id)";
+        $result= $this->link->query($sql);
+        
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $new = new self();
+            $new->setId($row['id']);
+            $new->setFuncion($row['funcion']);
+            $new->setDireccion($row['direccion']);
+            $new->setTlf($row['tlf']);
+            $new->setId_equipo($row['id_equipo']);
+            $new->setId_usuario($row['id_usuario']);
+            $newUser = new userModel();
+            $newUser->setIdUser($new->getId_usuario());
+            $newUser->findUserByIdUser();
+            $new->setObjUser($newUser);
+            
+            array_push($this->list, $new);
+            
+        }
+        
+        mysqli_free_result($result);
+        $this->CloseConnect();
+    }
+    /**
+     * @return mixed
+     */
+    public function getObjUser()
+    {
+        return $this->objUser;
+    }
+
+    /**
+     * @param mixed $objUser
+     */
+    public function setObjUser($objUser)
+    {
+        $this->objUser = $objUser;
+    }
+
+    
+    
 }
 
 
