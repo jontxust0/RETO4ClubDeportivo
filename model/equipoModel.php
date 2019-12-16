@@ -156,8 +156,29 @@ class equipoModel extends equipoClass{
                 array_push($arrJugadores, $varsJugadores);
                 
             }
+               
+          
+            $arrEntrenadores=array();
+            foreach ($equipo->getArrEntrenadores() as $entrenador)
+            {
+                //linea diferente de ejemplo
+                $varsEntrenadores['objEntrenador'] = $entrenador->getObjectVars();
+                array_push($arrEntrenadores, $varsEntrenadores);
                 
+            }
+            
+            $arrCuerpo=array();
+            foreach ($equipo->getArrCuerpoMedico() as $cuerpo)
+            {
+                //linea diferente de ejemplo
+                $varsCuerpo['objCuerpo'] = $cuerpo->getObjectVars();
+                array_push($arrCuerpo, $varsCuerpo);
+                
+            }
+            
             $vars['listJugadores']=$arrJugadores;
+            $vars['listEntrenadores']=$arrEntrenadores;
+            $vars['listCuerpo']=$arrCuerpo;
             
             array_push($arr, $vars);
         }
