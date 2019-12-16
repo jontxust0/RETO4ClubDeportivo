@@ -103,7 +103,11 @@ protected $id_equipo;
     }
 
 
-
+    public function getObjectVars()
+    {
+        $vars = get_object_vars($this);
+        return  $vars;
+    }
 
 
 }

@@ -86,7 +86,11 @@ protected $id_jugador;
     }
 
 
-
+    public function getObjectVars()
+    {
+        $vars = get_object_vars($this);
+        return  $vars;
+    }
 
 }
 

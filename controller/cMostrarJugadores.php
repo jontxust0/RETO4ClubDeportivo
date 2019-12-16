@@ -1,11 +1,13 @@
-<?php // 
+<?php
+include_once ("../model/jugadoresModel.php");
 
-require_once("../model/jugadoresClass.php");
-require_once("../model/jugadoresModel.php");
-$cont=new jugadoresModel();
-$cont->setList();
-$datos=$cont->getJSONList();
+$jugador= new jugadoresModel();
+$jugador->setList(); 
 
-$jugadores=json_encode($datos);
-echo($jugadores);   
+$listaJugadoresJson=$jugador->getListJsonString();
+
+echo $listaJugadoresJson;
+
+unset ($jugador);
+
 ?>

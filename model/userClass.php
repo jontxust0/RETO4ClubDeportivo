@@ -1,7 +1,7 @@
 <?php
 
 
-class UserClass{
+class userClass{
     protected $idUser;
     protected $username;
     protected $password;
@@ -102,6 +102,12 @@ class UserClass{
     public function setUrl($url)
     {
         $this->url = $url;
+    }
+    
+    public function getObjectVars()
+    {
+        $vars = get_object_vars($this);
+        return  $vars;
     }
 
 

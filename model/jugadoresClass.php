@@ -153,6 +153,11 @@ protected $id_equipo;
         $this->id_usuario = $id_usuario;
     }
 
+    public function getObjectVars()
+    {
+        $vars = get_object_vars($this);
+        return  $vars;
+    }
 
 
 
