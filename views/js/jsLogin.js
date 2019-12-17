@@ -119,7 +119,7 @@ $(document).ready(function(){
 	
 $('#btnUsuario').on('click', '#btnPerfil', function(){	
 		
-		window.location.href="vPerfil.php";
+		window.location.href="vPerfil.html";
 		
 
 	});
