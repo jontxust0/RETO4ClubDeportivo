@@ -152,7 +152,8 @@ class equipoModel extends equipoClass{
             foreach ($equipo->getArrJugadores() as $jugador)
             {
                 //linea diferente de ejemplo
-                $varsJugadores['objJugador'] = $jugador->getObjectVars();
+                $varsJugadores = $jugador->getObjectVars();
+                $varsJugadores["objUsuario"] = $jugador->getObjUser()->getObjectVars();
                 array_push($arrJugadores, $varsJugadores);
                 
             }
@@ -162,7 +163,8 @@ class equipoModel extends equipoClass{
             foreach ($equipo->getArrEntrenadores() as $entrenador)
             {
                 //linea diferente de ejemplo
-                $varsEntrenadores['objEntrenador'] = $entrenador->getObjectVars();
+                $varsEntrenadores = $entrenador->getObjectVars();
+                $varsEntrenadores["objUsuario"] = $entrenador->getObjUser()->getObjectVars();
                 array_push($arrEntrenadores, $varsEntrenadores);
                 
             }
@@ -171,7 +173,8 @@ class equipoModel extends equipoClass{
             foreach ($equipo->getArrCuerpoMedico() as $cuerpo)
             {
                 //linea diferente de ejemplo
-                $varsCuerpo['objCuerpo'] = $cuerpo->getObjectVars();
+                $varsCuerpo = $cuerpo->getObjectVars();
+                $varsCuerpo["objUsuario"] = $cuerpo->getObjUser()->getObjectVars();
                 array_push($arrCuerpo, $varsCuerpo);
                 
             }

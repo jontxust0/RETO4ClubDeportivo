@@ -50,6 +50,30 @@ body{
     width: 100px;
 } */
 
+/*Estilo de los equipos*/
+.infoEquipos{
+
+    background-color: white;
+    border: 1px solid black;
+}
+.infoEquipos>.row{
+    margin: 0;
+    
+}
+
+.card-container{
+    justify-content: space-around !important;
+}
+.infoEquipos>.row>div{
+    border: 1px solid green;
+}
+.card-body>ul{
+    padding: 0;
+    list-style-type: none;
+}
+/*---------------------*/
+
+
 .card{
     margin: 5px;
     transition: 1s;

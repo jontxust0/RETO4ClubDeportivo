@@ -1,10 +1,9 @@
 <?php
-include_once ("../model/userModel.php");
 session_start();
 
-if (isset($_SESSION['name'])) {
+if ((isset($_SESSION['name']))  && (isset($_SESSION['admin']))){
    
-
+    
     
     
     $obj['name']=$_SESSION['name'];
@@ -23,5 +22,3 @@ if (isset($_SESSION['name'])) {
     
     echo 0;
 }
-    
-   

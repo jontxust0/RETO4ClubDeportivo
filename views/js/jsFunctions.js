@@ -120,7 +120,7 @@ $(document).ready(function(){
 	
 	$('#btnUsuario').on('click', '#btnPerfil', function(){	
 		
-		window.location.href="views/vPerfil.php";
+		window.location.href="views/vPerfil.html";
 		
 
 	});
