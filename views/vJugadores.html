@@ -20,6 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/jsLogin.js" type="text/javascript"></script>
     <script src="js/vJugadores.js" type="text/javascript"></script>
     <!--------------------------------------------------------------------------------------------->
 </head>
@@ -53,10 +54,14 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="vJugadores.html">Jugadores</a>
                   </li>
+                <div id="btnUsuario" class="navbar-nav navbar-right">
+        	
+        		</div>	
               </ul>
               <div class="divider"></div>
               <div class="navbar-center">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Log In</button>
+                <button id="btnLogin" class="btn btn-outline-light my-2 my-sm-0" type="submit" data-toggle='modal' data-target='#myModal'>Log In</button>
+		    	<button id="btnLogout" class="btn btn-outline-light my-2 my-sm-0" type="submit" style="display:none">Log Out</button>
               </div>
             </div>
           </nav>
@@ -77,5 +82,89 @@
         <a href="https://www.instagram.com/"><img src="img/iconos/instagram.png" alt="" srcset=""></a>
       </div>
       </nav>
+      
+       <!-- Modal Login-->
+	<div id="myModal" class="modal fade">
+		<div class="modal-dialog modal-login">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="avatar">
+						<img src="img/logo.png" alt="Avatar">
+					</div>
+					<h4 class="modal-title">Login</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="name" name="usuario"
+							placeholder="Username" required="required">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="password"
+							name="contrasena" placeholder="Password" required="required">
+					</div>
+					<div class="form-group">
+						<button id="login"
+							class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<a href="views/vNewUser.html" data-toggle='modal' data-target='#myModalRegister'>New User</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- Modal Login-->
+    
+    <!-- Modal Register-->
+    <div id="myModalRegister" class="modal fade">
+   		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<h4 class="modal-title">Registrate</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="username" name="usuario"
+							placeholder="Username" required="required">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="newPassword"
+							name="contrasena" placeholder="Password" required="required">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="newName"
+							name="nombre" placeholder="Nombre" required="required">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="surname"
+							name="apellido" placeholder="Apellido" required="required">
+					</div>
+					<div class="form-group">
+						<input type="email" class="form-control" id="email"
+							name="email" placeholder="Email" required="required">
+					</div>
+					<div class="form-group">
+						<input type="checkbox" id="admin"  checked /><br/><br/>
+					</div>
+					<div class="form-group">
+						<button id="register"
+							class="btn btn-primary btn-lg btn-block login-btn">Registrarse</button>
+					</div>
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+    <!-- Modal Register-->
 </body>
 </html>

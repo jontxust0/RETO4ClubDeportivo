@@ -23,7 +23,7 @@ if (( $name !=null ) && ( $password !=null )){
         $_SESSION['surname']=$user->getSurname();
         $_SESSION['nombre']=$user->getName();
         $_SESSION['img']=$user->getPic();
-        echo 1;
+        echo $name;
     }  else {
         
         echo 0; // not correct user

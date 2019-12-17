@@ -1,5 +1,33 @@
 $(document).ready(function(){
-
+	$.ajax({
+		type:"GET",
+       	url: "../controller/cValidarSesion.php", 
+       	dataType:"text",
+    	success: function(result){ 
+    		
+    		console.log(result);
+    		
+       		if (result !=0)
+       		{
+       			
+       			
+       			newRow="";
+       			
+    			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0'>"+result+"</button>";
+    			$("#btnUsuario").append(newRow);
+    			$("#btnLogin").css("display", "none");
+       			$("#btnLogout").css("display", "block");
+       			
+       			
+       		} else {
+       			
+       		
+       		}	
+		},
+       	error : function(xhr) {
+   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
+   		}
+	});
 	
 
 	$("#login").click(function(){	
@@ -18,15 +46,16 @@ $(document).ready(function(){
 		    		
 		    		console.log(result);
 		    		
-		       		if (result ==1)
+		       		if (result !=0)
 		       		{
 		       			alert("Sesion iniciada")
 		       			
-		       			//$("#btnLogin").css("display", "none");
-		       			//$("#btnLogout").css("display", "block");	  
+		       			newRow="";
 		       			
-		       			
-		       			//window.location.reload();
+		    			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0 '>"+result+"</button>";
+		    			$("#btnUsuario").html(newRow);
+		       						
+		       			window.location.reload();
 		       			
 		       		} else {
 		       			alert("Usuario o contraseña incorrectas");
@@ -43,7 +72,7 @@ $(document).ready(function(){
 		
 		
 		$.ajax({
-	       	url: "controller/cSessionLogout.php", 
+	       	url: "../controller/cSessionLogout.php", 
 	       	dataType:"text",
 	    	success: function(result){  
 	       		
@@ -88,9 +117,9 @@ $(document).ready(function(){
 	});
 	
 	
-	$("#btnPerfil").click(function(){	
+$('#btnUsuario').on('click', '#btnPerfil', function(){	
 		
-		window.location.href="views/vPerfil.php";
+		window.location.href="vPerfil.php";
 		
 
 	});
