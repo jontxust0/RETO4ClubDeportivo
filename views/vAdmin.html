@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="vAdminAngular">
 
 <head>
   <title>Zornotza Hawks</title>
@@ -89,15 +89,118 @@
   <br>
   <!--Mostrar datos en tabla desde BD-->
   <div class="container adminContainer">
+
     <div id="tablaJugador" class="adminJugadores col-12">
-      
+      <!--Jugadores-->
+      <div ng-controller="vAdminControlador">
+        <h1>Jugadores</h1>
+        <br>
+        <label for="Name">Buscar: </label><input type="text" value="" placeholder="buscar..."
+                        ng-model="TEXTObusqueda">
+        <div>
+          <table class='table table-hover table-dark'>
+            <tr>
+              <th scope='col'>ID</th>
+              <th scope='col'>DIRECCION</th>
+              <th scope='col'>DORSAL</th>
+              <th scope='col'>POSICION</th>
+              <th scope='col'>TELEFONO</th>
+              <th scope='col'>ALTURA</th>
+            </tr>
+            <tr ng-repeat="jugador in listaJugadores| filter:TEXTObusqueda">
+              <td>{{jugador.id}}</td>
+              <td>{{jugador.direccion}}</td>
+              <td>{{jugador.dorsal}}</td>
+              <td>{{jugador.posicion}}</td>
+              <td>{{jugador.tlf}}</td>
+              <td>{{jugador.altura}}</td>
+              <td>
+                <button type='button' class='btnUpdateJugadores btn-warning' value='{{jugador.id}}' data-toggle='modal'
+                  data-target='#updateJugadores'>Editar</button>
+              </td>
+              <td>
+                <button type='button' class='btnDeleteJugadores btn-danger' value='{{jugador.id}}'>Borrar</button>
+              </td>
+            </tr>
+
+          </table>
+        </div>
+      </div>
     </div>
-    <div id="tablaEntrenador" class="adminEntrenadores col-12" >
-      
+    <div id="tablaEntrenador" class="adminEntrenadores col-12">
+      <!--Entrenadores-->
+      <div ng-controller="vAdminControlador">
+        <h1>Entrenadores</h1>
+        <br>
+        <label for="Name">Buscar: </label><input type="text" value="" placeholder="buscar..."
+                        ng-model="TEXTObusqueda">
+        <div>
+          <table class='table table-hover table-dark'>
+            <tr>
+              <th scope='col'>ID</th>
+              <th scope='col'>TELEFONO</th>
+              <th scope='col'>DIRECCION</th>
+              <th scope='col'>SUELDO</th>
+              <th scope='col'>FECHA CONTRATACION</th>
+            </tr>
+            <tr ng-repeat="entrenador in listaEntrenadores| filter:TEXTObusqueda">
+              <td>{{entrenador.id}}</td>
+              <td>{{entrenador.tlf}}</td>
+              <td>{{entrenador.direccion}}</td>
+              <td>{{entrenador.sueldo}}</td>
+              <td>{{entrenador.fechaContratacion}}</td>
+              <td>
+                <button type='button' class='btnUpdateEntrenadores btn-warning' value='{{entrenador.id}}' data-toggle='modal'
+                  data-target='#updateEntrenadores'>Editar</button>
+              </td>
+              <td>
+                <button type='button' class='btnDeleteJugadores btn-danger' value='{{entrenador.id}}'>Borrar</button>
+              </td>
+            </tr>
+
+          </table>
+        </div>
+      </div>
     </div>
-    <div id="tablaUser" class="adminUsuario col-12" >
-     
+    <div id="tablaUser" class="adminUsuario col-12">
+      <!--Usuarios-->
+
+      <div ng-controller="vAdminControlador">
+        <h1>Usuarios</h1>
+        <br>
+        <label for="Name">Buscar: </label><input type="text" value="" placeholder="buscar..."
+                        ng-model="TEXTObusqueda">
+        <div>
+          <table class='table table-hover table-dark'>
+            <tr>
+              <th scope='col'>ID</th>
+              <th scope='col'>USUARIOS</th>
+              <th scope='col'>CONTRASEÑA</th>
+              <th scope='col'>NOMBRE</th>
+              <th scope='col'>APELLIDO</th>
+              <th scope='col'>EMAIL</th>
+            </tr>
+            <tr ng-repeat="usuario in listaUsuarios| filter:TEXTObusqueda">
+              <td>{{usuario.idUser}}</td>
+              <td>{{usuario.username}}</td>
+              <td>{{usuario.password}}</td>
+              <td>{{usuario.name}}</td>
+              <td>{{usuario.surname}}</td>
+              <td>{{usuario.email}}</td>
+              <td>
+                <button type='button' class='btnUpdate btn-warning' value='{{usuario.idUser}}' data-toggle='modal'
+                  data-target='#update'>Editar</button>
+              </td>
+              <td>
+                <button type='button' class='btnDelete btn-danger' value='{{usuarios.idUser}}'>Borrar</button>
+              </td>
+            </tr>
+
+          </table>
+        </div>
+      </div>
     </div>
+
   </div>
   
   <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -233,7 +336,8 @@
   <script src="js/popper.min.js" type="text/javascript" ></script>
   
     <script src="js/jsFuntions.js" type="text/javascript"></script>
-  <script src="js/vAdmin.js" type="text/javascript"></script>
+  <!-- <script src="js/vAdmin.js" type="text/javascript"></script> -->
+  <script src="js/vAdminAngular.js" type="text/javascript"></script>
 </body>
 
 </html>
