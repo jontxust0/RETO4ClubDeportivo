@@ -36,6 +36,10 @@ body{
 	display: flex !important;
 	flex-direction: column;
 }
+
+#footer a{
+    color: white;
+}
 .iconos img{
 	width: 64px;
 	height: 64px;

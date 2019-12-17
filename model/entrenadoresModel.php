@@ -7,7 +7,7 @@ include_once ('entrenadoresClass.php');
 class entrenadoresModel extends entrenadoresClass{
     private $list = array();
     private $link;
-
+    private $objUser;
     
     /**
      * @param multitype: $list
