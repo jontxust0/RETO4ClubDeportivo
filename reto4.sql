@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-12-2019 a las 08:46:17
+-- Tiempo de generación: 17-12-2019 a las 11:00:56
 -- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Versión de PHP: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -217,7 +217,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`, `admin`, `pic`) VALUES
-(26, 'userprueba', '123', 'user', 'prueba', 'user@gmail.com', 0, '../images/default.jpg');
+(26, 'userprueba', '123', 'user', 'prueba', 'user@gmail.com', 0, '../images/default.jpg'),
+(27, 'aaa', '$2y$10$v0ol6pRtlxNu7tcyvfVi3ei7FfjXG4fhzgC6fLo3GoJFaRLfKrPTe', 'aa', 'aa', 'aa', 0, '../images/default.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -330,7 +331,7 @@ ALTER TABLE `quejas`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Restricciones para tablas volcadas

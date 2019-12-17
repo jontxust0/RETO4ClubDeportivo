@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="views/img/logoSinTitulo.png">
   
 <!------------------------------CSS------------------------------------------------------------>
+
   <link href="views/css/style.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="views/css/presentacion.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -49,7 +50,7 @@
           <a class="nav-link" href="index.html">Inicio <span class="sr-only"></span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="views/vPresentacion.php">Presentación <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="views/vPresentacion.html">Presentación <span class="sr-only">(current)</span></a>
           </li>
 
           <li class="nav-item">
@@ -61,10 +62,14 @@
         <li class="nav-item">
           <a class="nav-link" href="views/vJugadores.html">Jugadores</a>
         </li>
+        <div id="btnUsuario" class="navbar-nav navbar-right">
+        	
+        </div>
       </ul>
       <div class="divider"></div>
       <div class="navbar-center">
         <button id="btnLogin" class="btn btn-outline-light my-2 my-sm-0" type="submit" data-toggle='modal' data-target='#myModal'>Log In</button>
+        <button id="btnLogout" class="btn btn-outline-light my-2 my-sm-0" type="submit" style="display:none">Log Out</button>
       </div>
 
     </div>
@@ -140,7 +145,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<div class="avatar">
-						<img src="img/logo.png" alt="Avatar">
+						<img src="views/img/logo.png" alt="Avatar">
 					</div>
 					<h4 class="modal-title">Login</h4>
 					<button type="button" class="close" data-dismiss="modal"
