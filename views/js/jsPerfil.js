@@ -59,6 +59,10 @@ $(document).ready(function(){
 		 	
 	        console.log(result);
 	        
+	        profesion="";
+	        profesion="Jugador";
+			$("#profesion").append(profesion);
+	        
 	        direccion="";
 	        direccion="<p>"+result.direccion+"</p>";
 			$("#direccion").append(direccion);
@@ -103,6 +107,10 @@ $(document).ready(function(){
 	    		 	
 	    	        console.log(result);
 	    	        
+	    	        profesion="";
+	    	        profesion="Entrenador";
+	    			$("#profesion").append(profesion);
+	    	        
 	    	        tlf="";
 	    			tlf="<p>"+result.tlf+"</p>";
 	    			$("#tlf").append(tlf);
@@ -138,6 +146,10 @@ $(document).ready(function(){
 	    	    	 success: function(result){
 	    	    		 	
 	    	    	        console.log(result);
+	    	    	        
+	    	    	        profesion="";
+	    	    	        profesion="Medico";
+	    	    			$("#profesion").append(profesion);
 	    	    	        
 	    	    	        tlf="";
 	    	    			tlf="<p>"+result.tlf+"</p>";
