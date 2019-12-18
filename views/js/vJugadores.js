@@ -154,8 +154,9 @@ $(document).ready(function(){
 				type: "GET",
 				url: "../controller/cMostrarDatos.php",
 				dataType: "json",  //type of the result
+				data: { "id": id, "tipo":tipo},
 				success: function(result){
-				
+				console.log(result);
 				
 			},
 			error : function(xhr) {
