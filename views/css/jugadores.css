@@ -116,12 +116,21 @@ body{
 }
 
 
-/* css de model*/
+/* css de modal*/
 
 .modal-title h5{
 	font-weight: bold;
 }
-/*--------------------*/
+.modal-body img{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+}
+
+.modal-body{
+	display: grid;
+	grid-template-columns: auto auto;
+}
 
 /*--------------------------*/
 h4:nth-child(1){
