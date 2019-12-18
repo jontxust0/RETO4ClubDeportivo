@@ -130,6 +130,37 @@ class jugadoresModel extends jugadoresClass{
        
         
     }
+    
+    
+    
+    public function setJugadorById(){
+        $id=$this->getId();
+        $this->OpenConnect();
+        $sql="call  spFindJugadorById($id)";
+        $result = $this->link->query($sql);
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+            
+            $this->setId($row['id']);
+            $this->setDireccion($row['direccion']);
+            $this->setDorsal($row['dorsal']);
+            $this->setPosicion($row['posicion']);
+            $this->setTlf($row['tlf']);
+            $this->setAltura($row['altura']);
+            $this->setId_datosMedicos($row['id_datosMedicos']);
+            $this->setId_usuario($row['id_usuario']);
+            $this->setId_equipo($row['id_equipo']);
+            $newUser = new userModel();
+            $newUser->setIdUser($this->getId_usuario());
+            $newUser->findUserByIdUser();
+            $this->setObjUser($newUser);
+           
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        
+        
+    }
     public function delete(){
         echo "estoy";
         $this->OpenConnect();  // konexio zabaldu  - abrir conexión
@@ -185,6 +216,14 @@ class jugadoresModel extends jugadoresClass{
             array_push($arr, $vars);
         }
         return json_encode($arr);
+    }
+    
+    
+    function getThisJsonString() {
+        
+        $vars = get_object_vars($this);
+        
+        return json_encode($vars);
     }
 }
 

@@ -66,8 +66,8 @@ $(document).ready(function(){
 					`;
 					//imprimir cards de jugadores
 					for (let jugador = 0; jugador < result[equipo].listJugadores.length; jugador++) {
-						htmlzatia+=`<div class="card col-sm-3" style="width: 18rem;">
-						<img src="`+result[equipo].listJugadores[jugador].objUsuario.pic+`" class="card-img-top" alt="...">
+						htmlzatia+=`<div class="card col-sm-4" style="width: 18rem;" data-toggle="modal" data-target="#exampleModal" data-tipo=1 data-id=`+result[equipo].listJugadores[jugador].id+`>
+						<img src="`+result[equipo].listJugadores[jugador].objUsuario.pic+`" class="card-img-top imgJugador" alt="...">
 						<div class="card-body">
 						  <h5 class="card-title">`+result[equipo].listJugadores[jugador].objUsuario.name+`, `+result[equipo].listJugadores[jugador].objUsuario.surname+`</h5>
 							<ul>
@@ -97,8 +97,8 @@ $(document).ready(function(){
 					`;
 					//Imprimir cards de todos los entrenadores
 					for (let entrenador = 0; entrenador < result[equipo].listEntrenadores.length; entrenador++) {
-						htmlzatia+=`<div class="card col-md-16" style="width: 18rem;">
-						<img src="`+result[equipo].listEntrenadores[entrenador].objUsuario.pic+`" class="card-img-top" alt="...">
+						htmlzatia+=`<div class="card col-md-16" style="width: 18rem;" data-toggle="modal" data-target="#exampleModal" data-tipo=2 data-id=`+result[equipo].listEntrenadores[entrenador].id+`>
+						<img src="`+result[equipo].listEntrenadores[entrenador].objUsuario.pic+`" class="card-img-top imgTecnico" alt="..." >
 						<div class="card-body">
 						  <h5 class="card-title">`+result[equipo].listEntrenadores[entrenador].objUsuario.name+`, `+result[equipo].listEntrenadores[entrenador].objUsuario.surname+`</h5>
 							<ul>
@@ -122,8 +122,8 @@ $(document).ready(function(){
 					`;
 					//imprimir cards de todos los del cuerpo medico
 					for (let cuerpo = 0; cuerpo < result[equipo].listCuerpo.length; cuerpo++) {
-						htmlzatia+=`<div class="card col-md-16" style="width: 18rem;">
-						<img src="`+result[equipo].listCuerpo[cuerpo].objUsuario.pic+`" class="card-img-top" alt="...">
+						htmlzatia+=`<div class="card col-md-16" style="width: 18rem;"data-toggle="modal" data-target="#exampleModal" data-tipo=3 data-id=`+result[equipo].listCuerpo[cuerpo].id+`>
+						<img src="`+result[equipo].listCuerpo[cuerpo].objUsuario.pic+`" class="card-img-top imgTecnico" alt="..." >
 						<div class="card-body">
 						  <h5 class="card-title">`+result[equipo].listCuerpo[cuerpo].objUsuario.name+`, `+result[equipo].listCuerpo[cuerpo].objUsuario.surname+`</h5>
 							<ul>
@@ -143,10 +143,33 @@ $(document).ready(function(){
 		 </div>`;
 		}
 		$("#infoContainer").html(htmlzatia);
+
+
+
+		$(".card").on("click", function(){
+			var tipo=$(this).data("tipo");
+			var id=$(this).data("id");
+			alert(id);
+			$.ajax({
+				type: "GET",
+				url: "../controller/cMostrarDatos.php",
+				dataType: "json",  //type of the result
+				success: function(result){
+				
+				
+			},
+			error : function(xhr) {
+				alert("An error occured: " + xhr.status + " " + xhr.statusText);
+			}
+			});
+		});
 		
 	},
        	error : function(xhr) {
    			alert("An error occured: " + xhr.status + " " + xhr.statusText);
    		}
 	});
+
+
+	
 });
