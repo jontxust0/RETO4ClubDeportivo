@@ -2,6 +2,9 @@
 
 require_once 'connect_data.php';
 require_once 'jugadoresClass.php';
+require_once 'userModel.php';
+
+
 
 class jugadoresModel extends jugadoresClass{
     private $list = array();
@@ -148,15 +151,15 @@ class jugadoresModel extends jugadoresClass{
         
     }
     
-    
-    
-    public function setJugadorById(){
-        $id=$this->getId();
+    public function setJugadorByUserId(){
+
+        $id=$this->id_usuario;
         $this->OpenConnect();
-        $sql="call  spFindJugadorById($id)";
+        $sql="call spFindJugadorByIdUser($id)";
         $result = $this->link->query($sql);
-        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             
+
             
             $this->setId($row['id']);
             $this->setDireccion($row['direccion']);
@@ -171,21 +174,22 @@ class jugadoresModel extends jugadoresClass{
             $newUser->setIdUser($this->getId_usuario());
             $newUser->findUserByIdUser();
             $this->setObjUser($newUser);
-           
+            
         }
         mysqli_free_result($result);
         $this->CloseConnect();
         
         
     }
+    
     public function delete(){
-        echo "estoy";
+        
         $this->OpenConnect();  // konexio zabaldu  - abrir conexión
         
         $id=$this->getId();
         
         $sql="CALL spDeleteJugador($id)";
-        
+       
         $numFilas=$this->link->query($sql);
         
         if ($numFilas>=1)
