@@ -1,11 +1,16 @@
 <?php
 require_once 'connect_data.php';
+include_once "jugadoresModel.php";
+include_once "entrenadoresModel.php";
+include_once "cuerpoMedicoModel.php";
 require_once 'userClass.php';
 
 class userModel extends userClass{
     
     private $link;
     private $list= array();
+
+    
 
     public function getList()
     {
@@ -60,8 +65,7 @@ class userModel extends userClass{
             $user->setName($row['name']);
             $user->setSurname($row['surname']);
             $user->setEmail($row['email']);
-            
-            
+
             
             array_push($this->list, $user);
         }
@@ -88,6 +92,7 @@ class userModel extends userClass{
             
             if (password_verify($this->getPassword(), $passwordEncripted))
             {
+                $this->setIdUser($row['idUser']);
                 $this->setAdmin($row['admin']); 
                 $this->setEmail($row['email']);
                 $this->setSurname($row['surname']);

@@ -6,7 +6,7 @@ if (isset($_SESSION['name'])) {
    
 
     
-    
+    $obj['id']=$_SESSION['id'];
     $obj['name']=$_SESSION['name'];
     $obj['admin']=$_SESSION['admin'];
     $obj['password']=$_SESSION['password'];
@@ -15,7 +15,10 @@ if (isset($_SESSION['name'])) {
     $obj['nombre']=$_SESSION['nombre'];
     $obj['img']=$_SESSION['img'];
     
+    
     $objJson= json_encode($obj);
+    
+    
     
     echo $objJson;         // ver var session
     

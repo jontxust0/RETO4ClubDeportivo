@@ -8,6 +8,6 @@ $listaUsuariosJson=$usuario->getListJsonString();
 
 echo $listaUsuariosJson;
 
-unset ($usuario);
+
 
 ?>

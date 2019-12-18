@@ -4,14 +4,14 @@ $(document).ready(function(){
        	dataType:"json",
     	success: function(result){ 
     		
-    		console.log(result);
+    		//console.log(result);
     		
        		if (result !=0)
        		{
        			
        			
        			nameSurname="";
-       			nameSurname+= result.nombre + " " +result.surname;
+       			nameSurname+= result.dorsal + " " +result.surname;
     			$("#nameSurname").append(nameSurname);
     			
     			
@@ -47,6 +47,26 @@ $(document).ready(function(){
        	error : function(xhr) {
    			alert("An error occured: " + xhr.status + " " + xhr.statusText);
    		}
+	});
+	
+	
+	
+	
+	$.ajax({
+	    type:"GET",
+	    url: "../controller/cPerfil.php", 
+	    dataType: "json",  //type of the result
+	    
+	 success: function(result){
+		 	
+	        console.log(result);
+	        
+		  	
+	        	
+	 },
+	    error : function(xhr) {
+	        alert("An error occured: " + xhr.status + " " + xhr.statusText);
+	    }
 	});
 	
 
