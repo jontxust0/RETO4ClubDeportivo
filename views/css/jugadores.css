@@ -115,6 +115,14 @@ body{
 	border-radius: 50% !important;
 }
 
+
+/* css de model*/
+
+.modal-title h5{
+	font-weight: bold;
+}
+/*--------------------*/
+
 /*--------------------------*/
 h4:nth-child(1){
     margin-left: 50px;

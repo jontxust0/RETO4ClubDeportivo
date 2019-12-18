@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-12-2019 a las 11:00:56
+-- Tiempo de generación: 18-12-2019 a las 12:29:20
 -- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.1.32
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -50,6 +50,9 @@ SELECT * FROM cuerpomedico WHERE id_equipo=inId$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindEntrenadorByIdEquipo` (IN `inId` INT)  NO SQL
 SELECT * FROM entrenadores WHERE id_equipo=inId$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindJugadorById` (IN `inId` INT)  NO SQL
+SELECT * FROM jugadores WHERE id=inId$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindJugadorByIdEquipo` (IN `inId` INT)  NO SQL
 SELECT * FROM jugadores WHERE id_equipo = inId$$
@@ -106,6 +109,13 @@ CREATE TABLE `cuerpomedico` (
   `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `cuerpomedico`
+--
+
+INSERT INTO `cuerpomedico` (`id`, `funcion`, `direccion`, `tlf`, `id_usuario`, `id_equipo`) VALUES
+(2, 'bum', '123', '123123123', 31, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -135,6 +145,13 @@ CREATE TABLE `entrenadores` (
   `id_usuario` int(11) DEFAULT NULL,
   `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `entrenadores`
+--
+
+INSERT INTO `entrenadores` (`id`, `tlf`, `direccion`, `sueldo`, `fechaContratacion`, `id_usuario`, `id_equipo`) VALUES
+(2, '123123123', 'alguna', '2', '2019-12-17 10:16:36', 30, 1);
 
 -- --------------------------------------------------------
 
@@ -179,7 +196,11 @@ CREATE TABLE `jugadores` (
 --
 
 INSERT INTO `jugadores` (`id`, `direccion`, `dorsal`, `posicion`, `tlf`, `altura`, `id_datosMedicos`, `id_usuario`, `id_equipo`) VALUES
-(2, 'dsadsads', 12, 'alero', '123123123', '1.90', NULL, 26, 1);
+(2, 'dsadsads', 12, 'alero', '123123123', '1.90', NULL, 26, 1),
+(3, 'aaaa', 11, 'pivot', '123123123', '1.20', NULL, 27, 1),
+(4, 'dasdsadsa', 1, 'dsasda', '123123123', '1.90', NULL, 28, 1),
+(5, 'dadssda', 111, 'alguna', '123123123', '0.00', NULL, 29, 1),
+(6, 'qewqwewewq', 12, 'pivot', '1232123', '1.90', NULL, 32, 1);
 
 -- --------------------------------------------------------
 
@@ -208,8 +229,8 @@ CREATE TABLE `user` (
   `name` varchar(255) DEFAULT NULL,
   `surname` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `admin` tinyint(1) DEFAULT NULL,
-  `pic` varchar(100) DEFAULT '../images/default.jpg'
+  `admin` tinyint(1) DEFAULT 0,
+  `pic` varchar(364) DEFAULT 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -218,7 +239,12 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`, `admin`, `pic`) VALUES
 (26, 'userprueba', '123', 'user', 'prueba', 'user@gmail.com', 0, '../images/default.jpg'),
-(27, 'aaa', '$2y$10$v0ol6pRtlxNu7tcyvfVi3ei7FfjXG4fhzgC6fLo3GoJFaRLfKrPTe', 'aa', 'aa', 'aa', 0, '../images/default.jpg');
+(27, 'Boloncho', '1234', 'Juan', 'Agirre', 'Juan@gmail.com', 0, '../images/default.jpg'),
+(28, 'aaaa', 'contraseño', 'mayonesito', 'aaaa', 'aaa@gmail.com', NULL, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(29, 'carambola', 'aaaa', 'sasa', 'assas', 'asas@gmail', NULL, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(30, 'entrenador', '123', 'entrenador', 'primero', 'trainer@gmail.com', NULL, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(31, 'User', '123', 'Bomb', 'Voyage', 'chapata@gmail.com', 0, 'https://k62.kn3.net/taringa/0/E/B/9/3/8/francocsp/19F.png'),
+(32, 'serdo', '123', 'señor', 'serdo', '123@gmail.com', NULL, 'https://vignette.wikia.nocookie.net/versus-compendium/images/4/49/Pig.jpg/revision/latest?cb=20181109152529');
 
 --
 -- Índices para tablas volcadas
@@ -295,7 +321,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `cuerpomedico`
 --
 ALTER TABLE `cuerpomedico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `datosmedicos`
@@ -307,7 +333,7 @@ ALTER TABLE `datosmedicos`
 -- AUTO_INCREMENT de la tabla `entrenadores`
 --
 ALTER TABLE `entrenadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
@@ -319,19 +345,19 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `quejas`
 --
 ALTER TABLE `quejas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Restricciones para tablas volcadas
