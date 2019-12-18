@@ -67,6 +67,18 @@ $(document).ready(function(){
 			tlf="<p>"+result.tlf+"</p>";
 			$("#tlf").append(tlf);
 	        
+			label1="";
+			label1="Dorsal";
+			$("#label1").append(label1);
+			
+			label2="";
+			label2="Posicion";
+			$("#label2").append(label2);
+			
+			label3="";
+			label3="Altura";
+			$("#label3").append(label3);
+			
 	        dorsal="";
 	        dorsal="<p>"+result.dorsal+"</p>";
 			$("#dorsal").append(dorsal);
@@ -82,7 +94,78 @@ $(document).ready(function(){
 	        	
 	 },
 	    error : function(xhr) {
-	        alert("An error occured: " + xhr.status + " " + xhr.statusText);
+	    	$.ajax({
+	    	    type:"GET",
+	    	    url: "../controller/cPerfilEntrenador.php", 
+	    	    dataType: "json",  //type of the result
+	    	    
+	    	 success: function(result){
+	    		 	
+	    	        console.log(result);
+	    	        
+	    	        tlf="";
+	    			tlf="<p>"+result.tlf+"</p>";
+	    			$("#tlf").append(tlf);
+	    		  	
+	    	        	
+	    			direccion="";
+	    	        direccion="<p>"+result.direccion+"</p>";
+	    			$("#direccion").append(direccion);
+	    			
+	    			
+	    			label1="";
+	    			label1="Sueldo";
+	    			$("#label1").append(label1);
+	    			
+	    			label2="";
+	    			label2="Fecha de contratacion";
+	    			$("#label2").append(label2);
+	    			
+	    			dorsal="";
+	    	        dorsal="<p>"+result.sueldo+"</p>";
+	    			$("#dorsal").append(dorsal);
+	    			
+	    			posicion="";
+	    			posicion="<p>"+result.fechaContratacion+"</p>";
+	    			$("#posicion").append(posicion);
+	    	 },
+	    	    error : function(xhr) {
+	    	    	$.ajax({
+	    	    	    type:"GET",
+	    	    	    url: "../controller/cPerfilCuerpoMedico.php", 
+	    	    	    dataType: "json",  //type of the result
+	    	    	    
+	    	    	 success: function(result){
+	    	    		 	
+	    	    	        console.log(result);
+	    	    	        
+	    	    	        tlf="";
+	    	    			tlf="<p>"+result.tlf+"</p>";
+	    	    			$("#tlf").append(tlf);
+	    	    		  	
+	    	    	        	
+	    	    			direccion="";
+	    	    	        direccion="<p>"+result.direccion+"</p>";
+	    	    			$("#direccion").append(direccion);
+	    	    			
+	    	    			
+	    	    			label1="";
+	    	    			label1="Funcion";
+	    	    			$("#label1").append(label1);
+	    	    			
+	    	    			
+	    	    			dorsal="";
+	    	    	        dorsal="<p>"+result.funcion+"</p>";
+	    	    			$("#dorsal").append(dorsal);
+	    	    			
+	    	    		
+	    	    	 },
+	    	    	    error : function(xhr) {
+	    	    	        alert("An error occured: " + xhr.status + " " + xhr.statusText);
+	    	    	    }
+	    	    	});
+	    	    }
+	    	});
 	    }
 	});
 	

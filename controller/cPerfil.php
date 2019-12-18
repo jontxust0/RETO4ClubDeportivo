@@ -1,5 +1,7 @@
 <?php
 include_once ("../model/jugadoresModel.php");
+
+
 session_start();
 $id= $_SESSION['id'];
 $usuario= new jugadoresModel();
@@ -9,6 +11,7 @@ $usuario->setJugadorByUserId();
 $listaUsuariosJson=$usuario->getThisJsonString();
 
 echo $listaUsuariosJson;
+
 
 
 

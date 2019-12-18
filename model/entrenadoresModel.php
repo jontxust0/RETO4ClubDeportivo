@@ -111,6 +111,40 @@ class entrenadoresModel extends entrenadoresClass{
         $this->CloseConnect();
     }
     
+    
+    public function setEntrenadorByUserId()
+    {
+        $this->OpenConnect();
+        
+        $id=$this->id_usuario;
+        
+        $sql="call spFindEntrenadorByIdUser($id)";
+        $result= $this->link->query($sql);
+        
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+    
+            
+            $this->setId($row['id']);
+            $this->setTlf($row['tlf']);
+            $this->setDireccion($row['direccion']);
+            $this->setSueldo($row['sueldo']);
+            $this->setFechaContratacion($row['fechaContratacion']);
+            $this->setId_usuario($row['id_usuario']);
+            $this->setId_equipo($row['id_equipo']);
+            $newUser = new userModel();
+            $newUser->setIdUser($this->getId_usuario());
+            $newUser->findUserByIdUser();
+            $this->setObjUser($newUser);
+            
+            
+        }
+        
+        mysqli_free_result($result);
+        $this->CloseConnect();
+    }
+    
     public function delete(){
         
         $this->OpenConnect();  // konexio zabaldu  - abrir conexión
