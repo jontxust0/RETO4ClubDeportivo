@@ -156,7 +156,7 @@ $(document).ready(function(){
 				dataType: "json",  //type of the result
 				data: { "id": id, "tipo":tipo},
 				success: function(result){
-				console.log(result);
+				$("#exampleModal").find(".modal-title").html(result.objUsuario.name);
 				
 			},
 			error : function(xhr) {
