@@ -7,7 +7,24 @@ class jugadoresModel extends jugadoresClass{
     private $list = array();
     private $link;
     private $objUser;
+    private $objDatosMedicos;
     
+    /**
+     * @return mixed
+     */
+    public function getObjDatosMedicos()
+    {
+        return $this->objDatosMedicos;
+    }
+
+    /**
+     * @param mixed $objDatosMedicos
+     */
+    public function setObjDatosMedicos($objDatosMedicos)
+    {
+        $this->objDatosMedicos = $objDatosMedicos;
+    }
+
     /**
      * @return mixed
      */
@@ -212,7 +229,8 @@ class jugadoresModel extends jugadoresClass{
         foreach ($this->list as $object)
         {
             $vars = get_object_vars($object);
-            $vars["objUsuario"]=$this->getObjUser()->getObjectVars();
+            $vars["objUser"]=$this->getObjUser()->getObjectVars();
+            $vars["objDatosMedicos"]=$this->getObjDatosMedicos()->getObjectDatosMedicos()->getObjectVars();
             array_push($arr, $vars);
         }
         return json_encode($arr);
@@ -222,7 +240,8 @@ class jugadoresModel extends jugadoresClass{
     function getThisJsonString() {
         
         $vars = get_object_vars($this);
-        $vars["objUsuario"]=$this->getObjUser()->getObjectVars();
+        $vars["objUser"]=$this->getObjUser()->getObjectVars();
+        $vars["objDatosMedicos"]=$this->getObjDatosMedicos()->getObjectDatosMedicos()->getObjectVars();
         return json_encode($vars);
     }
 }

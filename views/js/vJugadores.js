@@ -67,9 +67,9 @@ $(document).ready(function(){
 					//imprimir cards de jugadores
 					for (let jugador = 0; jugador < result[equipo].listJugadores.length; jugador++) {
 						htmlzatia+=`<div class="card col-sm-4" style="width: 18rem;" data-toggle="modal" data-target="#exampleModal" data-tipo=1 data-id=`+result[equipo].listJugadores[jugador].id+`>
-						<img src="`+result[equipo].listJugadores[jugador].objUsuario.pic+`" class="card-img-top imgJugador" alt="...">
+						<img src="`+result[equipo].listJugadores[jugador].objUser.pic+`" class="card-img-top imgJugador" alt="...">
 						<div class="card-body">
-						  <h5 class="card-title">`+result[equipo].listJugadores[jugador].objUsuario.name+`, `+result[equipo].listJugadores[jugador].objUsuario.surname+`</h5>
+						  <h5 class="card-title">`+result[equipo].listJugadores[jugador].objUser.name+`, `+result[equipo].listJugadores[jugador].objUser.surname+`</h5>
 							<ul>
 								<li><b>Posición: </b> `+result[equipo].listJugadores[jugador].posicion+`</li>
 								<li><b>Dorsal: </b>`+result[equipo].listJugadores[jugador].dorsal+`</li>
@@ -98,9 +98,9 @@ $(document).ready(function(){
 					//Imprimir cards de todos los entrenadores
 					for (let entrenador = 0; entrenador < result[equipo].listEntrenadores.length; entrenador++) {
 						htmlzatia+=`<div class="card col-md-16" style="width: 18rem;" data-toggle="modal" data-target="#exampleModal" data-tipo=2 data-id=`+result[equipo].listEntrenadores[entrenador].id+`>
-						<img src="`+result[equipo].listEntrenadores[entrenador].objUsuario.pic+`" class="card-img-top imgTecnico" alt="..." >
+						<img src="`+result[equipo].listEntrenadores[entrenador].objUser.pic+`" class="card-img-top imgTecnico" alt="..." >
 						<div class="card-body">
-						  <h5 class="card-title">`+result[equipo].listEntrenadores[entrenador].objUsuario.name+`, `+result[equipo].listEntrenadores[entrenador].objUsuario.surname+`</h5>
+						  <h5 class="card-title">`+result[equipo].listEntrenadores[entrenador].objUser.name+`, `+result[equipo].listEntrenadores[entrenador].objUser.surname+`</h5>
 							<ul>
 								<li><b>Sueldo: </b> `+result[equipo].listEntrenadores[entrenador].sueldo+`</li>
 								<li><b>Fecha contratacion: </b>`+result[equipo].listEntrenadores[entrenador].fechaContratacion+`</li>
@@ -123,9 +123,9 @@ $(document).ready(function(){
 					//imprimir cards de todos los del cuerpo medico
 					for (let cuerpo = 0; cuerpo < result[equipo].listCuerpo.length; cuerpo++) {
 						htmlzatia+=`<div class="card col-md-16" style="width: 18rem;"data-toggle="modal" data-target="#exampleModal" data-tipo=3 data-id=`+result[equipo].listCuerpo[cuerpo].id+`>
-						<img src="`+result[equipo].listCuerpo[cuerpo].objUsuario.pic+`" class="card-img-top imgTecnico" alt="..." >
+						<img src="`+result[equipo].listCuerpo[cuerpo].objUser.pic+`" class="card-img-top imgTecnico" alt="..." >
 						<div class="card-body">
-						  <h5 class="card-title">`+result[equipo].listCuerpo[cuerpo].objUsuario.name+`, `+result[equipo].listCuerpo[cuerpo].objUsuario.surname+`</h5>
+						  <h5 class="card-title">`+result[equipo].listCuerpo[cuerpo].objUser.name+`, `+result[equipo].listCuerpo[cuerpo].objUser.surname+`</h5>
 							<ul>
 								<li><b>Funcion: </b> `+result[equipo].listCuerpo[cuerpo].funcion+`</li>
 								<li><b>Telefono: </b>`+result[equipo].listCuerpo[cuerpo].tlf+`</li>
@@ -157,7 +157,21 @@ $(document).ready(function(){
 				data: { "id": id, "tipo":tipo},
 				success: function(result){
 					console.log(result);
-				$("#exampleModal").find(".modal-title").html(result.objUsuario.name+", "+result.objUsuario.surname);
+				var modalhtml="";
+				$("#exampleModal").find(".modal-title").html(result.objUser.name+", "+result.objUser.surname);
+				modalhtml=`
+				<img src="`+result.objUser.pic+`">
+					<ul>
+						<li>Dorsal: `+result.dorsal+`</li>
+						<li>Altura: `+result.altura+`</li>
+						<li>Posicion: `+result.altura+`</li>
+						<li>Telefono: `+result.tlf+`</li>
+						<li>Email: `+result.objUser.email+`</li>
+						<li>Dirección: `+result.direccion+`</li>
+					</ul>
+
+				`;
+				$("#exampleModal").find(".modal-body").html(modalhtml);
 				
 			},
 			error : function(xhr) {
