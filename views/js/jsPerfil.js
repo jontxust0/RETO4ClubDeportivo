@@ -35,9 +35,7 @@ $(document).ready(function(){
     			apellido+="<p>"+result.surname+"</p>";
     			$("#apellido").append(apellido);
     			
-    			admin="";
-    			admin+="<p>"+result.admin+"</p>";
-    			$("#admin").append(admin);
+
     			
        		} else {
        			
@@ -61,6 +59,25 @@ $(document).ready(function(){
 		 	
 	        console.log(result);
 	        
+	        direccion="";
+	        direccion="<p>"+result.direccion+"</p>";
+			$("#direccion").append(direccion);
+
+			tlf="";
+			tlf="<p>"+result.tlf+"</p>";
+			$("#tlf").append(tlf);
+	        
+	        dorsal="";
+	        dorsal="<p>"+result.dorsal+"</p>";
+			$("#dorsal").append(dorsal);
+			
+			posicion="";
+			posicion="<p>"+result.posicion+"</p>";
+			$("#posicion").append(posicion);
+			
+			altura="";
+			altura="<p>"+result.altura+"</p>";
+			$("#altura").append(altura);
 		  	
 	        	
 	 },
