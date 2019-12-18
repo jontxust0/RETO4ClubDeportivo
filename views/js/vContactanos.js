@@ -9,7 +9,7 @@ function enviarDatos(params) {
     }
 
     if (document.getElementById("apellido").value!=""){
-    apellido = document.getElementById("nombre").value;
+    apellido = document.getElementById("apellido").value;
     }
 
     if (asunto == "" || queja==""){
@@ -27,7 +27,7 @@ var http = new XMLHttpRequest();
 var url = "../controller/cInsertQueja.php";
 
 
-
+alert(apellido);
 var params = 'nombre='+nombre+'&apellido='+apellido+"&asunto="+asunto+"&queja="+queja;
 http.open('POST', url, true);
 

@@ -221,6 +221,14 @@ class jugadoresModel extends jugadoresClass{
         }
         return json_encode($arr);
     }
+    
+    
+    function getThisJsonString() {
+        
+        $vars = get_object_vars($this);
+        
+        return json_encode($vars);
+    }
 }
 
 

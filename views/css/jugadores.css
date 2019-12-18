@@ -70,16 +70,11 @@ body{
     
 }
 
-.card-container{
-    justify-content: space-around !important;
-}
+
 .infoEquipos>.row>div{
     border: 1px solid #099e7e;
 }
-.card-body>ul{
-    padding: 0;
-    list-style-type: none;
-}
+
 .nameCat{
 	color: #45aba6;
 	text-decoration: underline;
@@ -88,15 +83,39 @@ body{
 /*---------------------*/
 
 
+/* css de cards*/
+
 .card{
     margin: 5px;
     transition: 1s;
 }
-.card:hover{
-    background-color: royalblue;
-    color: white;
+.card-container{
+    justify-content: space-around !important;
 }
 
+.card-body>ul{
+    padding: 0;
+    list-style-type: none;
+}
+.card:hover{
+    background-color: #45f854;
+	color: white;
+	cursor: pointer;
+}
+.imgTecnico{
+	height: 270px;
+	
+}
+.imgJugador{
+
+	width: 100% !important;
+	height: 220px;
+}
+.card-img-top{
+	border-radius: 50% !important;
+}
+
+/*--------------------------*/
 h4:nth-child(1){
     margin-left: 50px;
 }
