@@ -2,6 +2,9 @@
 
 require_once 'connect_data.php';
 require_once 'jugadoresClass.php';
+require_once 'userModel.php';
+
+
 
 class jugadoresModel extends jugadoresClass{
     private $list = array();
@@ -130,6 +133,38 @@ class jugadoresModel extends jugadoresClass{
        
         
     }
+    
+    public function setJugadorByUserId(){
+
+        $id=$this->id_usuario;
+        $this->OpenConnect();
+        $sql="call spFindJugadorByIdUser($id)";
+        $result = $this->link->query($sql);
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+
+            
+            $this->setId($row['id']);
+            $this->setDireccion($row['direccion']);
+            $this->setDorsal($row['dorsal']);
+            $this->setPosicion($row['posicion']);
+            $this->setTlf($row['tlf']);
+            $this->setAltura($row['altura']);
+            $this->setId_datosMedicos($row['id_datosMedicos']);
+            $this->setId_usuario($row['id_usuario']);
+            $this->setId_equipo($row['id_equipo']);
+            $newUser = new userModel();
+            $newUser->setIdUser($this->getId_usuario());
+            $newUser->findUserByIdUser();
+            $this->setObjUser($newUser);
+            
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        
+        
+    }
+    
     public function delete(){
         
         $this->OpenConnect();  // konexio zabaldu  - abrir conexión
@@ -181,10 +216,18 @@ class jugadoresModel extends jugadoresClass{
         foreach ($this->list as $object)
         {
             $vars = get_object_vars($object);
-            
+            $vars["objUsuario"]=$this->getObjUser()->getObjectVars();
             array_push($arr, $vars);
         }
         return json_encode($arr);
+    }
+    
+    
+    function getThisJsonString() {
+        
+        $vars = get_object_vars($this);
+        $vars["objUsuario"]=$this->getObjUser()->getObjectVars();
+        return json_encode($vars);
     }
 }
 

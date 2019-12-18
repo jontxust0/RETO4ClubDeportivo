@@ -52,37 +52,78 @@ body{
 
 /*Estilo de los equipos*/
 .infoEquipos{
-
+	margin-top: 10px;
+	margin-bottom: 10px;
     background-color: white;
     border: 1px solid black;
 }
+
+.teamName{
+	color: #45aba6;
+	font-family:Courier New;
+	background-color:#0cf3c1;
+	margin-bottom: 0;
+}
+
 .infoEquipos>.row{
     margin: 0;
     
 }
 
-.card-container{
-    justify-content: space-around !important;
-}
+
 .infoEquipos>.row>div{
-    border: 1px solid green;
+    border: 1px solid #099e7e;
 }
-.card-body>ul{
-    padding: 0;
-    list-style-type: none;
+
+.nameCat{
+	color: #45aba6;
+	text-decoration: underline;
+	font-weight: bold;
 }
 /*---------------------*/
 
+
+/* css de cards*/
 
 .card{
     margin: 5px;
     transition: 1s;
 }
-.card:hover{
-    background-color: royalblue;
-    color: white;
+.card-container{
+    justify-content: space-around !important;
 }
 
+.card-body>ul{
+    padding: 0;
+    list-style-type: none;
+}
+.card:hover{
+    background-color: #45f854;
+	color: white;
+	cursor: pointer;
+}
+.imgTecnico{
+	height: 270px;
+	
+}
+.imgJugador{
+
+	width: 100% !important;
+	height: 220px;
+}
+.card-img-top{
+	border-radius: 50% !important;
+}
+
+
+/* css de model*/
+
+.modal-title h5{
+	font-weight: bold;
+}
+/*--------------------*/
+
+/*--------------------------*/
 h4:nth-child(1){
     margin-left: 50px;
 }

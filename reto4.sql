@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-12-2019 a las 11:00:56
+-- Tiempo de generación: 18-12-2019 a las 12:33:50
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.1.32
 
@@ -48,11 +48,23 @@ DELETE FROM USER WHERE USER.idUser=pId$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindCuerpoByIdEquipo` (IN `inId` INT)  NO SQL
 SELECT * FROM cuerpomedico WHERE id_equipo=inId$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindCuerpoMedicoByIdUser` (IN `pId` INT)  NO SQL
+SELECT * FROM cuerpomedico WHERE id_usuario = pId$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindEntrenadorByIdEquipo` (IN `inId` INT)  NO SQL
 SELECT * FROM entrenadores WHERE id_equipo=inId$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindEntrenadorByIdUser` (IN `pId` INT)  NO SQL
+SELECT * FROM entrenadores WHERE id_usuario = pId$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindJugadorById` (IN `inId` INT)  NO SQL
+SELECT * FROM jugadores WHERE id=inId$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindJugadorByIdEquipo` (IN `inId` INT)  NO SQL
 SELECT * FROM jugadores WHERE id_equipo = inId$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindJugadorByIdUser` (IN `pId` INT)  NO SQL
+SELECT * FROM jugadores WHERE id_usuario = pId$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindUserById` (IN `inId` INT)  NO SQL
 SELECT * FROM user WHERE idUser = inId$$
@@ -106,6 +118,13 @@ CREATE TABLE `cuerpomedico` (
   `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `cuerpomedico`
+--
+
+INSERT INTO `cuerpomedico` (`id`, `funcion`, `direccion`, `tlf`, `id_usuario`, `id_equipo`) VALUES
+(1, 'Fisio', 'Lekeitio', '658965478', 29, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -135,6 +154,13 @@ CREATE TABLE `entrenadores` (
   `id_usuario` int(11) DEFAULT NULL,
   `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `entrenadores`
+--
+
+INSERT INTO `entrenadores` (`id`, `tlf`, `direccion`, `sueldo`, `fechaContratacion`, `id_usuario`, `id_equipo`) VALUES
+(1, '652632452', 'Lekeitio', '2000', '2019-12-18 07:41:18', 27, 1);
 
 -- --------------------------------------------------------
 
@@ -179,7 +205,7 @@ CREATE TABLE `jugadores` (
 --
 
 INSERT INTO `jugadores` (`id`, `direccion`, `dorsal`, `posicion`, `tlf`, `altura`, `id_datosMedicos`, `id_usuario`, `id_equipo`) VALUES
-(2, 'dsadsads', 12, 'alero', '123123123', '1.90', NULL, 26, 1);
+(2, 'dsadsads', 12, 'alero', '123123123', '1.90', NULL, 28, 1);
 
 -- --------------------------------------------------------
 
@@ -209,7 +235,7 @@ CREATE TABLE `user` (
   `surname` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `admin` tinyint(1) DEFAULT NULL,
-  `pic` varchar(100) DEFAULT '../images/default.jpg'
+  `pic` varchar(100) DEFAULT 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -217,8 +243,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`, `admin`, `pic`) VALUES
-(26, 'userprueba', '123', 'user', 'prueba', 'user@gmail.com', 0, '../images/default.jpg'),
-(27, 'aaa', '$2y$10$v0ol6pRtlxNu7tcyvfVi3ei7FfjXG4fhzgC6fLo3GoJFaRLfKrPTe', 'aa', 'aa', 'aa', 0, '../images/default.jpg');
+(26, 'userprueba', '123', 'user', 'prueba', 'user@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(27, 'aaa', '$2y$10$v0ol6pRtlxNu7tcyvfVi3ei7FfjXG4fhzgC6fLo3GoJFaRLfKrPTe', 'aa', 'aa', 'aa', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(28, 'gotzon95', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Gotzon', 'Galletebeitia', 'gotzon@gmail.com', 0, 'https://upload.wikimedia.org/wikipedia/commons/9/96/Kobe_Bryant_8.jpg'),
+(29, 'xarles', '$2y$10$mE69YDOZAMmQ36OaMRVMdeXUdaDf2oNsRIjkXrn80kKkIGa34mZyi', 'Xarles', 'Goitiz', 'xarles@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png');
 
 --
 -- Índices para tablas volcadas
@@ -295,7 +323,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `cuerpomedico`
 --
 ALTER TABLE `cuerpomedico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `datosmedicos`
@@ -331,7 +359,7 @@ ALTER TABLE `quejas`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Restricciones para tablas volcadas

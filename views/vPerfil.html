@@ -3,15 +3,21 @@
 
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Perfil</title>
-
+<meta charset="utf-8">
+<title>Perfil</title>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 <body>
 
-<div class="container emp-profile">
-            <form method="post">
+	<div class="container emp-profile">
+		<form method="post">
                 <div class="row">
                     <div class="col-md-4">
                         <div id="img" class="profile-img">
@@ -25,6 +31,9 @@
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Rol</a>
                                 </li>
 
                             </ul>
@@ -47,65 +56,98 @@
                             <a href="">PHP, .Net</a><br/>
                         </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Nombre de Usuario</label>
-                                            </div>
-                                            <div id="username" class="col-md-6">
-                                                
-                                            </div>
-                                        </div>
-                                       
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div id="email" class="col-md-6">
-                                                
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Nombre</label>
-                                            </div>
-                                            <div id="nombre" class="col-md-6">
-                                                
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Apellido</label>
-                                            </div>
-                                            <div id="apellido" class="col-md-6">
-                                                
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Admin</label>
-                                            </div>
-                                            <div id="admin" class="col-md-6">
-                                                
-                                            </div>
-                                        </div>
-                                        
-                                             
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>           
-        </div>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href="css/perfil.css" rel="stylesheet" type="text/css" />
-<script src="js/jsPerfil.js" type="text/javascript"></script>
+				<div class="col-md-8">
+					<div class="tab-content profile-tab" id="myTabContent">
+						<div class="tab-pane fade show active" id="home" role="tabpanel"
+							aria-labelledby="home-tab">
+							<div class="row">
+								<div class="col-md-6">
+									<label>Nombre de Usuario</label>
+								</div>
+								<div id="username" class="col-md-6"></div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<label>Email</label>
+								</div>
+								<div id="email" class="col-md-6"></div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<label>Nombre</label>
+								</div>
+								<div id="nombre" class="col-md-6"></div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<label>Apellido</label>
+								</div>
+								<div id="apellido" class="col-md-6"></div>
+							</div>
+
+							
+							<div class="row">
+								<div class="col-md-6">
+									<label>Direccion</label>
+								</div>
+								<div id="direccion" class="col-md-6"></div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-6">
+									<label>Telefono</label>
+								</div>
+								<div id="tlf" class="col-md-6"></div>
+							</div>
+						</div>
+						
+						
+						<div class="tab-pane fade" id="profile" role="tabpanel"
+							aria-labelledby="profile-tab">
+							<div class="row">
+								<div class="col-md-6">
+									<label id="label1"></label>
+								</div>
+								<div id="dorsal" class="col-md-6">
+									
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-6">
+									<label id="label2"></label>
+								</div>
+								<div id="posicion" class="col-md-6">
+									
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-6">
+									<label id="label3"></label>
+								</div>
+								<div id="altura" class="col-md-6">
+									
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css">
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href="css/perfil.css" rel="stylesheet" type="text/css" />
+	<script src="js/jsPerfil.js" type="text/javascript"></script>
 </body>
 </html>
