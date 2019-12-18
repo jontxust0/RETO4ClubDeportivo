@@ -149,14 +149,15 @@ $(document).ready(function(){
 		$(".card").on("click", function(){
 			var tipo=$(this).data("tipo");
 			var id=$(this).data("id");
-			alert(id);
+		
 			$.ajax({
 				type: "GET",
 				url: "../controller/cMostrarDatos.php",
 				dataType: "json",  //type of the result
 				data: { "id": id, "tipo":tipo},
 				success: function(result){
-				$("#exampleModal").find(".modal-title").html(result.objUsuario.name);
+					console.log(result);
+				$("#exampleModal").find(".modal-title").html(result.objUsuario.name+", "+result.objUsuario.surname);
 				
 			},
 			error : function(xhr) {

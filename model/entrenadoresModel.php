@@ -196,7 +196,7 @@ class entrenadoresModel extends entrenadoresClass{
         foreach ($this->list as $object)
         {
             $vars = get_object_vars($object);
-            $vars["objUser"]=$this->getObjUser()->getObjectVars();
+            $vars["objUsuario"]=$this->getObjUser()->getObjectVars();
             array_push($arr, $vars);
         }
         return json_encode($arr);
@@ -206,7 +206,7 @@ class entrenadoresModel extends entrenadoresClass{
     function getThisJsonString() {
         
         $vars = get_object_vars($this);
-        $vars["objUser"]=$this->getObjUser()->getObjectVars();
+        $vars["objUsuario"]=$this->getObjUser()->getObjectVars();
         return json_encode($vars);
     }
 
