@@ -11,7 +11,7 @@ $(document).ready(function(){
        			
        			
        			nameSurname="";
-       			nameSurname+= result.dorsal + " " +result.surname;
+       			nameSurname+= result.nombre + " " +result.surname;
     			$("#nameSurname").append(nameSurname);
     			
     			
@@ -75,3 +75,4 @@ $(document).ready(function(){
 	
 
 });
+
