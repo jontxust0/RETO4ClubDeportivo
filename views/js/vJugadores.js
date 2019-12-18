@@ -145,11 +145,13 @@ $(document).ready(function(){
 		$("#infoContainer").html(htmlzatia);
 
 
-
+//enseñar el modal-----------------------------------------
 		$(".card").on("click", function(){
 			var tipo=$(this).data("tipo");
 			var id=$(this).data("id");
-		
+			//si el tipo es 1 entonces es jugador
+			//si el tipo es 2 entonces es entrenador
+			//si el tipo es 3 entonces es el cuerpo medico
 			$.ajax({
 				type: "GET",
 				url: "../controller/cMostrarDatos.php",
@@ -159,8 +161,11 @@ $(document).ready(function(){
 					console.log(result);
 				var modalhtml="";
 				$("#exampleModal").find(".modal-title").html(result.objUser.name+", "+result.objUser.surname);
-				modalhtml=`
-				<img src="`+result.objUser.pic+`">
+				modalhtml+="<img src="+result.objUser.pic+">";
+				if (tipo==1){
+				
+				modalhtml+=`
+				
 					<ul>
 						<li>Dorsal: `+result.dorsal+`</li>
 						<li>Altura: `+result.altura+`</li>
@@ -171,7 +176,34 @@ $(document).ready(function(){
 					</ul>
 
 				`;
+				}
+				else if (tipo==2){
+					modalhtml+=`
+				
+					<ul>
+						<li>Fecha de contratacion: `+result.fechaContratacion+`</li>
+						<li>Telefono: `+result.tlf+`</li>
+						<li>Email: `+result.objUser.email+`</li>
+						<li>Dirección: `+result.direccion+`</li>
+					</ul>
+
+				`;
+
+				}
+				else if (tipo==3){
+					modalhtml+=`
+				
+					<ul>
+						<li>Fecha de contratacion: `+result.funcion+`</li>
+						<li>Telefono: `+result.tlf+`</li>
+						<li>Email: `+result.objUser.email+`</li>
+						<li>Dirección: `+result.direccion+`</li>
+					</ul>
+
+				`;
+				}
 				$("#exampleModal").find(".modal-body").html(modalhtml);
+
 				
 			},
 			error : function(xhr) {
@@ -185,6 +217,8 @@ $(document).ready(function(){
    			alert("An error occured: " + xhr.status + " " + xhr.statusText);
    		}
 	});
+
+	//-------------------------------------------
 
 
 	
