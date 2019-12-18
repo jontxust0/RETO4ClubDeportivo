@@ -4,7 +4,7 @@
 <head>
   <title>Zornotza Hawks</title>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="views/img/logoSinTitulo.png">
+  <link rel="icon" type="image/png" href="img/logo.png">
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <link href="css/admin.css" rel="stylesheet" type="text/css" />
@@ -115,11 +115,11 @@
               <td>{{jugador.tlf}}</td>
               <td>{{jugador.altura}}</td>
               <td>
-                <button type='button' class='btnUpdateJugadores btn-warning' value='{{jugador.id}}' data-toggle='modal'
+                <button type='button' class='btnUpdateJugadores btn-warning' ng-click="updateFunctionJugadores(jugador,$index)"  data-toggle='modal'
                   data-target='#updateJugadores'>Editar</button>
               </td>
               <td>
-                <button type='button' class='btnDeleteJugadores btn-danger' value='{{jugador.id}}'>Borrar</button>
+                <button type='button' class='btnDeleteJugadores btn-danger' ng-click="deleteFunctionJugadores(jugador,$index)">Borrar</button>
               </td>
             </tr>
 
@@ -150,11 +150,11 @@
               <td>{{entrenador.sueldo}}</td>
               <td>{{entrenador.fechaContratacion}}</td>
               <td>
-                <button type='button' class='btnUpdateEntrenadores btn-warning' value='{{entrenador.id}}' data-toggle='modal'
-                  data-target='#updateEntrenadores'>Editar</button>
+                <button type='button' class='btnUpdateEntrenadores btn-warning' ng-click="updateFunctionEntrenadores(entrenador,$index)"  data-toggle='modal'
+                  data-target='#updateEntrenador'>Editar</button>
               </td>
               <td>
-                <button type='button' class='btnDeleteJugadores btn-danger' value='{{entrenador.id}}'>Borrar</button>
+                <button type='button' class='btnDeleteJugadores btn-danger' ng-click="deleteFunctionEntrenadores(entrenador,$index)" >Borrar</button>
               </td>
             </tr>
 
@@ -188,11 +188,11 @@
               <td>{{usuario.surname}}</td>
               <td>{{usuario.email}}</td>
               <td>
-                <button type='button' class='btnUpdate btn-warning' value='{{usuario.idUser}}' data-toggle='modal'
+                <button type='button' class='btnUpdate btn-warning' ng-click="updateFunctionUsuarios(usuario,$index)" data-toggle='modal'
                   data-target='#update'>Editar</button>
               </td>
               <td>
-                <button type='button' class='btnDelete btn-danger' value='{{usuarios.idUser}}'>Borrar</button>
+                <button type='button' class='btnDelete btn-danger' ng-click="deleteFunctionUsuarios(usuario,$index)">Borrar</button>
               </td>
             </tr>
 
@@ -256,25 +256,25 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                        <h4>Modificar Jugadores:</h4>
+                        <h4>Modificar Entrenadores:</h4>
         	
 			         	
-			          <input type="hidden"  id="idUpdate" >
+			          <input type="hidden"  id="idUpdateEntrenadores" >
 			         
 			          Telefono:<br>
-			          <input type="text" id="tlfUpdate" >
+			          <input type="text" id="tlfUpdateEntrenadores" >
 			          <br>
 			          Direccion:<br>
-			          <input type="text" id="direccionUpdate">
+			          <input type="text" id="direccionUpdateEntrenadores">
 			          <br>
 			          Sueldo:<br>
-			          <input type="text" id="sueldoUpdate">
+			          <input type="text" id="sueldoUpdateEntrenadores">
 			          <br>
 			          Fecha de Contratacion:<br>
-			          <input type="text" id="contratacionUpdate">
+			          <input type="text" id="contratacionUpdateEntrenadores">
 			          
 			          <br>
-			          <button id="btnExecUpdateEntrenador" >Execute Update</button>
+			          <button id="btnExecUpdateEntrenadorEntrenadores" >Execute Update</button>
                 </div>
 
             </div>
@@ -295,22 +295,22 @@
                     <h4>Modificar Jugadores:</h4>
 
 
-                  <input type="hidden"  id="idUpdate" >
+                  <input type="hidden"  id="idUpdateJugadores" >
 
                   Dirección:<br>
-                  <input type="text" id="direccionUpdate" >
+                  <input type="text" id="direccionUpdateJugadores" >
                   <br>
                   Dorsal:<br>
-                  <input type="text" id="dorsalUpdate">
+                  <input type="text" id="dorsalUpdateJugadores">
                   <br>
                   Posicion:<br>
-                  <input type="text" id="posicionUpdate">
+                  <input type="text" id="posicionUpdateJugadores">
                   <br>
                   Telefono:<br>
-                  <input type="text" id="tlfUpdate">
+                  <input type="text" id="tlfUpdateJugadores">
                   <br>
                   Altura:<br>
-                  <input type="text" id="alturaUpdate">
+                  <input type="text" id="alturaUpdateJugadores">
                   <br>
 
                   <br>

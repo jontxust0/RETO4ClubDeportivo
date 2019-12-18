@@ -115,7 +115,6 @@ $(document).ready(function(){
 		  		
 		 });
 
-		
 	});
 	
 	$("#btnEntrenadores").click(function(){	

@@ -131,13 +131,13 @@ class jugadoresModel extends jugadoresClass{
         
     }
     public function delete(){
-        echo "estoy";
+        
         $this->OpenConnect();  // konexio zabaldu  - abrir conexión
         
         $id=$this->getId();
         
         $sql="CALL spDeleteJugador($id)";
-        
+       
         $numFilas=$this->link->query($sql);
         
         if ($numFilas>=1)
