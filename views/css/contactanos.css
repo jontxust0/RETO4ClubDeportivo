@@ -5,7 +5,9 @@ body{
 body *{
     margin: auto;
 }
-
+#imgHeader{
+    font-size: 0px;
+}
 
 /*-----------------NAVBAR-------------------*/
 #navContactanos{

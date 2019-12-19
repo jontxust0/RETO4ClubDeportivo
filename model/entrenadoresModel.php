@@ -145,6 +145,32 @@ class entrenadoresModel extends entrenadoresClass{
         $this->CloseConnect();
     }
     
+    public function setEntrenadorById(){
+        $id=$this->getId();
+        $this->OpenConnect();
+        $sql="call  spFindEntrenadorById($id)";
+        $result = $this->link->query($sql);
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+            
+            $this->setId($row['id']);
+            $this->setTlf($row['tlf']);
+            $this->setDireccion($row['direccion']);
+            $this->setSueldo($row['sueldo']);
+            $this->setFechaContratacion($row['fechaContratacion']);
+            $this->setId_usuario($row['id_usuario']);
+            $this->setId_equipo($row['id_equipo']);
+            $newUser = new userModel();
+            $newUser->setIdUser($this->getId_usuario());
+            $newUser->findUserByIdUser();
+            $this->setObjUser($newUser);
+            
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+        
+    }
+    
     public function delete(){
         
         $this->OpenConnect();  // konexio zabaldu  - abrir conexión
@@ -196,7 +222,7 @@ class entrenadoresModel extends entrenadoresClass{
         foreach ($this->list as $object)
         {
             $vars = get_object_vars($object);
-            $vars["objUsuario"]=$this->getObjUser()->getObjectVars();
+            $vars["objUser"]=$this->getObjUser()->getObjectVars();
             array_push($arr, $vars);
         }
         return json_encode($arr);
@@ -206,7 +232,7 @@ class entrenadoresModel extends entrenadoresClass{
     function getThisJsonString() {
         
         $vars = get_object_vars($this);
-        $vars["objUsuario"]=$this->getObjUser()->getObjectVars();
+        $vars["objUser"]=$this->getObjUser()->getObjectVars();
         return json_encode($vars);
     }
 
