@@ -122,6 +122,46 @@ class equipoModel extends equipoClass{
         mysqli_free_result($result);
         $this->CloseConnect();
     }
+    
+    public function setListByIdCategoria(){
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexiÃ³n
+        $id=$this->getId_categoria();
+        //$sql = "CALL sp_pelicula_load()"; // SQL sententzia - sentencia SQL
+        $sql = "call  spEquipoByIdCategoria($id)";
+        $result = $this->link->query($sql); // result-en ddbb-ari eskatutako informazio dena gordetzen da
+        // se guarda en result toda la informaciÃ³n solicitada a la bbdd
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+            $new=new self();
+            
+            $new->setId($row['id']);
+            $new->setFemenino_masculino($row['femenino/masculino']);
+            $new->setNombre($row['nombre']);
+            $new->setId_categoria($row['id_categoria']);
+            
+            //-------------------------lista de jugadores---------------//
+            $newJugadores = new jugadoresModel();
+            $newJugadores->setId_equipo($new->getId());
+            $newJugadores->setListByIdEquipo();
+            $new->setArrJugadores($newJugadores->getList());
+            //-------------------------añadir entrenador---------------//
+            $newEntrenadores = new entrenadoresModel();
+            $newEntrenadores->setId_equipo($new->getId());
+            $newEntrenadores->setListByIdEquipo();
+            $new->setArrEntrenadores($newEntrenadores->getList());
+            //-------------------------añadir cuerpo medico---------------//
+            $newCuerpo = new cuerpoMedicoModel();
+            $newCuerpo->setId_equipo($new->getId());
+            $newCuerpo->setListByIdEquipo();
+            $new->setArrCuerpoMedico($newCuerpo->getList());
+            
+            
+            array_push($this->list, $new);
+        }
+        mysqli_free_result($result);
+        $this->CloseConnect();
+    }
     /**
      * @return multitype:
      */

@@ -272,7 +272,7 @@ class jugadoresModel extends jugadoresClass{
         foreach ($this->list as $object)
         {
             $vars = get_object_vars($object);
-            $vars["objUser"]=$this->getObjUser()->getObjectVars();
+            $vars["objUser"]=$object->getObjUser()->getObjectVars();
             //$vars["objDatosMedicos"]=$this->getObjDatosMedicos()->getObjectVars();
             array_push($arr, $vars);
         }
