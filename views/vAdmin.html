@@ -171,6 +171,8 @@
         <label for="Name">Buscar: </label><input type="text" value="" placeholder="buscar..."
                         ng-model="TEXTObusqueda">
         <div>
+          <button type='button' class='btnInsert btn-warning' ng-click="InsertFunctionUsuarios(usuario,$index)" data-toggle='modal'
+          data-target='#update'>Insertar</button>
           <table class='table table-hover table-dark'>
             <tr>
               <th scope='col'>ID</th>
@@ -274,7 +276,7 @@
 			          <input type="text" id="contratacionUpdateEntrenadores">
 			          
 			          <br>
-			          <button id="btnExecUpdateEntrenadorEntrenadores" >Execute Update</button>
+			          <button id="btnExecUpdateEntrenador" >Execute Update</button>
                 </div>
 
             </div>

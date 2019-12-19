@@ -92,12 +92,12 @@ $("#btnUsuarios").click(function () {
 
 $("#btnExecUpdateJugador").click(function () {
 
-    var id = $('#idUpdate').val();
-    var direccion = $('#direccionUpdate').val();
-    var dorsal = $('#dorsalUpdate').val();
-    var posicion = $('#posicionUpdate').val();
-    var tlf = $('#tlfUpdate').val();
-    var altura = $('#alturaUpdate').val();
+    var id = $('#idUpdateJugadores').val();
+    var direccion = $('#direccionUpdateJugadores').val();
+    var dorsal = $('#dorsalUpdateJugadores').val();
+    var posicion = $('#posicionUpdateJugadores').val();
+    var tlf = $('#tlfUpdateJugadores').val();
+    var altura = $('#alturaUpdateJugadores').val();
 
     $.ajax({
         type: "GET",
@@ -107,7 +107,7 @@ $("#btnExecUpdateJugador").click(function () {
         success: function (result) {
 
             console.log(result);
-            alert("updateee");
+            
             location.reload(true);  //recarga la pagina
 
 
@@ -160,11 +160,11 @@ function updatejugador(jugador) {
 
 $("#btnExecUpdateEntrenador").click(function(){
 
-    var id=$('#idUpdate').val();
-    var telefono=$('#tlfUpdate').val();
-    var direccion=$('#direccionUpdate').val();
-    var sueldo=$('#sueldoUpdate').val();
-    var contratacion=$('#contratacionUpdate').val();
+    var id=$('#idUpdateEntrenadores').val();
+    var telefono=$('#tlfUpdateEntrenadores').val();
+    var direccion=$('#direccionUpdateEntrenadores').val();
+    var sueldo=$('#sueldoUpdateEntrenadores').val();
+    var contratacion=$('#contratacionUpdateEntrenadores').val();
 
       $.ajax({
            type: "GET",
@@ -250,7 +250,7 @@ $("#btnExecUpdate").click(function(){
           
  });
 
-//delete entrenador
+//delete usuarios
 function deleteusuarios(id) {
     $.ajax({
         type: "GET",

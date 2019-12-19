@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-12-2019 a las 12:33:50
+-- Tiempo de generación: 19-12-2019 a las 08:57:24
 -- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.1.32
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,11 +45,17 @@ SELECT * FROM user$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spDeleteUser` (IN `pId` INT)  NO SQL
 DELETE FROM USER WHERE USER.idUser=pId$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindCuerpoById` (IN `inId` INT)  NO SQL
+SELECT * FROM cuerpomedico WHERE inId=id$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindCuerpoByIdEquipo` (IN `inId` INT)  NO SQL
 SELECT * FROM cuerpomedico WHERE id_equipo=inId$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindCuerpoMedicoByIdUser` (IN `pId` INT)  NO SQL
 SELECT * FROM cuerpomedico WHERE id_usuario = pId$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindEntrenadorById` (IN `inId` INT)  NO SQL
+SELECT * FROM entrenadores WHERE inId=id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindEntrenadorByIdEquipo` (IN `inId` INT)  NO SQL
 SELECT * FROM entrenadores WHERE id_equipo=inId$$
