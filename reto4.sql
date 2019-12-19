@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-12-2019 a las 08:57:24
+-- Tiempo de generación: 19-12-2019 a las 10:18:28
 -- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Versión de PHP: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -41,6 +41,12 @@ SELECT * FROM jugadores$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllUsers` ()  NO SQL
 SELECT * FROM user$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spDeleteEntrenador` (IN `pId` INT)  NO SQL
+DELETE FROM entrenadores WHERE entrenadores.id=pId$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spDeleteJugador` (IN `pId` INT)  NO SQL
+DELETE FROM jugadores WHERE jugadores.id=pId$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spDeleteUser` (IN `pId` INT)  NO SQL
 DELETE FROM USER WHERE USER.idUser=pId$$
@@ -81,6 +87,18 @@ SELECT user.*  FROM user WHERE user.username=pUsername$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertUser` (IN `pUsername` VARCHAR(10), IN `pAdmin` TINYINT, IN `pPass` VARCHAR(255), IN `pName` VARCHAR(50), IN `pSurname` VARCHAR(50), IN `pEmail` VARCHAR(50))  NO SQL
 INSERT INTO user(user.username,user.admin,user.password,user.name,user.surname,user.email) VALUES
 (pUsername,pAdmin,pPass,pName,pSurname,pEmail)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateEntrenador` (IN `pId` INT, IN `pTlf` VARCHAR(50), IN `pDireccion` VARCHAR(100), IN `pSueldo` DECIMAL, IN `pFechaContratacion` TIMESTAMP)  NO SQL
+UPDATE entrenadores
+SET entrenadores.id = pId, entrenadores.tlf = pTlf,entrenadores.direccion=pDireccion,entrenadores.sueldo=pSueldo,
+entrenadores.fechaContratacion=pFechaContratacion
+WHERE entrenadores.id=pId$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateJugador` (IN `pId` INT, IN `pDireccion` VARCHAR(100), IN `pDorsal` INT, IN `pPosicion` VARCHAR(50), IN `pTlf` VARCHAR(50), IN `pAltura` DECIMAL)  NO SQL
+UPDATE jugadores
+SET jugadores.id = pId, jugadores.direccion = pDireccion,jugadores.dorsal=pDorsal,jugadores.posicion=pPosicion,
+jugadores.tlf=pTlf,jugadores.altura=pAltura
+WHERE jugadores.id=pId$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateUser` (IN `pId` INT, IN `pUsername` VARCHAR(50), IN `pPassword` VARCHAR(255), IN `pName` VARCHAR(50), IN `pSurname` VARCHAR(50), IN `pEmail` VARCHAR(50))  NO SQL
 UPDATE user
@@ -166,7 +184,7 @@ CREATE TABLE `entrenadores` (
 --
 
 INSERT INTO `entrenadores` (`id`, `tlf`, `direccion`, `sueldo`, `fechaContratacion`, `id_usuario`, `id_equipo`) VALUES
-(1, '652632452', 'Lekeitio', '2000', '2019-12-18 07:41:18', 27, 1);
+(1, '123123123', 'asdasd', '1555', '2019-12-19 09:04:09', 28, 1);
 
 -- --------------------------------------------------------
 
@@ -211,7 +229,7 @@ CREATE TABLE `jugadores` (
 --
 
 INSERT INTO `jugadores` (`id`, `direccion`, `dorsal`, `posicion`, `tlf`, `altura`, `id_datosMedicos`, `id_usuario`, `id_equipo`) VALUES
-(2, 'dsadsads', 12, 'alero', '123123123', '1.90', NULL, 28, 1);
+(1, 'asdasd', 12, 'xar', '94654654', '1233.00', 1, 27, 1);
 
 -- --------------------------------------------------------
 
@@ -249,8 +267,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`, `admin`, `pic`) VALUES
-(26, 'userprueba', '123', 'user', 'prueba', 'user@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
-(27, 'aaa', '$2y$10$v0ol6pRtlxNu7tcyvfVi3ei7FfjXG4fhzgC6fLo3GoJFaRLfKrPTe', 'aa', 'aa', 'aa', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(27, 'aaa', '$2y$10$v0ol6pRtlxNu7tcyvfVi3ei7FfjXG4fhzgC6fLo3GoJFaRLfKrPTe', 'aaa', 'aaa', 'aaa', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
 (28, 'gotzon95', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Gotzon', 'Galletebeitia', 'gotzon@gmail.com', 0, 'https://upload.wikimedia.org/wikipedia/commons/9/96/Kobe_Bryant_8.jpg'),
 (29, 'xarles', '$2y$10$mE69YDOZAMmQ36OaMRVMdeXUdaDf2oNsRIjkXrn80kKkIGa34mZyi', 'Xarles', 'Goitiz', 'xarles@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png');
 
@@ -335,7 +352,7 @@ ALTER TABLE `cuerpomedico`
 -- AUTO_INCREMENT de la tabla `datosmedicos`
 --
 ALTER TABLE `datosmedicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `entrenadores`
