@@ -1,3 +1,4 @@
+//----------------------------------------------------------------------ANGULARJS
 var app = angular.module('vAdminAngular', []);
 
 
@@ -69,7 +70,7 @@ app.controller('vAdminControlador', ['$scope', '$http', function ($scope, $http)
 
 
 }]);
-//----------------------------------------------------------------------
+//----------------------------------------------------------------------JS
 
 $("#btnJugadores").click(function () {
     $(".adminJugadores").css("display", "block");
@@ -91,12 +92,12 @@ $("#btnUsuarios").click(function () {
 
 $("#btnExecUpdateJugador").click(function () {
 
-    var id = $('#idUpdate').val();
-    var direccion = $('#direccionUpdate').val();
-    var dorsal = $('#dorsalUpdate').val();
-    var posicion = $('#posicionUpdate').val();
-    var tlf = $('#tlfUpdate').val();
-    var altura = $('#alturaUpdate').val();
+    var id = $('#idUpdateJugadores').val();
+    var direccion = $('#direccionUpdateJugadores').val();
+    var dorsal = $('#dorsalUpdateJugadores').val();
+    var posicion = $('#posicionUpdateJugadores').val();
+    var tlf = $('#tlfUpdateJugadores').val();
+    var altura = $('#alturaUpdateJugadores').val();
 
     $.ajax({
         type: "GET",
@@ -106,7 +107,7 @@ $("#btnExecUpdateJugador").click(function () {
         success: function (result) {
 
             console.log(result);
-            alert("updateee");
+            
             location.reload(true);  //recarga la pagina
 
 
@@ -159,11 +160,11 @@ function updatejugador(jugador) {
 
 $("#btnExecUpdateEntrenador").click(function(){
 
-    var id=$('#idUpdate').val();
-    var telefono=$('#tlfUpdate').val();
-    var direccion=$('#direccionUpdate').val();
-    var sueldo=$('#sueldoUpdate').val();
-    var contratacion=$('#contratacionUpdate').val();
+    var id=$('#idUpdateEntrenadores').val();
+    var telefono=$('#tlfUpdateEntrenadores').val();
+    var direccion=$('#direccionUpdateEntrenadores').val();
+    var sueldo=$('#sueldoUpdateEntrenadores').val();
+    var contratacion=$('#contratacionUpdateEntrenadores').val();
 
       $.ajax({
            type: "GET",
@@ -219,8 +220,37 @@ function updateentrenador(entrenador) {
 }
 
 //USUARIOS
+$("#btnExecUpdate").click(function(){
 
-//delete entrenador
+    var id=$('#idUpdate').val();
+    var username=$('#usernameUpdate').val();
+    var contrasenia=$('#contraseniaUpdate').val();
+    var name=$('#nameUpdate').val();
+    var surname=$('#surnameUpdate').val();
+    var email=$('#emailUpdate').val();
+
+      $.ajax({
+           type: "GET",
+           data:{ 'id':id, 'username':username, 'contrasenia':contrasenia, 'name':name,'surname':surname,'email':email},
+           url: "../Controller/cUpdateUser.php", 
+           dataType: "text",  //type of the result
+           success: function(result){  
+               
+               console.log(result);
+
+               location.reload(true);  //recarga la pagina
+               
+               //Boton delete
+            
+           },
+           error : function(xhr) {
+               alert("An error occured: " + xhr.status + " " + xhr.statusText);
+           }
+    });
+          
+ });
+
+//delete usuarios
 function deleteusuarios(id) {
     $.ajax({
         type: "GET",
@@ -240,7 +270,7 @@ function deleteusuarios(id) {
 }
 
 
-function updateusuario(usuario) {
+function updateusuarios(usuario) {
     id = usuario.idUser;
     username = usuario.username;
     password = usuario.password;
