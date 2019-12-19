@@ -71,7 +71,13 @@ class entrenadoresModel extends entrenadoresClass{
             $new->setsueldo($row['sueldo']);
             $new->setfechaContratacion($row['fechaContratacion']);
             $new->setid_usuario($row['id_usuario']);
+            
+            $newUser = new userModel();
+            $newUser->setIdUser($new->getId_usuario());
+            $newUser->findUserByIdUser();
+            $new->setObjUser($newUser);
             array_push($this->list, $new);
+            
           
         }
         mysqli_free_result($result);
@@ -222,7 +228,7 @@ class entrenadoresModel extends entrenadoresClass{
         foreach ($this->list as $object)
         {
             $vars = get_object_vars($object);
-            $vars["objUser"]=$this->getObjUser()->getObjectVars();
+            $vars["objUser"]=$object->getObjUser()->getObjectVars();
             array_push($arr, $vars);
         }
         return json_encode($arr);
@@ -232,7 +238,7 @@ class entrenadoresModel extends entrenadoresClass{
     function getThisJsonString() {
         
         $vars = get_object_vars($this);
-        $vars["objUser"]=$this->getObjUser()->getObjectVars();
+        //$vars["objUser"]=$this->getObjUser()->getObjectVars();
         return json_encode($vars);
     }
 
