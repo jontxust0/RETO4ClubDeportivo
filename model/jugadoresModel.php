@@ -3,6 +3,7 @@
 require_once 'connect_data.php';
 require_once 'jugadoresClass.php';
 require_once 'userModel.php';
+require_once 'datosMedicosModel.php';
 
 
 
@@ -170,10 +171,16 @@ class jugadoresModel extends jugadoresClass{
             $this->setId_datosMedicos($row['id_datosMedicos']);
             $this->setId_usuario($row['id_usuario']);
             $this->setId_equipo($row['id_equipo']);
+            
             $newUser = new userModel();
             $newUser->setIdUser($this->getId_usuario());
             $newUser->findUserByIdUser();
             $this->setObjUser($newUser);
+            
+            $newDatosMedicos = new datosMedicosModel();
+            $newDatosMedicos->setId_jugador($this->getId_datosMedicos());
+            $newDatosMedicos->findDatosMedicosByIdJugador();
+            $this->setObjDatosMedicos($newDatosMedicos);
             
         }
         mysqli_free_result($result);
@@ -245,7 +252,7 @@ class jugadoresModel extends jugadoresClass{
         
         $vars = get_object_vars($this);
         $vars["objUser"]=$this->getObjUser()->getObjectVars();
-        $vars["objDatosMedicos"]=$this->getObjDatosMedicos()->getObjectDatosMedicos()->getObjectVars();
+        //$vars["objDatosMedicos"]=$this->getObjDatosMedicos()->getObjectVars();
         return json_encode($vars);
     }
 }
