@@ -238,7 +238,7 @@ class entrenadoresModel extends entrenadoresClass{
     function getThisJsonString() {
         
         $vars = get_object_vars($this);
-        //$vars["objUser"]=$this->getObjUser()->getObjectVars();
+        $vars["objUser"]=$this->getObjUser()->getObjectVars();
         return json_encode($vars);
     }
 
