@@ -35,3 +35,10 @@
 	 background-color: rgb(139, 155, 230)!important;
 }
 
+.inscribirEntrenador{
+    display: none;
+}
+.inscribirCuerpoMedico{
+    display: none;
+}
+

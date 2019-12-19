@@ -67,9 +67,60 @@ app.controller('vAdminControlador', ['$scope', '$http', function ($scope, $http)
         updateusuarios(usuario);
 
     }
-
+    
 
 }]);
+$( ".selector" ).change(function() {
+    alert( this.value);
+    if(this.value=="jugador"){
+        $(".inscribirJugador").css("display", "block");
+        $(".inscribirEntrenador").css("display", "none");
+        $(".inscribirCuerpoMedico").css("display", "none");
+    }else if(this.value=="entrenador"){
+        $(".inscribirJugador").css("display", "none");
+        $(".inscribirEntrenador").css("display", "block");
+        $(".inscribirCuerpoMedico").css("display", "none");
+    }else if(this.value=="cuerpoMedico"){
+        $(".inscribirJugador").css("display", "none");
+        $(".inscribirEntrenador").css("display", "none");
+        $(".inscribirCuerpoMedico").css("display", "block");
+    }
+  });
+
+  
+  $("#btnExecInsertUsuario").click(function () {
+        var valueSelect=$('.selector').val();
+	  	var direccion=$('#insJDireccion').val();
+		var dorsal=$('#insJDorsal').val();
+		var posicion=$('#insJPosicion').val();
+		var tlf=$('#insJTelefono').val();
+		var altura=$('#insJAltura').val();
+		var id_datosMedicos=$('#insJIdDatosMedicos').val();
+		var id_usuario=$('#insJIdusuario').val();
+		var id_equipo=$('#insJIdEquipo').val();
+        
+       alert(valueSelect);
+        $.ajax({
+            type:"POST",
+            data:{'direccion':direccion, 'dorsal':dorsal,'posicion':posicion,'tlf':tlf,'altura':altura,'id_datosMedicos':id_datosMedicos,'id_usuario':id_usuario,'id_equipo':id_equipo},
+            url: "../controller/cInsertNewJugador.php", 
+            dataType: "json",  //type of the result
+                
+            success: function(result){
+                    
+                    console.log(result);
+                    alert(direccion);
+                    alert(result)    
+            },
+                error : function(xhr) {
+                    
+                }
+        });
+        
+      });
+    
+   
+
 //----------------------------------------------------------------------JS
 
 $("#btnJugadores").click(function () {
@@ -289,4 +340,3 @@ function updateusuarios(usuario) {
 }
 
   
-   

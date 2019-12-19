@@ -67,10 +67,6 @@
           <a class="nav-link" href="vJugadores.html">Jugadores</a>
         </li>
       </ul>
-      <div class="divider"></div>
-      <div class="navbar-center">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Log In</button>
-      </div>
     </div>
   </nav>
 
@@ -90,7 +86,7 @@
   <!--Mostrar datos en tabla desde BD-->
   <div class="container adminContainer">
 
-    <div id="tablaJugador" class="adminJugadores col-12">
+    <div id="tablaJugador" class="container adminJugadores col-12">
       <!--Jugadores-->
       <div ng-controller="vAdminControlador">
         <h1>Jugadores</h1>
@@ -127,7 +123,7 @@
         </div>
       </div>
     </div>
-    <div id="tablaEntrenador" class="adminEntrenadores col-12">
+    <div id="tablaEntrenador" class="container adminEntrenadores col-12">
       <!--Entrenadores-->
       <div ng-controller="vAdminControlador">
         <h1>Entrenadores</h1>
@@ -162,7 +158,7 @@
         </div>
       </div>
     </div>
-    <div id="tablaUser" class="adminUsuario col-12">
+    <div id="tablaUser" class="container adminUsuario col-12">
       <!--Usuarios-->
 
       <div ng-controller="vAdminControlador">
@@ -171,13 +167,12 @@
         <label for="Name">Buscar: </label><input type="text" value="" placeholder="buscar..."
                         ng-model="TEXTObusqueda">
         <div>
-          <button type='button' class='btnInsert btn-warning' ng-click="InsertFunctionUsuarios(usuario,$index)" data-toggle='modal'
-          data-target='#update'>Insertar</button>
+          
           <table class='table table-hover table-dark'>
             <tr>
               <th scope='col'>ID</th>
               <th scope='col'>USUARIOS</th>
-              <th scope='col'>CONTRASEÑA</th>
+              <!-- <th scope='col'>CONTRASEÑA</th> -->
               <th scope='col'>NOMBRE</th>
               <th scope='col'>APELLIDO</th>
               <th scope='col'>EMAIL</th>
@@ -185,7 +180,7 @@
             <tr ng-repeat="usuario in listaUsuarios| filter:TEXTObusqueda">
               <td>{{usuario.idUser}}</td>
               <td>{{usuario.username}}</td>
-              <td>{{usuario.password}}</td>
+              <!-- <td>{{usuario.password}}</td>  -->
               <td>{{usuario.name}}</td>
               <td>{{usuario.surname}}</td>
               <td>{{usuario.email}}</td>
@@ -196,6 +191,11 @@
               <td>
                 <button type='button' class='btnDelete btn-danger' ng-click="deleteFunctionUsuarios(usuario,$index)">Borrar</button>
               </td>
+              <td>
+                <button type='button' class='btnInsertUsuario btn-success'  data-toggle='modal'
+                  data-target='#insertUsuarios'>Inscribir</button>
+              </td>
+              
             </tr>
 
           </table>
@@ -224,9 +224,9 @@
 			          Nombre de Usuario:<br>
 			          <input type="text" id="usernameUpdate" >
 			          <br>
-			          Contraseña:<br>
+			          <!-- Contraseña:<br>
 			          <input type="text" id="contraseniaUpdate">
-			          <br>
+			          <br> -->
 			          Nombre:<br>
 			          <input type="text" id="nameUpdate">
 			          <br>
@@ -317,6 +317,94 @@
 
                   <br>
                   <button id="btnExecUpdateJugador" >Execute Update</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="insertUsuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <h4>Inscribir Usuario:</h4>
+                    <br>
+                  <select class="selector form-control" id="exampleFormControlSelect1">
+                    <option value="jugador">Jugador</option>
+                    <option value="entrenador">Entrenador</option>
+                    <option value="cuerpoMedico">Cuerpo Medico</option>
+                  </select>
+                  <br>
+                  <div class="inscribirseCategorias">
+                    <div class="inscribirJugador">
+                      Dirección:<br>
+                      <input type="text" id="insJDireccion">
+                      <br>
+                      Dorsal:<br>
+                      <input type="text" id="insJDorsal">
+                      <br>
+                      Posición:<br>
+                      <input type="text" id="insJPosicion">
+                      <br>
+                      Telefono:<br>
+                      <input type="text" id="insJTelefono">
+                      <br>
+                      Altura:<br>
+                      <input type="text" id="insJAltura">
+                      <br>
+                      ID_Datos_Medicos:<br>
+                      <input type="text" id="insJIdDatosMedicos">
+                      <br>
+                      <br>
+                      ID_Usuario:<br>
+                      <input type="text" id="insJIdusuario">
+                      <br>
+                      ID_Equipo:<br>
+                      <input type="text" id="insJIdEquipo">
+                      <br>
+
+                    </div>
+                    <div class="inscribirEntrenador">
+                      Telefono:<br>
+                      <input type="text" id="insETelefono">
+                      <br>
+                      Dirección:<br>
+                      <input type="text" id="insEDireccion">
+                      <br>
+                      Sueldo:<br>
+                      <input type="text" id="insESueldo">
+                      <br>
+                      Fecha Contratación:<br>
+                      <input type="text" id="insEFechaContratacion">
+                      <br>
+                      ID_Equipo:<br>
+                      <input type="text" id="insEId_Equipo">
+                      <br>
+                    </div>
+                    <div class="inscribirCuerpoMedico">
+                      Función:<br>
+                      <input type="text" id="insCMFuncion">
+                      <br>
+                      Dirección:<br>
+                      <input type="text" id="insCMDireccion">
+                      <br>
+                      Telefono:<br>
+                      <input type="text" id="insCMTelefono">
+                      <br>
+                      ID_Equipo:<br>
+                      <input type="text" id="insCMIdEquipo">
+                      <br>
+                    </div>
+                  </div>
+                  <button id="btnExecInsertUsuario" >Inscribirse</button>
             </div>
 
         </div>
