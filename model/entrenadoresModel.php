@@ -81,7 +81,7 @@ class entrenadoresModel extends entrenadoresClass{
           
         }
         mysqli_free_result($result);
-        unset($entrenador);
+        unset($new);
         $this->CloseConnect();  //Cerrar la conexion
     }
     public function setListByIdEquipo()

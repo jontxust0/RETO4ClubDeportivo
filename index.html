@@ -144,41 +144,41 @@
 
 
     <!-- Modal Login-->
-	<div id="myModal" class="modal fade">
-		<div class="modal-dialog modal-login">
-			<div class="modal-content">
-				<div class="modal-header">
-					<div class="avatar">
-						<img src="views/img/logo.png" alt="Avatar">
-					</div>
-					<h4 class="modal-title">Login</h4>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog modal-login">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="avatar">
+              <img src="img/logo.png" alt="Avatar">
+            </div>
+            <h4 class="modal-title">Login</h4>
+            <button type="button" class="close" data-dismiss="modal"
+              aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+  
+            <div class="form-group">
+              <input type="text" class="form-control" id="name" name="usuario"
+                placeholder="Username" required="required">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="password"
+                name="contrasena" placeholder="Password" required="required">
+            </div>
+            <div class="form-group">
+              <button id="login"
+                class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+            </div>
+  
+          </div>
+          <div class="modal-footer">
+            <a href="views/vNewUser.html" data-toggle='modal' data-target='#myModalRegister'>New User</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-					<div class="form-group">
-						<input type="text" class="form-control" id="name" name="usuario"
-							placeholder="Username" required="required">
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" id="password"
-							name="contrasena" placeholder="Password" required="required">
-					</div>
-					<div class="form-group">
-						<button id="login"
-							class="btn btn-primary btn-lg btn-block login-btn">Login</button>
-					</div>
 
-				</div>
-				<div class="modal-footer">
-					<a data-toggle='modal' data-target='#myModalRegister'>New User</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-    <!-- Modal Login-->
     
     <!-- Modal Register-->
     <div id="myModalRegister" class="modal fade">

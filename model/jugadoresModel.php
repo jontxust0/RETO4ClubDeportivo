@@ -124,7 +124,29 @@ class jugadoresModel extends jugadoresClass{
     /**
      * @param multitype: $list
      */
-    
+    public function insertJugador()
+    {
+        $this->OpenConnect();
+        
+        $direccion=$this->direccion;
+        $dorsal=$this->dorsal;
+        $posicion=$this->posicion;
+        $tlf=$this->tlf;
+        $altura=$this->altura;
+        $id_datosMedicos=$this->id_datosMedicos;// all the fields.....
+        $id_usuario=$this->id_usuario;
+        $id_equipo=$this->id_equipo;
+        
+        
+        
+        $sql="call spInsertNewJugador('$direccion','$dorsal','$posicion','$tlf','$altura','$id_datosMedicos','$id_usuario','$id_equipo')";
+        $result= $this->link->query($sql);
+        
+        return $this->link->affected_rows;
+        
+        $this->CloseConnect();
+        
+    }
 
     public function setListByIdEquipo(){
         $id=$this->getId_equipo();
