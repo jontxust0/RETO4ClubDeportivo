@@ -71,6 +71,9 @@ class entrenadoresModel extends entrenadoresClass{
             $new->setsueldo($row['sueldo']);
             $new->setfechaContratacion($row['fechaContratacion']);
             $new->setid_usuario($row['id_usuario']);
+            $newUser->setIdUser($new->getId_usuario());
+            $newUser->findUserByIdUser();
+            $new->setObjUser($newUser);
             array_push($this->list, $new);
           
         }

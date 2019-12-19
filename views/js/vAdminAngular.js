@@ -1,3 +1,4 @@
+//----------------------------------------------------------------------ANGULARJS
 var app = angular.module('vAdminAngular', []);
 
 
@@ -69,7 +70,7 @@ app.controller('vAdminControlador', ['$scope', '$http', function ($scope, $http)
 
 
 }]);
-//----------------------------------------------------------------------
+//----------------------------------------------------------------------JS
 
 $("#btnJugadores").click(function () {
     $(".adminJugadores").css("display", "block");
@@ -219,6 +220,35 @@ function updateentrenador(entrenador) {
 }
 
 //USUARIOS
+$("#btnExecUpdate").click(function(){
+
+    var id=$('#idUpdate').val();
+    var username=$('#usernameUpdate').val();
+    var contrasenia=$('#contraseniaUpdate').val();
+    var name=$('#nameUpdate').val();
+    var surname=$('#surnameUpdate').val();
+    var email=$('#emailUpdate').val();
+
+      $.ajax({
+           type: "GET",
+           data:{ 'id':id, 'username':username, 'contrasenia':contrasenia, 'name':name,'surname':surname,'email':email},
+           url: "../Controller/cUpdateUser.php", 
+           dataType: "text",  //type of the result
+           success: function(result){  
+               
+               console.log(result);
+
+               location.reload(true);  //recarga la pagina
+               
+               //Boton delete
+            
+           },
+           error : function(xhr) {
+               alert("An error occured: " + xhr.status + " " + xhr.statusText);
+           }
+    });
+          
+ });
 
 //delete entrenador
 function deleteusuarios(id) {
@@ -240,7 +270,7 @@ function deleteusuarios(id) {
 }
 
 
-function updateusuario(usuario) {
+function updateusuarios(usuario) {
     id = usuario.idUser;
     username = usuario.username;
     password = usuario.password;

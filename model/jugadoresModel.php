@@ -76,7 +76,7 @@ class jugadoresModel extends jugadoresClass{
         
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             
-            $jugador= new jugadoresClass();
+            $jugador= new jugadoresModel();
             
             $jugador->setId($row['id']);
             $jugador->setDireccion($row['direccion']);
