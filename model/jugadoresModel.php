@@ -77,7 +77,7 @@ class jugadoresModel extends jugadoresClass{
         
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             
-            $jugador= new jugadoresClass();
+            $jugador= new self();
             
             $jugador->setId($row['id']);
             $jugador->setDireccion($row['direccion']);
@@ -85,7 +85,11 @@ class jugadoresModel extends jugadoresClass{
             $jugador->setPosicion($row['posicion']);
             $jugador->setTlf($row['tlf']);
             $jugador->setAltura($row['altura']);
-            
+            $jugador->setId_usuario($row["id_usuario"]);
+            $newUser = new userModel();
+            $newUser->setIdUser($jugador->getId_usuario());
+            $newUser->findUserByIdUser();
+            $jugador->setObjUser($newUser);
             array_push($this->list, $jugador);
         }
         mysqli_free_result($result);

@@ -87,7 +87,8 @@ body{
 
 .card{
     margin: 5px;
-    transition: 1s;
+	transition: 1s color;
+	transition: 1s background-color;
 }
 .card-container{
     justify-content: space-around !important;
