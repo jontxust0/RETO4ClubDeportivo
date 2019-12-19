@@ -40,7 +40,7 @@ class datosMedicosModel extends datosMedicosClass{
     public function findDatosMedicosByIdJugador(){
         
         
-        $id=$this->getId();
+        $id=$this->getId_jugador();
         $this->OpenConnect();
         
         
@@ -49,8 +49,9 @@ class datosMedicosModel extends datosMedicosClass{
         $result= $this->link->query($sql);
         
         
-        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         {
+            $this->setId($row['id']);
             $this->setLesiones($row['lesiones']);
             $this->setTipoSangre($row['tipoSangre']);
             $this->setEnfermedades($row['enfermedades']);

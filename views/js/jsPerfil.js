@@ -59,6 +59,35 @@ $(document).ready(function(){
 		 	
 	        console.log(result);
 	        
+	        
+	        nav="";
+	        nav="<a class='nav-link' id='profile-tab' data-toggle='tab' href='#datosMedicos' role='tab' aria-controls='profile' aria-selected='false'>Datos Medicos</a>";
+			$("#navDatosMedicos").append(nav);
+			
+			label4="";
+			label4="Lesion";
+			$("#label4").append(label4);
+			
+			label5="";
+			label5="Tipo de sangre";
+			$("#label5").append(label5);
+			
+			label6="";
+			label6="Enfermedades";
+			$("#label6").append(label6);
+			
+			lesion="";
+			lesion="<p>"+result.objDatosMedicos.lesiones+"<p>";
+			$("#lesion").append(lesion);
+			
+			tipoSangre="";
+			tipoSangre="<p>"+result.objDatosMedicos.tipoSangre+"<p>";
+			$("#tipoSangre").append(tipoSangre);
+			
+			enfermeda="";
+			enfermeda="<p>"+result.objDatosMedicos.enfermedades+"<p>";
+			$("#enfermeda").append(enfermeda);
+	        
 	        profesion="";
 	        profesion="Jugador";
 			$("#profesion").append(profesion);

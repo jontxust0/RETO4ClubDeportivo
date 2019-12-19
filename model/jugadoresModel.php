@@ -206,7 +206,7 @@ class jugadoresModel extends jugadoresClass{
             $this->setObjUser($newUser);
             
             $newDatosMedicos = new datosMedicosModel();
-            $newDatosMedicos->setId_jugador($this->getId_datosMedicos());
+            $newDatosMedicos->setId_jugador($this->getId());
             $newDatosMedicos->findDatosMedicosByIdJugador();
             $this->setObjDatosMedicos($newDatosMedicos);
             
@@ -269,7 +269,7 @@ class jugadoresModel extends jugadoresClass{
         {
             $vars = get_object_vars($object);
             $vars["objUser"]=$this->getObjUser()->getObjectVars();
-            //$vars["objDatosMedicos"]=$this->getObjDatosMedicos()->getObjectDatosMedicos()->getObjectVars();
+            $vars["objDatosMedicos"]=$this->getObjDatosMedicos()->getObjectVars();
             array_push($arr, $vars);
         }
         return json_encode($arr);
@@ -280,7 +280,7 @@ class jugadoresModel extends jugadoresClass{
         
         $vars = get_object_vars($this);
         $vars["objUser"]=$this->getObjUser()->getObjectVars();
-        //$vars["objDatosMedicos"]=$this->getObjDatosMedicos()->getObjectVars();
+        $vars["objDatosMedicos"]=$this->getObjDatosMedicos()->getObjectVars();
         return json_encode($vars);
     }
 }
