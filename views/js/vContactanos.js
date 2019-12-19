@@ -15,6 +15,7 @@ function enviarDatos(params) {
     if (asunto == "" || queja==""){
         alert("rellena correctamente los campos!")
     }
+    
     else{
 
 

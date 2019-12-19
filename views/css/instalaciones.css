@@ -41,4 +41,18 @@
 body {
 		font-family: 'Varela Round', sans-serif;
 	}
-	
+  
+  
+  
+  @media (max-width: 748px) {
+    .row div{
+      margin-bottom: 10px;
+    }
+    .row{
+      margin-top:0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  
+  }

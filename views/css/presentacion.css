@@ -10,10 +10,15 @@
 	margin-top: -5px;
 }
 .iCategorias{
-height: 250px;
+padding: 10px;
 color: white;
 text-align: center;
+border-bottom-right-radius: 20px;
+height: 25% !important;
 }
+
+
+
 
 
 .tab-content{
@@ -50,20 +55,47 @@ text-decoration: none !important;
 *, ::after, ::before {
 box-sizing: border-box !important;
 }
-/*----------------*/
+/*-------CSS listas de equipos---------*/
 
+.listEquipos h5{
+  color: #45aba6;
+  font-weight: bold;
+  }
+  .equipoItem{
+    transition:0.25s;
+  }
+  
+  
+  .equipoItem span:hover{
+    color: #45aba6;
+    cursor: pointer;
+  }
+ 
+  
+  
+  .listaDatos{
+    display: none;
+  }
+  /*-----------------------------------*/
+  #footer{
+    position: absolute !important;
+    bottom: 0;
+  }
 /*para centrar el NAVBAR*/
-@media (max-width: 991px) {
-.navbar-center {
-  text-align: center;
-  font-size: 25px;
-}
-.divider{
-  height: 1px;
-  margin: 9px 0;
-  overflow: hidden;
-  background-color: #e5e5e5;
-}
+@media (max-width: 586px) {
+  #categoriasContainer{
+    flex-direction: column !important;
+  }
+  .iCategorias{
+    max-width: 100% !important;
+    margin-bottom: 10px;
+    border-radius: 0;
+  }
+  .infoEquipos{
+    max-width: 100% !important;
+  
+  }
+
 }
 /*
 .logout{
