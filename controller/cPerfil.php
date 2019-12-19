@@ -8,7 +8,7 @@ $usuario= new jugadoresModel();
 $usuario->setId_usuario($id);
 $usuario->setJugadorByUserId(); 
 
-$listaUsuariosJson=$usuario->getThisJsonString();
+$listaUsuariosJson=$usuario->getThisJsonStringPerfil();
 
 echo $listaUsuariosJson;
 

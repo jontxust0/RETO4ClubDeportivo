@@ -287,6 +287,14 @@ class jugadoresModel extends jugadoresClass{
         $vars["objDatosMedicos"]=$this->getObjDatosMedicos()->getObjectVars();
         return json_encode($vars);
     }
+    
+    function getThisJsonStringPerfil() {
+        
+        $vars = get_object_vars($this);
+        $vars["objUser"]=$this->getObjUser()->getObjectVars();
+        $vars["objDatosMedicos"]=$this->getObjDatosMedicos()->getObjectVars();
+        return json_encode($vars);
+    }
 }
 
 
