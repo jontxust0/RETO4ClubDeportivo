@@ -9,7 +9,7 @@ $entrenador= new entrenadoresModel();
 $entrenador->setId_usuario($id);
 $entrenador->setEntrenadorByUserId();
 
-$listaUsuariosJson=$entrenador->getThisJsonStringPerfil();
+$listaUsuariosJson=$entrenador->getThisJsonString();
 
 echo $listaUsuariosJson;
 
