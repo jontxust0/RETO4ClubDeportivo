@@ -8,6 +8,11 @@ $(document).ready(function(){
     		
        		if (result !=0)
        		{
+       			if(result.admin==1){
+       				admin="";
+       				admin="<button id='btnAdmin'>Admin</button>";
+        			$("#admin").append(admin);
+       			}
        			
        			
        			nameSurname="";
@@ -46,7 +51,9 @@ $(document).ready(function(){
    			alert("An error occured: " + xhr.status + " " + xhr.statusText);
    		}
 	});
+
 	
+
 	
 	
 	
@@ -211,7 +218,12 @@ $(document).ready(function(){
 	});
 	
 
-	
+	$('#admin').on('click', '#btnAdmin', function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		window.location.href="vAdmin.html";
+		
+	});
 	
 	
 

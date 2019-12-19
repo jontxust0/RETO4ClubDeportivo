@@ -100,7 +100,7 @@ $(document).ready(function(){
 		$.ajax({
 			type:"POST",
 			data:{'username':username, 'password':password,'name':name,'surname':surname,'email':email,'admin':admin},
-	       	url: "controller/cInsertNewUser.php", 
+	       	url: "../controller/cInsertNewUser.php", 
 	       	dataType:"json",
 	       	
 	    	success: function(result){  
