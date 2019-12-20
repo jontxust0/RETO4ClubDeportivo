@@ -46,7 +46,7 @@ $(document).ready(function(){
                                 htmlequipos+=`<li class="equipoItem"> <span>`+result[cat].nombre+` Femenino</span>`
                             }
                             else{
-                                htmlequipos+=`<li class="equipoItem"><span>`+result[cat].nombre+`</span> Masculino`
+                                htmlequipos+=`<li class="equipoItem"><span>`+result[cat].nombre+` Masculino</span>`
                             }
                             // imprimir los miembros de cada equipo
                             if (result[cat].listEquipos[equipo].listJugadores.length!=0){
@@ -62,7 +62,7 @@ $(document).ready(function(){
                             }
                             if (result[cat].listEquipos[equipo].listEntrenadores.length!=0){
                                 htmlequipos+="<h5 class='hDatos'><li>Entrenadores</li></h5><ul>";
-                                for (let entrenador = 0; entrenador < result[cat].listEquipos[equipo].listJugadores.length; entrenador++) {
+                                for (let entrenador = 0; entrenador < result[cat].listEquipos[equipo].listEntrenadores.length; entrenador++) {
                                     htmlequipos+="<li>"+result[cat].listEquipos[equipo].listEntrenadores[entrenador].objUser.name+", "+result[cat].listEquipos[equipo].listEntrenadores[entrenador].objUser.surname+"</li>";
                                     
                                 }

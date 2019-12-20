@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-12-2019 a las 14:34:36
+-- Tiempo de generación: 20-12-2019 a las 09:47:13
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -134,8 +134,8 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `nombre`, `cuota`) VALUES
-(5, 'juvenil', '10.50'),
-(6, 'proaso', '1.00');
+(5, 'Juvenil', '10.50'),
+(7, 'Cadete', '1.00');
 
 -- --------------------------------------------------------
 
@@ -157,7 +157,8 @@ CREATE TABLE `cuerpomedico` (
 --
 
 INSERT INTO `cuerpomedico` (`id`, `funcion`, `direccion`, `tlf`, `id_usuario`, `id_equipo`) VALUES
-(1, 'Fisio', 'Lekeitio', '658965478', 29, 1);
+(1, 'Fisio', 'Lekeitio', '658965478', 29, 1),
+(2, 'Masajista', 'Lekeitio', '123123123', 33, 2);
 
 -- --------------------------------------------------------
 
@@ -201,7 +202,9 @@ CREATE TABLE `entrenadores` (
 --
 
 INSERT INTO `entrenadores` (`id`, `tlf`, `direccion`, `sueldo`, `fechaContratacion`, `id_usuario`, `id_equipo`) VALUES
-(1, '652632452', 'Lekeitio', '2000', '2019-12-18 07:41:18', 27, 1);
+(1, '652632452', 'Lekeitio', '2000', '2019-12-18 07:41:18', 27, 1),
+(2, '123', 'Bermeo', '10', '2019-12-20 07:52:19', 31, 2),
+(3, '123123123', 'Bermeo', '2', '2019-12-20 07:53:36', 32, 2);
 
 -- --------------------------------------------------------
 
@@ -221,7 +224,8 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`id`, `femenino/masculino`, `nombre`, `id_categoria`) VALUES
-(1, 'F', 'juvenil B', 5);
+(1, 'F', 'juvenil B', 5),
+(2, 'M', 'Cadete A', 7);
 
 -- --------------------------------------------------------
 
@@ -246,7 +250,8 @@ CREATE TABLE `jugadores` (
 --
 
 INSERT INTO `jugadores` (`id`, `direccion`, `dorsal`, `posicion`, `tlf`, `altura`, `id_datosMedicos`, `id_usuario`, `id_equipo`) VALUES
-(2, 'dsadsads', 12, 'alero', '123123123', '1.90', NULL, 28, 1);
+(2, 'dsadsads', 12, 'alero', '123123123', '1.90', NULL, 28, 1),
+(3, 'Bermeo', 1, 'Pivot', '123123123', '1.90', NULL, 30, 2);
 
 -- --------------------------------------------------------
 
@@ -261,6 +266,14 @@ CREATE TABLE `quejas` (
   `asunto` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `descripcion` varchar(256) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `quejas`
+--
+
+INSERT INTO `quejas` (`id`, `nombre`, `apellido`, `asunto`, `descripcion`) VALUES
+(1, '', '', 'dsadsa', 'sadasddsa'),
+(2, '', '', 'presentacion', 'prueba');
 
 -- --------------------------------------------------------
 
@@ -284,10 +297,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`, `admin`, `pic`) VALUES
-(26, 'userprueba', '123', 'user', 'prueba', 'user@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
-(27, 'aaa', '$2y$10$v0ol6pRtlxNu7tcyvfVi3ei7FfjXG4fhzgC6fLo3GoJFaRLfKrPTe', 'aa', 'aa', 'aa', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
-(28, 'gotzon95', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Gotzon', 'Galletebeitia', 'gotzon@gmail.com', 0, 'https://upload.wikimedia.org/wikipedia/commons/9/96/Kobe_Bryant_8.jpg'),
-(29, 'xarles', '$2y$10$mE69YDOZAMmQ36OaMRVMdeXUdaDf2oNsRIjkXrn80kKkIGa34mZyi', 'Xarles', 'Goitiz', 'xarles@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png');
+(27, 'boloncho', '', 'aa', 'aa', 'aa', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(28, 'gotzon95', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Gotzon', 'Galletebeitia', 'gotzon@gmail.com', 1, 'https://upload.wikimedia.org/wikipedia/commons/9/96/Kobe_Bryant_8.jpg'),
+(29, 'xarles', '$2y$10$mE69YDOZAMmQ36OaMRVMdeXUdaDf2oNsRIjkXrn80kKkIGa34mZyi', 'Xarles', 'Goitiz', 'xarles@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(30, 'Inaki', '123123', 'Inaki', 'Llorens', 'inakillorens@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(31, 'Inigo', '123', 'Inigo', 'Llorens', '123@gmail.com', NULL, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(32, 'Juan', '123', 'Juan', 'Agirre', 'juan@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(33, 'Pablo', '123', 'Pablo', 'Francisco', '1@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png');
 
 --
 -- Índices para tablas volcadas
@@ -358,13 +374,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `cuerpomedico`
 --
 ALTER TABLE `cuerpomedico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `datosmedicos`
@@ -376,31 +392,31 @@ ALTER TABLE `datosmedicos`
 -- AUTO_INCREMENT de la tabla `entrenadores`
 --
 ALTER TABLE `entrenadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `quejas`
 --
 ALTER TABLE `quejas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Restricciones para tablas volcadas
