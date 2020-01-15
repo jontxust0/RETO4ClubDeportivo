@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-01-2020 a las 13:10:00
+-- Tiempo de generación: 15-01-2020 a las 13:20:13
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -246,7 +246,7 @@ INSERT INTO `equipos` (`id`, `femenino/masculino`, `nombre`, `id_categoria`) VAL
 
 CREATE TABLE `fotosequipo` (
   `id` int(11) NOT NULL,
-  `privado` tinyint(1) NOT NULL,
+  `privado` tinyint(1) NOT NULL DEFAULT 0,
   `pic` varchar(254) COLLATE utf8_bin NOT NULL,
   `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
