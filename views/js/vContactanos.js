@@ -28,7 +28,7 @@ var http = new XMLHttpRequest();
 var url = "../controller/cInsertQueja.php";
 
 
-alert(apellido);
+
 var params = 'nombre='+nombre+'&apellido='+apellido+"&asunto="+asunto+"&queja="+queja;
 http.open('POST', url, true);
 
@@ -38,7 +38,7 @@ http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 http.onreadystatechange = function() {//Call a function when the state changes.
     if(http.readyState == 4 && http.status == 200) {
          //aqui obtienes la respuesta de tu peticion
-         alert(http.responseText);
+         alert("Gracias! leeremos su mensaje en cuanto podamos");
     }
 }
 http.send(params);
