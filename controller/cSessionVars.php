@@ -20,11 +20,11 @@ if (( $name !=null ) && ( $password !=null )){
         $_SESSION['name']=$name;
         $_SESSION['password']=$password;    
         $_SESSION['id']=$user->getIdUser();
-        /*$_SESSION['admin']=$user->getAdmin();      
+        $_SESSION['admin']=$user->getAdmin();      
         $_SESSION['email']=$user->getEmail();
         $_SESSION['surname']=$user->getSurname();
         $_SESSION['nombre']=$user->getName();
-        $_SESSION['img']=$user->getPic();*/
+        $_SESSION['img']=$user->getPic();
         echo $name;
     }  else {
         
