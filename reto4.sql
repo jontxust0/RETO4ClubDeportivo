@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-01-2020 a las 08:56:27
+-- Tiempo de generación: 16-01-2020 a las 12:49:05
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -42,8 +42,14 @@ select * from equipos$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllJugadores` ()  NO SQL
 SELECT * FROM jugadores$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllPublicFotosEquipo` ()  NO SQL
+SELECT * FROM fotosequipo WHERE privado =0$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllUsers` ()  NO SQL
 SELECT * FROM user$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spCheckVote` (IN `idUser` INT, IN `idCat` INT)  NO SQL
+SELECT * FROM `votos` WHERE id_usuario=idUser AND id_categoria=idCat$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spDeleteEntrenador` (IN `pId` INT)  NO SQL
 DELETE FROM entrenadores WHERE entrenadores.id=pId$$
@@ -377,9 +383,16 @@ INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`
 CREATE TABLE `votos` (
   `id` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `id_categorias` int(11) NOT NULL,
+  `id_categoria` int(11) NOT NULL,
   `id_jugadorVotado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `votos`
+--
+
+INSERT INTO `votos` (`id`, `id_usuario`, `id_categoria`, `id_jugadorVotado`) VALUES
+(1, 1, 2, 10);
 
 --
 -- Índices para tablas volcadas
@@ -455,7 +468,7 @@ ALTER TABLE `user`
 ALTER TABLE `votos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_usuario` (`id_usuario`),
-  ADD KEY `id_categorias` (`id_categorias`),
+  ADD KEY `id_categorias` (`id_categoria`),
   ADD KEY `id_jugadorVotado` (`id_jugadorVotado`);
 
 --
@@ -520,7 +533,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `votos`
 --
 ALTER TABLE `votos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -571,7 +584,7 @@ ALTER TABLE `jugadores`
 ALTER TABLE `votos`
   ADD CONSTRAINT `votos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `votos_ibfk_2` FOREIGN KEY (`id_jugadorVotado`) REFERENCES `jugadores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `votos_ibfk_3` FOREIGN KEY (`id_categorias`) REFERENCES `categorias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `votos_ibfk_3` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

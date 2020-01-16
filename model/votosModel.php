@@ -4,6 +4,11 @@ class votosModel extends votosClass{
     private $list = array();
     private $link;
     
+    /**
+     * @param multitype: $list
+     */
+    
+
     public function getList()
     {
         return $this->list;
@@ -46,7 +51,7 @@ class votosModel extends votosClass{
             
             $voto->setId($row['id']);
             $voto->setId_usuario($row['id_usuario']);
-            $voto->setId_categorias($row['id_categorias']);
+            $voto->setId_categorias($row['id_categoria']);
             $voto->setId_jugadorVotado($row['id_jugadorVotado']);
             
             
@@ -56,6 +61,25 @@ class votosModel extends votosClass{
         mysqli_free_result($result);
         unset($voto);
         $this->CloseConnect();  //Cerrar la conexion
+    }
+    public function checkList(){
+        $idUser=$this->getId_usuario();
+        $idCat=$this->getId_categorias();
+        
+        $this->OpenConnect();
+        
+        //$sql = "CALL sp_find_user('$name','$password')";
+        $sql = "call spCheckVote($idUser, $idCat)";
+        
+        $result = $this->link->query($sql);
+        
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+           return true;
+            
+        } else{
+            return false;
+        }
     }
     
 }

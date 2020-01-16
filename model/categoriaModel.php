@@ -7,6 +7,10 @@ class categoriaModel extends categoriaClass{
     /**
      * @return multitype:
      */
+    public function setListNormal($list)
+    {
+        $this->list = $list;
+    }
     public function getArrEquipos()
     {
         return $this->arrEquipos;
