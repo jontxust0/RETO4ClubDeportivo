@@ -173,6 +173,28 @@ class userModel extends userClass{
         
         $this->CloseConnect();
     }
+    public function UpdateFoto(){
+        
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexión
+        
+        $idUpdate=$this->getIdUser();
+        $filename=$this->getPic();
+       
+
+        
+        
+        $sql="CALL spUpdateFoto('$idUpdate','$filename')";
+        
+        $numFilas=$this->link->query($sql);
+        
+        if ($numFilas>=1){
+            return "cambiado";
+        } else {
+            return "Error al cambiar";
+        }
+        
+        $this->CloseConnect();
+    }
 
     
     public function findUserByIdUser(){

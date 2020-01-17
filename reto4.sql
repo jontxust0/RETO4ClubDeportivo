@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-01-2020 a las 12:49:05
+-- Tiempo de generación: 17-01-2020 a las 09:08:07
 -- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Versión de PHP: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -47,6 +47,9 @@ SELECT * FROM fotosequipo WHERE privado =0$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllUsers` ()  NO SQL
 SELECT * FROM user$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllVotos` ()  NO SQL
+SELECT * FROM votos$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spCheckVote` (IN `idUser` INT, IN `idCat` INT)  NO SQL
 SELECT * FROM `votos` WHERE id_usuario=idUser AND id_categoria=idCat$$
@@ -108,6 +111,11 @@ UPDATE entrenadores
 SET entrenadores.id = pId, entrenadores.tlf = pTlf,entrenadores.direccion=pDireccion,entrenadores.sueldo=pSueldo,
 entrenadores.fechaContratacion=pFechaContratacion
 WHERE entrenadores.id=pId$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateFoto` (IN `pId` INT, IN `pPic` VARCHAR(100))  NO SQL
+UPDATE user
+SET user.pic = pPic
+WHERE user.idUser=pId$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateJugador` (IN `pId` INT, IN `pDireccion` VARCHAR(100), IN `pDorsal` INT, IN `pPosicion` VARCHAR(50), IN `pTlf` VARCHAR(50), IN `pAltura` DECIMAL)  NO SQL
 UPDATE jugadores
@@ -342,7 +350,7 @@ INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`
 (1, 'AdminUser', 'AdminUser', 'Carl', 'Johnson', 'CJ@gmail.com', 1, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
 (2, 'jone_12', '$2y$10$v0ol6pRtlxNu7tcyvfVi3ei7FfjXG4fhzgC6fLo3GoJFaRLfKrPTe', 'Jone', 'Etxandio', 'jone_12@gmail.es', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
 (3, 'gotzon95', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Gotzon', 'Galletebeitia', 'gotzon@gmail.com', 1, 'https://upload.wikimedia.org/wikipedia/commons/9/96/Kobe_Bryant_8.jpg'),
-(4, 'xarles', '$2y$10$mE69YDOZAMmQ36OaMRVMdeXUdaDf2oNsRIjkXrn80kKkIGa34mZyi', 'Xarles', 'Goitiz', 'xarles@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(4, 'xarles', '$2y$10$mE69YDOZAMmQ36OaMRVMdeXUdaDf2oNsRIjkXrn80kKkIGa34mZyi', 'Xarles', 'Goitiz', 'xarles@gmail.com', 0, 'abascall-removebg-preview.png'),
 (5, 'markel84', '$2y$10$/BnTaXzShVsmqgva2cwuvOe/vhvJHtT2sLE2dzrBMl5emJMei94Li', 'Markel', 'Fernandez', 'markel84@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
 (6, 'Aitortilla19', 'S0lñW?#1849-aSW', 'Aitor', 'Ercoreca', 'Aitortilla19@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
 (7, 'viciauSP', '1267Ex?ññp&.', 'Horacio Jose', 'De la cruz', 'viciauSP-1@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
