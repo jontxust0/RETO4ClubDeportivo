@@ -15,6 +15,12 @@ $(document).ready(function(){
        			
     			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0'>"+result+"</button>";
     			$("#btnUsuario").append(newRow);
+    			
+    			votarRow="";
+       			
+    			votarRow+="<button id='btnVotarMVP' class='btn btn-login btn-outline-light my-2 my-sm-0'>Votar</button>";
+    			$("#btnVotar").append(votarRow);
+    			
     			$("#btnLogin").css("display", "none");
        			$("#btnLogout").css("display", "block");
        			
@@ -54,6 +60,11 @@ $(document).ready(function(){
 		       			
 		    			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0 '>"+result+"</button>";
 		    			$("#btnUsuario").html(newRow);
+		    			
+		    			votarRow="";
+		       			
+		    			votarRow+="<button id='btnVotarMVP' class='btn btn-login btn-outline-light my-2 my-sm-0'>Votar</button>";
+		    			$("#btnVotar").append(votarRow);
 		       						
 		       			window.location.reload();
 		       			
@@ -123,6 +134,12 @@ $('#btnUsuario').on('click', '#btnPerfil', function(){
 		
 
 	});
+$('#btnVotar').on('click', '#btnVotarMVP', function(){	
+	
+	window.location.href="vVotacion.html";
+	
+
+});
 	
 	
 

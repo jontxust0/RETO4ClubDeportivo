@@ -58,6 +58,31 @@ body{
 .iconos a:nth-child(2) img{
 	border-radius: 50%;
 }
+
+#btnVotarMVP{
+
+
+	border-top-right-radius:0px;
+	border-bottom-right-radius:0px;
+	
+}
+#btnPerfil{
+
+	
+	border-top-right-radius:0px;
+	border-bottom-right-radius:0px;
+	border-top-left-radius:0px;
+	border-bottom-left-radius:0px;
+	
+}
+
+#btnLogout{
+
+
+	border-top-left-radius:0px;
+	border-bottom-left-radius:0px;
+}
+
 /*-----------------------------*/
 
 @media (max-width: 991px) {

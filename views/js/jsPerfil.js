@@ -1,4 +1,28 @@
+var savedFileBase64;
+var filename;
+var idUser;
 $(document).ready(function(){
+	$("#changeImg").click(function(){
+		$.ajax({
+    	    type:"POST",
+    	    data:{ 'idUser':idUser, 'filename':filename,'savedFileBase64':savedFileBase64},
+    	    url: "../controller/cUpadeteFotoPerfil.php", 
+    	    dataType: "json",  //type of the result
+    	    
+    	 success: function(result){
+    		 	console.log(result);
+	       		alert(result.resultado);
+	       		
+    	      
+    			
+    		
+    	 },
+    	    error : function(xhr) {
+    	     
+    	    }
+    	});
+	   
+	});
 	$.ajax({
        	url: "../controller/cSessionVerVars.php", 
        	dataType:"json",
@@ -14,14 +38,14 @@ $(document).ready(function(){
         			$("#admin").append(admin);
        			}
        			
-       			
+       			idUser= result.id;
        			nameSurname="";
        			nameSurname+= result.nombre + " " +result.surname;
     			$("#nameSurname").append(nameSurname);
     			
     			
     			img="";
-    			img="<img src='"+result.img+"'/>";
+    			img="<img id='imgPerfil' src='../uploads/"+result.img+"'/>";
     			$("#img").append(img);
     			
     			username="";
@@ -142,7 +166,7 @@ $(document).ready(function(){
 	    	 success: function(result){
 	    		 	
 	    	        console.log(result);
-	    	        
+	    	        console.log(idUser);
 	    	        profesion="";
 	    	        profesion="Entrenador";
 	    			$("#profesion").append(profesion);
@@ -223,6 +247,32 @@ $(document).ready(function(){
 		e.stopPropagation();
 		window.location.href="vAdmin.html";
 		
+	});
+	
+	$("#file").change(function(){
+		
+		  let file = $("#file").prop("files")[0];
+		  filename = file.name.toLowerCase();
+		  console.log(filename);
+		  
+		  if (!new RegExp("(.*?).(jpg|jpeg|png|gif)$").test(filename)) {
+		    alert("Solo se aceptan imágenes JPG, PNG y GIF");
+		  }
+		  let reader = new FileReader();
+		  
+		  reader.onload = function(e) {
+			  
+			  let fileBase64 = e.target.result;
+
+			  // Almacenar en variable global para uso posterior
+			  savedFileBase64 = fileBase64;
+			  $("#imgPerfil").attr('src', savedFileBase64);
+		  };
+		  reader.readAsDataURL(file);
+	});
+	$("#upload").click(function(){
+		// Código para previsualizar
+	    $("#imgPerfil").attr('src', savedFileBase64);
 	});
 	
 	
