@@ -38,6 +38,7 @@ class galeriaModel extends galeriaClass{
     }
     
     
+    
     public function setList()
     {
         $this->OpenConnect(); // Abrir la conexion
