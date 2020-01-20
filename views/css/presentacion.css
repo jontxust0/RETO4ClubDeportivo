@@ -78,8 +78,10 @@ box-sizing: border-box !important;
   }
   /*-----------------------------------*/
   #footer{
-    position: absolute !important;
-    bottom: 0;
+    position: fixed !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
   }
 /*para centrar el NAVBAR*/
 @media (max-width: 586px) {

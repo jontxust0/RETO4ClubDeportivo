@@ -67,7 +67,7 @@ $(document).ready(function(){
 					//imprimir cards de jugadores
 					for (let jugador = 0; jugador < result[equipo].listJugadores.length; jugador++) {
 						htmlzatia+=`<div class="card col-sm-4" style="width: 18rem;" data-toggle="modal" data-target="#exampleModal" data-tipo=1 data-id=`+result[equipo].listJugadores[jugador].id+`>
-						<img src="`+result[equipo].listJugadores[jugador].objUser.pic+`" class="card-img-top imgJugador" alt="...">
+						<img src="../uploads/`+result[equipo].listJugadores[jugador].objUser.pic+`" class="card-img-top imgJugador" alt="...">
 						<div class="card-body">
 						  <h5 class="card-title">`+result[equipo].listJugadores[jugador].objUser.name+`, `+result[equipo].listJugadores[jugador].objUser.surname+`</h5>
 							<ul>
@@ -98,7 +98,7 @@ $(document).ready(function(){
 					//Imprimir cards de todos los entrenadores
 					for (let entrenador = 0; entrenador < result[equipo].listEntrenadores.length; entrenador++) {
 						htmlzatia+=`<div class="card col-md-16" style="width: 18rem;" data-toggle="modal" data-target="#exampleModal" data-tipo=2 data-id=`+result[equipo].listEntrenadores[entrenador].id+`>
-						<img src="`+result[equipo].listEntrenadores[entrenador].objUser.pic+`" class="card-img-top imgTecnico" alt="..." >
+						<img src="../uploads/`+result[equipo].listEntrenadores[entrenador].objUser.pic+`" class="card-img-top imgTecnico" alt="..." >
 						<div class="card-body">
 						  <h5 class="card-title">`+result[equipo].listEntrenadores[entrenador].objUser.name+`, `+result[equipo].listEntrenadores[entrenador].objUser.surname+`</h5>
 							<ul>
@@ -123,7 +123,7 @@ $(document).ready(function(){
 					//imprimir cards de todos los del cuerpo medico
 					for (let cuerpo = 0; cuerpo < result[equipo].listCuerpo.length; cuerpo++) {
 						htmlzatia+=`<div class="card col-md-16" style="width: 18rem;"data-toggle="modal" data-target="#exampleModal" data-tipo=3 data-id=`+result[equipo].listCuerpo[cuerpo].id+`>
-						<img src="`+result[equipo].listCuerpo[cuerpo].objUser.pic+`" class="card-img-top imgTecnico" alt="..." >
+						<img src="../uploads/`+result[equipo].listCuerpo[cuerpo].objUser.pic+`" class="card-img-top imgTecnico" alt="..." >
 						<div class="card-body">
 						  <h5 class="card-title">`+result[equipo].listCuerpo[cuerpo].objUser.name+`, `+result[equipo].listCuerpo[cuerpo].objUser.surname+`</h5>
 							<ul>
