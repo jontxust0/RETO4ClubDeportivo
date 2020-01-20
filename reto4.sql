@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-01-2020 a las 12:38:05
+-- Tiempo de generación: 20-01-2020 a las 13:17:35
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.1.32
 
@@ -265,14 +265,6 @@ CREATE TABLE `fotosequipo` (
   `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Volcado de datos para la tabla `fotosequipo`
---
-
-INSERT INTO `fotosequipo` (`id`, `privado`, `pic`, `id_equipo`) VALUES
-(1, 0, 'hola.pjg', 2),
-(2, 1, 'xa.jpg', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -357,7 +349,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`, `admin`, `pic`) VALUES
 (1, 'AdminUser', 'AdminUser', 'Carl', 'Johnson', 'CJ@gmail.com', 1, 'predeterminado.png'),
 (2, 'jone_12', '$2y$10$v0ol6pRtlxNu7tcyvfVi3ei7FfjXG4fhzgC6fLo3GoJFaRLfKrPTe', 'Jone', 'Etxandio', 'jone_12@gmail.es', 0, 'predeterminado.png'),
-(3, 'gotzon95', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Gotzon', 'Galletebeitia', 'gotzon@gmail.com', 1, 'predeterminado.png'),
+(3, 'gotzon95', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Gotzon', 'Galletebeitia', 'gotzon@gmail.com', 1, 'donald-trump-1579381763658.jpg'),
 (4, 'xarles', '$2y$10$mE69YDOZAMmQ36OaMRVMdeXUdaDf2oNsRIjkXrn80kKkIGa34mZyi', 'Xarles', 'Goitiz', 'xarles@gmail.com', 0, 'abascall-removebg-preview.png'),
 (5, 'markel84', '$2y$10$/BnTaXzShVsmqgva2cwuvOe/vhvJHtT2sLE2dzrBMl5emJMei94Li', 'Markel', 'Fernandez', 'markel84@gmail.com', 0, 'predeterminado.png'),
 (6, 'Aitortilla19', 'S0lñW?#1849-aSW', 'Aitor', 'Ercoreca', 'Aitortilla19@gmail.com', 0, 'predeterminado.png'),
