@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-01-2020 a las 13:17:35
+-- Tiempo de generación: 20-01-2020 a las 13:53:17
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.1.32
 
@@ -38,6 +38,9 @@ SELECT * FROM entrenadores$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllEquipos` ()  NO SQL
 select * from equipos$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllFotosPrivados` (IN `pId` INT)  NO SQL
+SELECT * FROM fotosequipo WHERE fotosequipo.id_equipo=pId OR fotosequipo.privado=0$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllJugadores` ()  NO SQL
 SELECT * FROM jugadores$$
@@ -102,6 +105,18 @@ SELECT * FROM user WHERE idUser = inId$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindUserByUsername` (IN `pUsername` VARCHAR(50))  NO SQL
 SELECT user.*  FROM user WHERE user.username=pUsername$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertNewCuerpoMedico` (IN `pFuncion` VARCHAR(50), IN `pDireccion` VARCHAR(100), IN `pTlf` VARCHAR(50), IN `pIdEquipo` INT)  NO SQL
+INSERT INTO cuerpomedico(cuerpomedico.funcion,cuerpomedico.direccion,cuerpomedico.tlf,cuerpomedico.id_equipo) VALUES
+(pFuncion,pDireccion,pTlf,pIdEquipo)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertNewEntrenador` (IN `pTlf` VARCHAR(50), IN `pDireccion` VARCHAR(100), IN `pSueldo` DECIMAL, IN `pFechaContratacion` DECIMAL, IN `pIdEquipo` INT)  NO SQL
+INSERT INTO entrenadores(entrenadores.tlf,entrenadores.direccion,entrenadores.sueldo,entrenadores.fechaContratacion,entrenadores.id_equipo) VALUES
+(pTlf,pDireccion,pSueldo,pFechaContratacion,pIdEquipo)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertNewJugador` (IN `pDireccion` VARCHAR(100), IN `pDorsal` INT, IN `pPosicion` VARCHAR(50), IN `pTlf` VARCHAR(50), IN `pAltura` DECIMAL, IN `pIdDatosMedico` INT, IN `pIdEquipo` INT)  NO SQL
+INSERT INTO jugadores(jugadores.direccion,jugadores.dorsal,jugadores.posicion,jugadores.tlf,jugadores.altura,jugadores.id_datosMedicos,jugadores.id_equipo) VALUES
+(pDireccion,pDorsal,pPosicion,pTlf,pAltura,pIdDatosMedico,pIdEquipo)$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertUser` (IN `pUsername` VARCHAR(10), IN `pAdmin` TINYINT, IN `pPass` VARCHAR(255), IN `pName` VARCHAR(50), IN `pSurname` VARCHAR(50), IN `pEmail` VARCHAR(50))  NO SQL
 INSERT INTO user(user.username,user.admin,user.password,user.name,user.surname,user.email) VALUES
 (pUsername,pAdmin,pPass,pName,pSurname,pEmail)$$
@@ -148,12 +163,7 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `nombre`, `cuota`) VALUES
-(1, 'Infantil', '10.20'),
-(2, 'Cadete', '12.70'),
-(3, 'juvenil', '14.10'),
-(4, 'Senior', '17.80'),
-(5, 'juvenil', '10.50'),
-(6, 'proaso', '1.00');
+(5, 'juvenil', '10.50');
 
 -- --------------------------------------------------------
 
@@ -175,12 +185,7 @@ CREATE TABLE `cuerpomedico` (
 --
 
 INSERT INTO `cuerpomedico` (`id`, `funcion`, `direccion`, `tlf`, `id_usuario`, `id_equipo`) VALUES
-(1, 'Fisio', 'Lekeitio', '658965478', 18, 1),
-(4, 'Psicologo', 'Durango', '667123907', 19, 1),
-(5, 'Fisio', 'Bilbao', '686546012', 17, 2),
-(6, 'Psicologo', 'Bermeo', '66513442', 22, 3),
-(7, 'Fisio', 'Gernika', '662109803', 21, 3),
-(8, 'Psicologo', 'Zornotza', '634999022', 20, 2);
+(1, 'Fisio', 'Lekeitio', '658965478', 29, 1);
 
 -- --------------------------------------------------------
 
@@ -201,8 +206,7 @@ CREATE TABLE `datosmedicos` (
 --
 
 INSERT INTO `datosmedicos` (`id`, `lesiones`, `tipoSangre`, `enfermedades`, `id_jugador`) VALUES
-(1, 'Rotura de femur', 'B-', 'Asma', 2),
-(2, 'Traumatismo leve', 'B-', 'Ninguna', 3);
+(1, 'Rotura de femur', 'b-', 'Asma', 1);
 
 -- --------------------------------------------------------
 
@@ -225,10 +229,7 @@ CREATE TABLE `entrenadores` (
 --
 
 INSERT INTO `entrenadores` (`id`, `tlf`, `direccion`, `sueldo`, `fechaContratacion`, `id_usuario`, `id_equipo`) VALUES
-(1, '652632452', 'Bermeo', '2005', '2019-12-18 07:41:18', 2, 1),
-(3, '644120334', 'Bilbao', '2500', '2019-12-20 08:00:08', 14, 3),
-(7, '655172879', 'Zornotza', '2900', '2019-12-19 13:30:45', 23, 2),
-(8, '123123123', 'Lekeitio', '0', '2019-12-20 08:01:15', 4, 1);
+(1, '652632452', 'Lekeitio', '2005', '2020-01-20 11:38:04', 29, 2);
 
 -- --------------------------------------------------------
 
@@ -248,9 +249,8 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`id`, `femenino/masculino`, `nombre`, `id_categoria`) VALUES
-(1, 'F', 'juvenil B', 3),
-(2, 'M', 'Bilbao basket B', 4),
-(3, 'F', 'Zornotza Saski', 1);
+(1, 'F', 'juvenil B', 5),
+(2, 'F', 'TuPuta', 5);
 
 -- --------------------------------------------------------
 
@@ -264,6 +264,18 @@ CREATE TABLE `fotosequipo` (
   `pic` varchar(254) COLLATE utf8_bin NOT NULL,
   `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `fotosequipo`
+--
+
+INSERT INTO `fotosequipo` (`id`, `privado`, `pic`, `id_equipo`) VALUES
+(1, 0, 'img/imgPublico1.jpg\r\n', 1),
+(2, 0, 'img/imgPublico2.jpg', 1),
+(3, 0, 'img/imgPublico3.jpg', 2),
+(4, 1, 'img/imgPublico4.jpg', 1),
+(5, 1, 'img/imgPublico5.jpg', 1),
+(6, 1, 'img/imgPublico6.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -288,20 +300,8 @@ CREATE TABLE `jugadores` (
 --
 
 INSERT INTO `jugadores` (`id`, `direccion`, `dorsal`, `posicion`, `tlf`, `altura`, `id_datosMedicos`, `id_usuario`, `id_equipo`) VALUES
-(1, 'Avenida Sin Nombre ', 12, 'medio', '94654654', '1.59', 1, 2, 1),
-(2, 'Avenida Ceda el paso', 14, 'alero', '123123123', '1.90', 2, 3, 2),
-(3, 'Calle Falsa 123', 99, 'central', '666666666', '1.00', NULL, 1, 2),
-(4, 'Planeta Tsufur', 17, 'Defensa', '666345123', '1.70', NULL, 7, 3),
-(5, 'Even green Terrace 10', 19, 'Alero', '689002792', '1.64', NULL, 9, 2),
-(6, 'Elk river', 66, 'alero', '644420925', '1.74', NULL, 11, 2),
-(7, 'Ciudad Endrino', 18, 'Defensa', '623902398', '1.79', NULL, 8, 1),
-(8, 'Calle los Santos 8', 8, 'Delantero', '666345790', '1.82', NULL, 5, 3),
-(10, 'Barnekalea 27', 5, 'Alero', '666457123', '1.89', NULL, 6, 1),
-(11, 'Zornotza', 13, 'Delantero', '663', '1.79', 2, 27, 1),
-(12, 'Gamiz-Fika', 12, 'Defensa', '1.72', '1.00', 2, 25, 1),
-(13, 'Bermeo', 7, 'Delantero', '662879001', '1.79', 1, 28, 3),
-(14, 'Zornotza', 9, 'Defensa', '662012366', '1.76', 1, 25, 2),
-(15, 'Bermeo', 6, 'Alero', '66298772', '1.76', 2, 25, 2);
+(1, 'Lekeitio', 12, 'alero', '343434333', '192.00', 1, 28, 1),
+(2, 'asdas', 11, 'alero', '1111111', '188.00', 1, 30, 1);
 
 -- --------------------------------------------------------
 
@@ -347,40 +347,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`, `admin`, `pic`) VALUES
-(1, 'AdminUser', 'AdminUser', 'Carl', 'Johnson', 'CJ@gmail.com', 1, 'predeterminado.png'),
-(2, 'jone_12', '$2y$10$v0ol6pRtlxNu7tcyvfVi3ei7FfjXG4fhzgC6fLo3GoJFaRLfKrPTe', 'Jone', 'Etxandio', 'jone_12@gmail.es', 0, 'predeterminado.png'),
-(3, 'gotzon95', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Gotzon', 'Galletebeitia', 'gotzon@gmail.com', 1, 'donald-trump-1579381763658.jpg'),
-(4, 'xarles', '$2y$10$mE69YDOZAMmQ36OaMRVMdeXUdaDf2oNsRIjkXrn80kKkIGa34mZyi', 'Xarles', 'Goitiz', 'xarles@gmail.com', 0, 'abascall-removebg-preview.png'),
-(5, 'markel84', '$2y$10$/BnTaXzShVsmqgva2cwuvOe/vhvJHtT2sLE2dzrBMl5emJMei94Li', 'Markel', 'Fernandez', 'markel84@gmail.com', 0, 'predeterminado.png'),
-(6, 'Aitortilla19', 'S0lñW?#1849-aSW', 'Aitor', 'Ercoreca', 'Aitortilla19@gmail.com', 0, 'predeterminado.png'),
-(7, 'viciauSP', '1267Ex?ññp&.', 'Horacio Jose', 'De la cruz', 'viciauSP-1@gmail.com', 0, 'predeterminado.png'),
-(8, 'Mikel_domin', '57284753049AWD2', 'Mikel', 'Dominguez', 'mikel_domin@gmail.com', 0, 'predeterminado.png'),
-(9, 'meraS98HD', '4534PSÑ?¿12A', 'Maria', 'Etxebarria', 'meraS98HD@gmail.com', 0, 'predeterminado.png'),
-(10, 'noMires', '45647685745AS', 'Miranda', 'Rodriguez', 'noMires@gmail.es', 0, 'predeterminado.png'),
-(11, 'Awthdrew14', '12443=¿', 'Andrew', 'Harrington', 'Awthdrew14@outlook.com', 0, 'predeterminado.png'),
-(12, 'Carlos83', '4324255er?!', 'Carlos', 'Martin', 'CarlosM84@gmail.com', 0, 'predeterminado.png'),
-(13, 'PeiGoi87', '3467WD#er', 'Peio', 'Goikoetxea', 'PeiGoi87@gmail.com', 0, 'predeterminado.png'),
-(14, 'Miguel', '2345432SWF', 'Miguel', 'Casado', 'Miguelkasdelimon@gmail.com', 0, 'predeterminado.png'),
-(15, 'BorjaHK', '3453R4ERF', 'Borja', 'Hidalgo', 'BorjaH@gmail.es', 0, 'predeterminado.png'),
-(16, 'Jperez345', '5463563423de', 'Jose', 'Perez', 'Jperez345@gmail.com', 0, 'predeterminado.png'),
-(17, 'Ane_uribe', '435254eefd233', 'Ane', 'Uribe', 'Aneuribe88@gmail.com', 0, 'predeterminado.png'),
-(18, 'marcos', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Marcos', 'Fernandez', 'MarcosF@gmail.com', 0, 'predeterminado.png'),
-(19, 'Juanrush3', '3456rtyu', 'Juan', 'Ivanov', 'Juanrush3@gmail.com', 0, 'predeterminado.png'),
-(20, 'asMar', '34564SX', 'Asier', 'Martinez', 'asMar@gmail.com', 0, 'predeterminado.png'),
-(21, 'MPsicolog', '234543SZ', 'Mireia', 'Saez', 'MPsicolog@gmail.com', 0, 'predeterminado.png'),
-(22, 'AMontes@gmail.com', '234543es', 'Andres', 'Montes', 'AMontes', 0, 'predeterminado.png'),
-(23, 'GLolbah', '234472sx', 'Gorka', 'Larrabeiti', 'GLolbah@gmail.com', NULL, 'predeterminado.png'),
-(24, 'And84', '2456sw', 'Ander', 'Uriarte', 'An84@gmail.com', 0, 'predeterminado.png'),
-(25, 'Iñaki90', '5364748', 'Iñaki', 'Garcia', 'Iñaki90mer@gmail.com', 0, 'predeterminado.png'),
-(26, 'Nerea18', '123986xd', 'Nerea', 'Vazquez', 'Nerea18@gmail.com', 0, 'predeterminado.png'),
-(27, 'Eder_barrena', '35464ES', 'Eder', 'Barrena', 'Ederbarrena@gmail.com', 0, 'predeterminado.png'),
-(28, 'Carlos_rodri', '532435iu', 'Carlos', 'Rodriguez', 'carlos_rodriguez@gmail.com', 0, 'predeterminado.png'),
-(29, 'JasminaV', '35647', 'Jasmina', 'Valdes', 'JasminaV@gmail.com', 0, 'predeterminado.png'),
-(30, 'MG998', '12345re', 'Maria', 'Gutierrez', 'MG998@gmail.com', 0, 'predeterminado.png'),
-(31, 'iker_astorkia', 'rr¡455tegd?', 'Iker', 'Astorkia', 'iker_astorkia@gmail.com', 0, 'predeterminado.png'),
-(32, 'Mateomate', '7823sx', 'Mateo', 'Santos', 'Mateomate@gmail.com', 0, 'predeterminado.png'),
-(33, 'Aitor_arranz', '74633WED!!', 'Aitor', 'Arranz', 'Aitor_arranz@gmail.com', 0, 'predeterminado.png'),
-(34, 'Bartolo', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Bartolo', 'Bartolo', 'Bartolo@gmail.com', 0, 'predeterminado.png');
+(26, 'userprueba', '', 'user', 'prueba', 'user@gmail.com', 0, 'predeterminado.png'),
+(27, 'aaa', '$2y$10$v0ol6pRtlxNu7tcyvfVi3ei7FfjXG4fhzgC6fLo3GoJFaRLfKrPTe', 'aaa', 'aaa', 'aaa', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(28, 'gotzon95', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Gotzon', 'Galletebeitia', 'gotzon@gmail.com', 1, 'predeterminado.png'),
+(29, 'xarles', '$2y$10$mE69YDOZAMmQ36OaMRVMdeXUdaDf2oNsRIjkXrn80kKkIGa34mZyi', 'Xarles', 'Goitiz', 'xarles@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(30, 'bbb', '$2y$10$/BnTaXzShVsmqgva2cwuvOe/vhvJHtT2sLE2dzrBMl5emJMei94Li', 'wsdf', 'sdfsdf', 'sdf', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(31, 'ddd', 'ddd', 'dd', 'ddd', 'dd', 1, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
+(32, 'sss', '$2y$10$Dqco76TV3lzVK8oTsDJt0Op6fGMDhtdXsXMKCDPGBZiG7FI33GbWe', 'ss', 'ss', 'ss', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png');
 
 -- --------------------------------------------------------
 
@@ -394,13 +367,6 @@ CREATE TABLE `votos` (
   `id_categoria` int(11) NOT NULL,
   `id_jugadorVotado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcado de datos para la tabla `votos`
---
-
-INSERT INTO `votos` (`id`, `id_usuario`, `id_categoria`, `id_jugadorVotado`) VALUES
-(1, 1, 2, 10);
 
 --
 -- Índices para tablas volcadas
@@ -443,13 +409,6 @@ ALTER TABLE `equipos`
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
--- Indices de la tabla `fotosequipo`
---
-ALTER TABLE `fotosequipo`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_equipo` (`id_equipo`);
-
---
 -- Indices de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
@@ -471,15 +430,6 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`idUser`);
 
 --
--- Indices de la tabla `votos`
---
-ALTER TABLE `votos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_usuario` (`id_usuario`),
-  ADD KEY `id_categorias` (`id_categoria`),
-  ADD KEY `id_jugadorVotado` (`id_jugadorVotado`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -487,43 +437,37 @@ ALTER TABLE `votos`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `cuerpomedico`
 --
 ALTER TABLE `cuerpomedico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `datosmedicos`
 --
 ALTER TABLE `datosmedicos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `entrenadores`
 --
 ALTER TABLE `entrenadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `fotosequipo`
---
-ALTER TABLE `fotosequipo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `quejas`
@@ -535,13 +479,7 @@ ALTER TABLE `quejas`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT de la tabla `votos`
---
-ALTER TABLE `votos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Restricciones para tablas volcadas
@@ -574,25 +512,11 @@ ALTER TABLE `equipos`
   ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `fotosequipo`
---
-ALTER TABLE `fotosequipo`
-  ADD CONSTRAINT `fotosequipo_ibfk_1` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
   ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `votos`
---
-ALTER TABLE `votos`
-  ADD CONSTRAINT `votos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `votos_ibfk_2` FOREIGN KEY (`id_jugadorVotado`) REFERENCES `jugadores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `votos_ibfk_3` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
