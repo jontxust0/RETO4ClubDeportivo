@@ -43,7 +43,6 @@ $(document).ready(function(){
 	// });
 
 
-
 	$.ajax({
         type: "GET",
         url: "../controller/cMostrarEquipos.php",
