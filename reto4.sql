@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-01-2020 a las 14:16:18
+-- Tiempo de generación: 20-01-2020 a las 14:51:56
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.1.32
 
@@ -120,6 +120,9 @@ INSERT INTO jugadores(jugadores.direccion,jugadores.dorsal,jugadores.posicion,ju
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertUser` (IN `pUsername` VARCHAR(10), IN `pAdmin` TINYINT, IN `pPass` VARCHAR(255), IN `pName` VARCHAR(50), IN `pSurname` VARCHAR(50), IN `pEmail` VARCHAR(50))  NO SQL
 INSERT INTO user(user.username,user.admin,user.password,user.name,user.surname,user.email) VALUES
 (pUsername,pAdmin,pPass,pName,pSurname,pEmail)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertVoto` (IN `idUser` INT, IN `idCategoria` INT, IN `idJugador` INT)  NO SQL
+INSERT INTO `votos`( `id_usuario`, `id_categoria`, `id_jugadorVotado`) VALUES (idUser,idCategoria,idJugador)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateEntrenador` (IN `pId` INT, IN `pTlf` VARCHAR(50), IN `pDireccion` VARCHAR(100), IN `pSueldo` DECIMAL, IN `pFechaContratacion` TIMESTAMP)  NO SQL
 UPDATE entrenadores
@@ -427,7 +430,10 @@ CREATE TABLE `votos` (
 --
 
 INSERT INTO `votos` (`id`, `id_usuario`, `id_categoria`, `id_jugadorVotado`) VALUES
-(1, 1, 2, 10);
+(1, 1, 2, 10),
+(2, 4, 1, 4),
+(3, 4, 3, 1),
+(4, 4, 4, 15);
 
 --
 -- Índices para tablas volcadas
@@ -568,7 +574,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `votos`
 --
 ALTER TABLE `votos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
