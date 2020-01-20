@@ -7,9 +7,9 @@ $(document).ready(function(){
      	success: function(result){
         		console.log(result)
 			htmlzatia="";
+			if (result.length!=0){
 			for (let categoria = 0; categoria < result.length; categoria++) {
-				
-				if (result[categoria].listEquipos.length!=0){
+			
 				htmlzatia+=`
 				<div class=deshacer></div>
 				<div class="categoria">
@@ -30,7 +30,7 @@ $(document).ready(function(){
 					<img src="`+result[categoria].listEquipos[equipo].listJugadores[jugador].objUser.pic+`">
 				  <div class="card-body">
 				    <h5 class="card-title">`+result[categoria].listEquipos[equipo].listJugadores[jugador].objUser.name+` `+result[categoria].listEquipos[equipo].listJugadores[jugador].objUser.surname +`</h5>
-				    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+				    <p class="card-text">`+result[categoria].listEquipos[equipo].listJugadores[jugador].posicion+`</p>
 				    <input type="button" class="btn btn-success buttonVote" value="Votar" data-jugadores=`+result[categoria].listEquipos[equipo].listJugadores[jugador].id+` data-categoria=`+result[categoria].id+`>
 				  </div>
 				</div>
@@ -40,13 +40,18 @@ $(document).ready(function(){
 				}
 				htmlzatia+="</div>";
 			}
-
-			}
+			
+			
 			htmlzatia+="</div>";
 			
 				
 			}
-			htmlzatia+='<button type="button" class="btn btn-primary" id="enviar">enviar votos</button>';
+			htmlzatia+='<button type="button" class="btn btn-info" id="enviar">enviar votos</button>';
+		}
+		else{
+			htmlzatia+="<div class='vacio'><h1>Oh oh... Parece que algo va mal!</h1> <p><h3>Parece que ya ha votado todas las categorias posibles :( le agradecemos su colaboración!</h3></p></div>";
+		}
+			
 			$(".container").html(htmlzatia);
 		 
 			
@@ -61,7 +66,7 @@ $(document).ready(function(){
 				//guardar en cada deshacer las id (en el alert) y luego recorrerlos al votar 
 
 				deshacer=`
-				<div class="alert alert-danger deshacerAlert" role="alert" data-jugadores=`+idJugadores+` data-categoria=idCategoria>
+				<div class="alert alert-danger deshacerAlert" role="alert" data-jugadores=`+idJugadores+` data-categoria=`+idCategoria+`>
  				 Haz click <span class="volver">aquí</span> para deshacer el voto 
 				</div>
 				`;
@@ -79,12 +84,39 @@ $(document).ready(function(){
 			$("#enviar").on("click", function(){
 				arrCategorias=[];
 				arrJugadores=[];
-				
+				//rellena los arrays dependiendo de los datos de los alerts (esto es una especie de for)
 				$(".deshacerAlert").each(function(index){
 					arrCategorias.push($(this).data("categoria"));
 					arrJugadores.push($(this).data("jugadores"));
 				});
-			});
+
+				console.log(arrCategorias);
+				console.log(arrJugadores);
+
+				//aquí enviaría la info
+				$.ajax({
+					type:"GET",
+					data:{'arrCategorias':JSON.stringify(arrCategorias),'arrJugadores':JSON.stringify(arrJugadores)},
+					   url: "../controller/cInsertVotos.php", 
+					   dataType:"text",
+					success: function(result){ 
+						console.log(result);
+						if (result=="si"){
+							window.location.href="../index.html";
+						}
+						else{
+							alert("vota al menos a un jugador!");
+						}
+					},
+					   error : function(xhr) {
+						
+					   }
+				});
+	
+		});
+				//---------------
+
+		
 
 			
 			

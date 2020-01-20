@@ -5,6 +5,14 @@ class categoriaModel extends categoriaClass{
     private $list = array();
     private $arrEquipos = array();
     /**
+     * @param multitype: $arrEquipos
+     */
+    public function setArrEquipos($arrEquipos)
+    {
+        $this->arrEquipos = $arrEquipos;
+    }
+
+    /**
      * @return multitype:
      */
     public function setListNormal($list)
@@ -19,10 +27,7 @@ class categoriaModel extends categoriaClass{
     /**
      * @param multitype: $arrEquipos
      */
-    public function setArrEquipos($arrEquipos)
-    {
-        $this->arrEquipos = $arrEquipos;
-    }
+   
     public function OpenConnect() {
         $konDat = new connect_data();
         try {

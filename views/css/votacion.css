@@ -28,3 +28,17 @@ transition: 0.2s !important;
     cursor: pointer;
     font-weight: bold !important;
 }
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#enviar{
+    font-size: 24px;
+    margin-top: 5px;
+    height: 50px;
+    width: 100%;
+}
+.vacio{
+    text-align: center;
+}

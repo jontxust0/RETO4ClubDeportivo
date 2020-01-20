@@ -1,5 +1,6 @@
 <?php
 include_once ('votosClass.php');
+include_once ('connect_data.php');
 class votosModel extends votosClass{
     private $list = array();
     private $link;
@@ -18,6 +19,7 @@ class votosModel extends votosClass{
      * @param mixed $list
      */
     
+
     public function OpenConnect() {
         $konDat = new connect_data();
         try {
@@ -51,7 +53,7 @@ class votosModel extends votosClass{
             
             $voto->setId($row['id']);
             $voto->setId_usuario($row['id_usuario']);
-            $voto->setId_categorias($row['id_categoria']);
+            $voto->setId_categoria($row['id_categoria']);
             $voto->setId_jugadorVotado($row['id_jugadorVotado']);
             
             
@@ -64,7 +66,7 @@ class votosModel extends votosClass{
     }
     public function checkList(){
         $idUser=$this->getId_usuario();
-        $idCat=$this->getId_categorias();
+        $idCat=$this->getId_categoria();
         
         $this->OpenConnect();
         
@@ -80,6 +82,21 @@ class votosModel extends votosClass{
         } else{
             return false;
         }
+    }
+    public function insertVoto(){
+        $this->OpenConnect();
+        $id_usuario=$this->getId_usuario();
+        $id_categoria=$this->getId_categoria();
+        $id_jugador=$this->getId_jugadorVotado();
+       
+        
+        $sql="call spInsertVoto('$id_usuario','$id_categoria','$id_jugador')";
+        $result= $this->link->query($sql);
+        
+        return $this->link->affected_rows;
+        
+        $this->CloseConnect();
+        
     }
     
 }
