@@ -11,15 +11,27 @@ $catList=$categorias->getList();
 $votos=new votosModel();
 $votos->setId_usuario($idUser);
 
+$resultList=array();
 for ($i = 0; $i < sizeof($catList); $i++) {
-$votos->setId_categorias($catList[$i]->getId());
+$votos->setId_categoria($catList[$i]->getId());
+
 if ($votos->checkList()==true){
-   unset($catList[$i]);
+ 
+}
+else if(sizeof($catList[$i]->getArrEquipos())==0){
+    
+}
+else{
+  
+    
+    $resultList[]=$catList[$i];
 }
     
-   $categorias->setListNormal($catList);
+  
   
 }
+
+$categorias->setListNormal($resultList);
 
 echo $categorias->getListJsonString();
 

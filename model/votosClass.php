@@ -2,7 +2,7 @@
 class votosClass{
     protected $id;
     protected $id_usuario;
-    protected $id_categorias;
+    protected $id_categoria;
     protected $id_jugadorVotado;
     /**
      * @return mixed
@@ -28,9 +28,9 @@ class votosClass{
     /**
      * @return mixed
      */
-    public function getId_categorias()
+    public function getId_categoria()
     {
-        return $this->id_categorias;
+        return $this->id_categoria;
     }
 
     /**
@@ -60,9 +60,9 @@ class votosClass{
     /**
      * @param mixed $id_categorias
      */
-    public function setId_categorias($id_categorias)
+    public function setId_categoria($id_categoria)
     {
-        $this->id_categorias = $id_categorias;
+        $this->id_categoria = $id_categoria;
     }
 
     /**
