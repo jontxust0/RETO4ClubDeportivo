@@ -12,7 +12,7 @@ class jugadoresModel extends jugadoresClass{
     private $link;
     private $objUser;
     private $objDatosMedicos;
-    
+    private $votos;
     /**
      * @return mixed
      */
@@ -288,6 +288,59 @@ class jugadoresModel extends jugadoresClass{
         $this->CloseConnect();
     }
     
+    
+    public function setRankingList(int $idCategoria){
+        //esto llena la lista de usuarios por categoria de forma que cargue el ranking con el voto de cada usuario
+        
+        $this->OpenConnect(); // Abrir la conexion
+        
+        $sql= "call spRankingByIdCategoria($idCategoria)";
+        
+        $result = $this->link->query($sql); //Almacena los datos recibidos de la llamada a la base de datos
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+            $jugador= new self();
+            
+            $jugador->setId($row['id']);
+            $jugador->setDireccion($row['direccion']);
+            $jugador->setDorsal($row['dorsal']);
+            $jugador->setPosicion($row['posicion']);
+            $jugador->setTlf($row['tlf']);
+            $jugador->setAltura($row['altura']);
+            $jugador->setId_usuario($row["id_usuario"]);
+            $jugador->setVotos($row["votos"]);
+            $newUser = new userModel();
+            $newUser->setIdUser($jugador->getId_usuario());
+            $newUser->findUserByIdUser();
+            $jugador->setObjUser($newUser);
+            array_push($this->list, $jugador);
+        }
+        mysqli_free_result($result);
+        unset($jugador);
+        $this->CloseConnect();  //Cerrar la conexion
+    }
+    
+    
+    
+    
+    
+    /**
+     * @return mixed
+     */
+    public function getVotos()
+    {
+        return $this->votos;
+    }
+
+    /**
+     * @param mixed $votos
+     */
+    public function setVotos($votos)
+    {
+        $this->votos = $votos;
+    }
+
     function getListJsonString() {
         $arr=array();
         
