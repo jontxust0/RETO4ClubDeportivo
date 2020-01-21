@@ -1,4 +1,5 @@
 <?php
+require_once 'connect_data.php';
 include_once ('votosClass.php');
 include_once ('connect_data.php');
 class votosModel extends votosClass{

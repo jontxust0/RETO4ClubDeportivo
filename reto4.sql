@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-01-2020 a las 13:17:35
+-- Tiempo de generación: 20-01-2020 a las 14:51:56
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.1.32
 
@@ -38,6 +38,9 @@ SELECT * FROM entrenadores$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllEquipos` ()  NO SQL
 select * from equipos$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllFotosPrivados` (IN `pId` INT)  NO SQL
+SELECT * FROM fotosequipo WHERE fotosequipo.id_equipo=pId OR fotosequipo.privado=0$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllJugadores` ()  NO SQL
 SELECT * FROM jugadores$$
@@ -102,9 +105,24 @@ SELECT * FROM user WHERE idUser = inId$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindUserByUsername` (IN `pUsername` VARCHAR(50))  NO SQL
 SELECT user.*  FROM user WHERE user.username=pUsername$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertNewCuerpoMedico` (IN `pFuncion` VARCHAR(50), IN `pDireccion` VARCHAR(100), IN `pTlf` VARCHAR(50), IN `pIdEquipo` INT)  NO SQL
+INSERT INTO cuerpomedico(cuerpomedico.funcion,cuerpomedico.direccion,cuerpomedico.tlf,cuerpomedico.id_equipo) VALUES
+(pFuncion,pDireccion,pTlf,pIdEquipo)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertNewEntrenador` (IN `pTlf` VARCHAR(50), IN `pDireccion` VARCHAR(100), IN `pSueldo` DECIMAL, IN `pFechaContratacion` DECIMAL, IN `pIdEquipo` INT)  NO SQL
+INSERT INTO entrenadores(entrenadores.tlf,entrenadores.direccion,entrenadores.sueldo,entrenadores.fechaContratacion,entrenadores.id_equipo) VALUES
+(pTlf,pDireccion,pSueldo,pFechaContratacion,pIdEquipo)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertNewJugador` (IN `pDireccion` VARCHAR(100), IN `pDorsal` INT, IN `pPosicion` VARCHAR(50), IN `pTlf` VARCHAR(50), IN `pAltura` DECIMAL, IN `pIdDatosMedico` INT, IN `pIdEquipo` INT)  NO SQL
+INSERT INTO jugadores(jugadores.direccion,jugadores.dorsal,jugadores.posicion,jugadores.tlf,jugadores.altura,jugadores.id_datosMedicos,jugadores.id_equipo) VALUES
+(pDireccion,pDorsal,pPosicion,pTlf,pAltura,pIdDatosMedico,pIdEquipo)$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertUser` (IN `pUsername` VARCHAR(10), IN `pAdmin` TINYINT, IN `pPass` VARCHAR(255), IN `pName` VARCHAR(50), IN `pSurname` VARCHAR(50), IN `pEmail` VARCHAR(50))  NO SQL
 INSERT INTO user(user.username,user.admin,user.password,user.name,user.surname,user.email) VALUES
 (pUsername,pAdmin,pPass,pName,pSurname,pEmail)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertVoto` (IN `idUser` INT, IN `idCategoria` INT, IN `idJugador` INT)  NO SQL
+INSERT INTO `votos`( `id_usuario`, `id_categoria`, `id_jugadorVotado`) VALUES (idUser,idCategoria,idJugador)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateEntrenador` (IN `pId` INT, IN `pTlf` VARCHAR(50), IN `pDireccion` VARCHAR(100), IN `pSueldo` DECIMAL, IN `pFechaContratacion` TIMESTAMP)  NO SQL
 UPDATE entrenadores
@@ -265,6 +283,18 @@ CREATE TABLE `fotosequipo` (
   `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `fotosequipo`
+--
+
+INSERT INTO `fotosequipo` (`id`, `privado`, `pic`, `id_equipo`) VALUES
+(1, 2, 'img/imgPublico1.jpg', 1),
+(2, 0, 'img/imgPublico2.jpg', 2),
+(3, 0, 'img/imgPublico3.jpg', 1),
+(4, 0, 'img/imgPublico4.jpg', 2),
+(5, 0, 'img/imgPublico5.jpg', 1),
+(6, 0, 'img/imgPublico6.jpg', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -400,7 +430,10 @@ CREATE TABLE `votos` (
 --
 
 INSERT INTO `votos` (`id`, `id_usuario`, `id_categoria`, `id_jugadorVotado`) VALUES
-(1, 1, 2, 10);
+(1, 1, 2, 10),
+(2, 4, 1, 4),
+(3, 4, 3, 1),
+(4, 4, 4, 15);
 
 --
 -- Índices para tablas volcadas
@@ -517,7 +550,7 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `fotosequipo`
 --
 ALTER TABLE `fotosequipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores`
@@ -541,7 +574,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `votos`
 --
 ALTER TABLE `votos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas

@@ -27,7 +27,7 @@ $(document).ready(function(){
 				for (let jugador = 0; jugador < result[categoria].listEquipos[equipo].listJugadores.length; jugador++) {
 					htmlzatia+=`
 					<div class="card w-100">
-					<img src="`+result[categoria].listEquipos[equipo].listJugadores[jugador].objUser.pic+`">
+					<img src="../uploads/`+result[categoria].listEquipos[equipo].listJugadores[jugador].objUser.pic+`">
 				  <div class="card-body">
 				    <h5 class="card-title">`+result[categoria].listEquipos[equipo].listJugadores[jugador].objUser.name+` `+result[categoria].listEquipos[equipo].listJugadores[jugador].objUser.surname +`</h5>
 				    <p class="card-text">`+result[categoria].listEquipos[equipo].listJugadores[jugador].posicion+`</p>
