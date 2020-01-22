@@ -7,6 +7,7 @@ app.controller('vAdminControlador', ['$scope', '$http', function ($scope, $http)
 
     $http.get("../controller/cMostrarJugadores.php")
         .then(function (response) {
+            console.log(response);
             $scope.listaJugadores = response.data;
 
         }).catch(function (response) {

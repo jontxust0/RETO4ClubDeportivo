@@ -11,8 +11,8 @@
   
   
  
-<!-- 
-  <link href="css/presentacion.css" rel="stylesheet" type="text/css" />
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -28,7 +28,7 @@
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js'></script>
   	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	 -->
+
 
   
 
@@ -96,7 +96,8 @@
         <div>
           <table class='table table-hover table-dark'>
             <tr>
-              <th scope='col'>ID</th>
+              <th scope='col'>NOMBRE</th>
+              <th scope='col'>APELLIDO</th>
               <th scope='col'>DIRECCION</th>
               <th scope='col'>DORSAL</th>
               <th scope='col'>POSICION</th>
@@ -104,12 +105,18 @@
               <th scope='col'>ALTURA</th>
             </tr>
             <tr ng-repeat="jugador in listaJugadores| filter:TEXTObusqueda">
-              <td>{{jugador.id}}</td>
+              
+              <td>{{jugador.objUser.name}}</td>
+              <td>{{jugador.objUser.surname}}</td>
               <td>{{jugador.direccion}}</td>
               <td>{{jugador.dorsal}}</td>
               <td>{{jugador.posicion}}</td>
               <td>{{jugador.tlf}}</td>
               <td>{{jugador.altura}}</td>
+              
+
+
+
               <td>
                 <button type='button' class='btnUpdateJugadores btn-warning' ng-click="updateFunctionJugadores(jugador,$index)"  data-toggle='modal'
                   data-target='#updateJugadores'>Editar</button>
@@ -133,14 +140,14 @@
         <div>
           <table class='table table-hover table-dark'>
             <tr>
-              <th scope='col'>ID</th>
+           
               <th scope='col'>TELEFONO</th>
               <th scope='col'>DIRECCION</th>
               <th scope='col'>SUELDO</th>
               <th scope='col'>FECHA CONTRATACION</th>
             </tr>
             <tr ng-repeat="entrenador in listaEntrenadores| filter:TEXTObusqueda">
-              <td>{{entrenador.id}}</td>
+              
               <td>{{entrenador.tlf}}</td>
               <td>{{entrenador.direccion}}</td>
               <td>{{entrenador.sueldo}}</td>
@@ -170,7 +177,7 @@
           
           <table class='table table-hover table-dark'>
             <tr>
-              <th scope='col'>ID</th>
+         
               <th scope='col'>USUARIOS</th>
               <!-- <th scope='col'>CONTRASEÑA</th> -->
               <th scope='col'>NOMBRE</th>
@@ -178,7 +185,7 @@
               <th scope='col'>EMAIL</th>
             </tr>
             <tr ng-repeat="usuario in listaUsuarios| filter:TEXTObusqueda">
-              <td>{{usuario.idUser}}</td>
+           
               <td>{{usuario.username}}</td>
               <!-- <td>{{usuario.password}}</td>  -->
               <td>{{usuario.name}}</td>
@@ -337,6 +344,9 @@
             <div class="modal-body">
                     <h4>Inscribir Usuario:</h4>
                     <br>
+                    <select  class="selector form-control"  id="equipoSelect">
+
+                    </select>
                   <select class="selector form-control" id="exampleFormControlSelect1">
                     <option value="jugador">Jugador</option>
                     <option value="entrenador">Entrenador</option>
@@ -344,6 +354,7 @@
                   </select>
                   <br>
                   <div class="inscribirseCategorias">
+
                     <div class="inscribirJugador">
                       Dirección:<br>
                       <input type="text" id="insJDireccion">
@@ -367,9 +378,7 @@
                       ID_Usuario:<br>
                       <input type="text" id="insJIdusuario">
                       <br>
-                      ID_Equipo:<br>
-                      <input type="text" id="insJIdEquipo">
-                      <br>
+                      <button id="inscribirJugadorButton" >Inscribirse</button>
 
                     </div>
                     <div class="inscribirEntrenador">
@@ -385,9 +394,8 @@
                       Fecha Contratación:<br>
                       <input type="text" id="insEFechaContratacion">
                       <br>
-                      ID_Equipo:<br>
-                      <input type="text" id="insEId_Equipo">
-                      <br>
+                      <button id="inscribirEntrenadorButton" >Inscribirse</button>
+
                     </div>
                     <div class="inscribirCuerpoMedico">
                       Función:<br>
@@ -399,12 +407,10 @@
                       Telefono:<br>
                       <input type="text" id="insCMTelefono">
                       <br>
-                      ID_Equipo:<br>
-                      <input type="text" id="insCMIdEquipo">
-                      <br>
+                      <button id="inscribirCuerpoButton" >Inscribirse</button>
                     </div>
                   </div>
-                  <button id="btnExecInsertUsuario" >Inscribirse</button>
+                  
             </div>
 
         </div>
@@ -420,13 +426,13 @@
     </div>
   </nav> -->
   
-  	<script src="js/jquery.min.js" type="text/javascript" ></script>
+  <script src="js/jquery.min.js" type="text/javascript" ></script>
 	<script src="js/angular.min.js" type="text/javascript" ></script>
   <script src="js/bootstrap.min.js" type="text/javascript" ></script>
   <script src="js/popper.min.js" type="text/javascript" ></script>
   <script src="js/vAdminAngular.js" type="text/javascript"></script>
-    <script src="js/jsFuntions.js" type="text/javascript"></script>
-  <!-- <script src="js/vAdmin.js" type="text/javascript"></script> -->
+  <script src="js/jsFuntions.js" type="text/javascript"></script>
+  <script src="js/vAdmin.js" type="text/javascript"></script>
   
 </body>
 

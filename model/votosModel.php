@@ -83,7 +83,10 @@ class votosModel extends votosClass{
         } else{
             return false;
         }
+        $this->CloseConnect();
     }
+    
+    
     public function insertVoto(){
         $this->OpenConnect();
         $id_usuario=$this->getId_usuario();

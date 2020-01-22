@@ -135,6 +135,44 @@ class cuerpoMedicoModel extends cuerpoMedicoClass{
         $this->CloseConnect();
     }
     
+    public function checkCuerpo(){
+        $idUser=$this->getId_usuario();
+        
+        $this->OpenConnect();
+        
+        //$sql = "CALL sp_find_user('$name','$password')";
+        $sql = "call spCheckCuerpoMedico($idUser)";
+        
+        $result = $this->link->query($sql);
+        
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+            return true;
+            
+        } else{
+            return false;
+        }
+        $this->CloseConnect();
+    }
+    
+    public function insertCuerpo(){
+        $this->OpenConnect();
+        
+        $direccion=$this->getDireccion();
+        $funcion=$this->getFuncion();
+        $tlf=$this->getTlf();
+        $idUsuario=$this->getId_usuario();
+        $idEquipo=$this->getId_equipo();// all the fields.....
+        
+        
+        $sql="call spInsertNewCuerpoMedico ('$funcion','$direccion','$tlf','$idEquipo','$idUsuario')";
+        $result= $this->link->query($sql);
+        
+        return $this->link->affected_rows;
+        
+        $this->CloseConnect();
+    }
+    
     
     /**
      * @return mixed
