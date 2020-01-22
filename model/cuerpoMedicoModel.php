@@ -135,6 +135,28 @@ class cuerpoMedicoModel extends cuerpoMedicoClass{
         $this->CloseConnect();
     }
     
+    public function insertCuerpoMedico()
+    {
+        $this->OpenConnect();
+        
+        
+        $funcion=$this->funcion;
+        $direccion=$this->direccion;
+        $tlf=$this->tlf;
+        $id_usuario=$this->id_usuario;
+        $id_equipo=$this->id_equipo;
+        
+        
+        
+        $sql="call spInsertNewCuerrpoMedico('$funcion','$direccion','$tlf','$id_usuario','$id_equipo')";
+        $result= $this->link->query($sql);
+        
+        return $this->link->affected_rows;
+        
+        $this->CloseConnect();
+        
+    }
+    
     
     /**
      * @return mixed

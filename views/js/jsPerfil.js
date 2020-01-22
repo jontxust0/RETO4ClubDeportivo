@@ -2,6 +2,8 @@ var savedFileBase64;
 var filename;
 var idUser;
 $(document).ready(function(){
+	
+	/*Cambiar imagen de perfil del usuario*/
 	$("#changeImg").click(function(){
 		$.ajax({
     	    type:"POST",
@@ -80,7 +82,7 @@ $(document).ready(function(){
 
 	
 	
-	
+	/*Buscar la id de inicio de sesion en la tabla de jugadores*/
 	$.ajax({
 	    type:"GET",
 	    url: "../controller/cPerfil.php", 
@@ -158,6 +160,7 @@ $(document).ready(function(){
 	        	
 	 },
 	    error : function(xhr) {
+	    	/*Buscar la id de inicio de sesion en la tabla de entrenadores*/
 	    	$.ajax({
 	    	    type:"GET",
 	    	    url: "../controller/cPerfilEntrenador.php", 
@@ -198,6 +201,7 @@ $(document).ready(function(){
 	    			$("#posicion").append(posicion);
 	    	 },
 	    	    error : function(xhr) {
+	    	    	/*Buscar la id de inicio de sesion en la tabla de cuerpo medico*/
 	    	    	$.ajax({
 	    	    	    type:"GET",
 	    	    	    url: "../controller/cPerfilCuerpoMedico.php", 
@@ -241,7 +245,7 @@ $(document).ready(function(){
 	    }
 	});
 	
-
+	/*Si el usuario es admin te lleva a la vista de admin*/
 	$('#admin').on('click', '#btnAdmin', function(e){
 		e.preventDefault();
 		e.stopPropagation();
@@ -249,6 +253,7 @@ $(document).ready(function(){
 		
 	});
 	
+	/*Elegir la foto que quieras*/
 	$("#file").change(function(){
 		
 		  let file = $("#file").prop("files")[0];

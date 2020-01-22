@@ -177,6 +177,29 @@ class entrenadoresModel extends entrenadoresClass{
         
     }
     
+    public function insertEntrenador()
+    {
+        $this->OpenConnect();
+        
+        $tlf=$this->tlf;
+        $direccion=$this->direccion;
+        $sueldo=$this->sueldo;
+        $fechaContratacion=$this->fechaContratacion;
+        $id_usuario=$this->id_usuario;
+        $id_equipo=$this->id_equipo;
+        
+        
+        
+        $sql="call spInsertNewEntrenador('$tlf','$direccion','$sueldo','$fechaContratacion','$id_usuario','$id_equipo')";
+        $result= $this->link->query($sql);
+        
+        return $this->link->affected_rows;
+        
+        $this->CloseConnect();
+        
+    }
+    
+    
     public function delete(){
         
         $this->OpenConnect();  // konexio zabaldu  - abrir conexión
