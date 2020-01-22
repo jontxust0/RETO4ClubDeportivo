@@ -2,6 +2,6 @@
 proyecto
 EL SERVIDOR DE BASES DE DATOS
 
-Direccion url: http://grupo3.dominios.fpz1920.com/phpmyadmin
+Direccion url: http://db.tres.fpz1920.com/index.php
 usuario: root
-cntraseña :2450Xpa23#8?
+cntraseña :JWB7)}rn)APTFE#VY$)A
