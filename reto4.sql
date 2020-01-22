@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-01-2020 a las 12:47:59
+-- Tiempo de generación: 22-01-2020 a las 08:43:13
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -281,6 +281,7 @@ INSERT INTO `equipos` (`id`, `femenino/masculino`, `nombre`, `id_categoria`) VAL
 CREATE TABLE `fotosequipo` (
   `id` int(11) NOT NULL,
   `privado` tinyint(1) NOT NULL DEFAULT 0,
+  `name` varchar(50) COLLATE utf8_bin NOT NULL,
   `pic` varchar(254) COLLATE utf8_bin NOT NULL,
   `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -289,8 +290,8 @@ CREATE TABLE `fotosequipo` (
 -- Volcado de datos para la tabla `fotosequipo`
 --
 
-INSERT INTO `fotosequipo` (`id`, `privado`, `pic`, `id_equipo`) VALUES
-(1, 0, 'img/imgPublico1.jpg', 1);
+INSERT INTO `fotosequipo` (`id`, `privado`, `name`, `pic`, `id_equipo`) VALUES
+(1, 0, '', 'img/imgPublico1.jpg', 1);
 
 -- --------------------------------------------------------
 
