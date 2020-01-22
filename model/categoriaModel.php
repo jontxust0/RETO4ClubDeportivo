@@ -50,8 +50,8 @@ class categoriaModel extends categoriaClass{
     public function setList(){
         $this->OpenConnect();
  
-        $id = $this->getId();
-        $sql="call spAllCategorias($id)";
+
+        $sql="call spAllCategorias()";
         $result= $this->link->query($sql);
         
         
@@ -66,6 +66,29 @@ class categoriaModel extends categoriaClass{
             $newEquipos->setId_categoria($new->getId());
             $newEquipos->setListByIdCategoria();
             $new->setArrEquipos($newEquipos->getList());
+            array_push($this->list, $new);
+            
+        }
+        
+        mysqli_free_result($result);
+        $this->CloseConnect();
+    }
+    
+    public function setCategoryList(){
+        $this->OpenConnect();
+        
+        $id = $this->getId();
+        $sql="call spAllCategorias($id)";
+        $result= $this->link->query($sql);
+        
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+            $new=new self();
+            
+            $new->setId($row["id"]);
+            $new->setNombre($row["nombre"]);
+            $new->setCuota($row["cuota"]);
             array_push($this->list, $new);
             
         }
@@ -147,6 +170,16 @@ class categoriaModel extends categoriaClass{
     
     return json_encode($arr);
     
+    }
+    function getCategoryListJsonString() {
+        $arr=array();
+        
+        foreach ($this->list as $object)
+        {
+            $vars = get_object_vars($object);
+            array_push($arr, $vars);
+        }
+        return json_encode($arr);
     }
 }
 ?>
