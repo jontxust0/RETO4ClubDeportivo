@@ -1,5 +1,7 @@
 
 $(document).ready(function(){
+	
+	/*Comprobar si hay alguien conectado*/
 	$.ajax({
 		type:"GET",
        	url: "controller/cValidarSesion.php", 
@@ -36,7 +38,7 @@ $(document).ready(function(){
    		}
 	});
 
-
+	/*Login del usuario*/
 	$("#login").click(function(){	
 		
 		
@@ -80,6 +82,70 @@ $(document).ready(function(){
 			});
 
 	});
+	
+	/*Registrar usuarios*/
+	
+	$('#register').on('click',function(){
+		var username=$('#username').val();
+		var password=$('#newPassword').val();
+		var name=$('#newName').val();
+		var surname=$('#surname').val();
+		var email=$('#email').val();
+		var admin=$('#admin').val();
+		
+
+		/*Username no puede ir vacio*/
+	    if (username == "") {
+	        alert("Escribe el usuario");
+
+	        return false;
+	        
+	        /*Password no puede ir vacio*/
+	    } else if (password == "") {
+	        alert("Escribe la contraseña");
+	        return false;
+	        
+	        /*Name no puede ir vacio*/
+	    }else if(name == ""){
+	        alert("Escribe el nombre");
+	        return false;
+	        
+	        /*Surname no puede ir vacio*/
+	    }else if(surname == ""){
+	        alert("Escribe el apellido");
+	        return false;
+	        
+	        /*Email no puede ir vacio y tiene que contener '@' y '.'*/
+	    }else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(email)) {
+	    	$.ajax({
+				type:"POST",
+				data:{'username':username, 'password':password,'name':name,'surname':surname,'email':email,'admin':admin},
+		       	url: "controller/cInsertNewUser.php", 
+		       	dataType:"json",
+		       	
+		    	success: function(result){  
+		
+		    		console.log(result);
+		    		alert("USER :"+username+"PASS :"+password+"ADMIN :"+admin+"name :"+name+"surname :"+surname+"email :"+email);
+		    		alert("number of inserted :"+result);
+		    		window.location.href="index.html";
+				},
+		       	error : function(xhr) {
+		   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
+		   		}
+			});
+	        return true
+	    } else {
+	        alert("La dirección de email es incorrecta.");
+	        return false;
+	    }
+		
+		
+		
+	});
+	
+	
+	/*Logout del usuario*/
 	$("#btnLogout").click(function(){	
 		
 		
@@ -99,36 +165,9 @@ $(document).ready(function(){
 
 	});
 	
-	$('#register').on('click',function(){
-		
-		var username=$('#username').val();
-		var password=$('#newPassword').val();
-		var name=$('#newName').val();
-		var surname=$('#surname').val();
-		var email=$('#email').val();
-		var admin=$('#admin').val();
-		
-		
-		$.ajax({
-			type:"POST",
-			data:{'username':username, 'password':password,'name':name,'surname':surname,'email':email,'admin':admin},
-	       	url: "controller/cInsertNewUser.php", 
-	       	dataType:"json",
-	       	
-	    	success: function(result){  
-	
-	    		console.log(result);
-	    		alert("USER :"+username+"PASS :"+password+"ADMIN :"+admin+"name :"+name+"surname :"+surname+"email :"+email);
-	    		alert("number of inserted :"+result);
-	    		//window.location.href="../index.html";
-			},
-	       	error : function(xhr) {
-	   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
-	   		}
-		});
-	});
 	
 	
+	/*Perfil del usuario*/
 	$('#btnUsuario').on('click', '#btnPerfil', function(){	
 		
 		window.location.href="views/vPerfil.html";
@@ -136,6 +175,7 @@ $(document).ready(function(){
 
 	});
 	
+	/*Votar con la id del usuario*/
 	$('#btnVotar').on('click', '#btnVotarMVP', function(){	
 		
 		window.location.href="views/vVotacion.html";
@@ -144,5 +184,8 @@ $(document).ready(function(){
 	});
 	
 	
+	
+	
 
 });
+

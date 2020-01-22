@@ -177,7 +177,7 @@
           
           <table class='table table-hover table-dark'>
             <tr>
-         
+              <th>ID</th>
               <th scope='col'>USUARIOS</th>
               <!-- <th scope='col'>CONTRASEÑA</th> -->
               <th scope='col'>NOMBRE</th>
@@ -185,7 +185,7 @@
               <th scope='col'>EMAIL</th>
             </tr>
             <tr ng-repeat="usuario in listaUsuarios| filter:TEXTObusqueda">
-           
+              <td class="id">{{usuario.idUser}}</td>
               <td>{{usuario.username}}</td>
               <!-- <td>{{usuario.password}}</td>  -->
               <td>{{usuario.name}}</td>
@@ -347,47 +347,37 @@
                     <select  class="selector form-control"  id="equipoSelect">
 
                     </select>
+                    <br>
                   <select class="selector form-control" id="exampleFormControlSelect1">
                     <option value="jugador">Jugador</option>
                     <option value="entrenador">Entrenador</option>
                     <option value="cuerpoMedico">Cuerpo Medico</option>
                   </select>
                   <br>
+                  Telefono:<br>
+                      <input type="text" id="insETelefono">
+                      <br>
+                      Dirección:<br>
+                      <input type="text" id="insEDireccion">
+                      <br>
                   <div class="inscribirseCategorias">
 
                     <div class="inscribirJugador">
-                      Dirección:<br>
-                      <input type="text" id="insJDireccion">
-                      <br>
+
                       Dorsal:<br>
                       <input type="text" id="insJDorsal">
                       <br>
                       Posición:<br>
                       <input type="text" id="insJPosicion">
                       <br>
-                      Telefono:<br>
-                      <input type="text" id="insJTelefono">
-                      <br>
                       Altura:<br>
                       <input type="text" id="insJAltura">
-                      <br>
-                      ID_Datos_Medicos:<br>
-                      <input type="text" id="insJIdDatosMedicos">
-                      <br>
-                      <br>
-                      ID_Usuario:<br>
-                      <input type="text" id="insJIdusuario">
                       <br>
                       <button id="inscribirJugadorButton" >Inscribirse</button>
 
                     </div>
                     <div class="inscribirEntrenador">
-                      Telefono:<br>
-                      <input type="text" id="insETelefono">
-                      <br>
-                      Dirección:<br>
-                      <input type="text" id="insEDireccion">
-                      <br>
+                      
                       Sueldo:<br>
                       <input type="text" id="insESueldo">
                       <br>
@@ -400,12 +390,6 @@
                     <div class="inscribirCuerpoMedico">
                       Función:<br>
                       <input type="text" id="insCMFuncion">
-                      <br>
-                      Dirección:<br>
-                      <input type="text" id="insCMDireccion">
-                      <br>
-                      Telefono:<br>
-                      <input type="text" id="insCMTelefono">
                       <br>
                       <button id="inscribirCuerpoButton" >Inscribirse</button>
                     </div>

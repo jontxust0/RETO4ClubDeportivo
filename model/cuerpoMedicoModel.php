@@ -165,7 +165,7 @@ class cuerpoMedicoModel extends cuerpoMedicoClass{
         $idEquipo=$this->getId_equipo();// all the fields.....
         
         
-        $sql="call spInsertNewCuerpoMedico ('$funcion','$direccion','$tlf','$idEquipo','$idUsuario')";
+        $sql="call spInsertNewCuerpoMedico ('$funcion','$direccion','$tlf','$idUsuario','$idEquipo')";
         $result= $this->link->query($sql);
         
         return $this->link->affected_rows;

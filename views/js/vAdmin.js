@@ -1,5 +1,6 @@
 
 $(document).ready(function(){
+
 	
 
 	$.ajax({
@@ -15,11 +16,18 @@ $(document).ready(function(){
 				
 			}
 			$("#equipoSelect").html(htmlzatia);
-
+			
+			$(".btnInsertUsuario").click(function () {
+				alert("aaa");
+				console.log($(this).siblings(".id"));
+			});
 
 			//inscribir como jugador 
-			$("inscribirJugadorButton").on("click", function(){
-
+			$("#inscribirCuerpoButton").on("click", function(){
+				var idEquipo = $("#equipoSelect").val();
+				var funcion= $("#insCMFuncion").val();
+				var direccion= $("#insCMDireccion").val();
+				var telefono= $("#insCMTelefono").val();
 			});
 
 			//-------------------------

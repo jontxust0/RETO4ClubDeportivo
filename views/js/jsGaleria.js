@@ -5,6 +5,7 @@ var idUser;
 
 $(document).ready(function(){
 	
+	/*Hace grande la imagen cuando le haces click*/
 	popup = {
 			   init: function(){
 			     
@@ -48,7 +49,7 @@ $(document).ready(function(){
     		
        		if (result !=0)
        		{
-       			
+       			/*Buscar la id de inicio de sesion en la tabla de jugadores*/
        			$.ajax({
        			    type:"GET",
        			    url: "../controller/cPerfil.php", 
@@ -59,7 +60,7 @@ $(document).ready(function(){
        			        console.log(result);
        			        
        			        var idEquipo=result.id_equipo;
-       			        
+       			        /*Saca las fotos de la galeria publica y las privadas del equipo al que pertenece*/
 	       			     $.ajax({
 	 	    	    	    type:"GET",
 	 	    	    	    data:{'idEquipo':idEquipo},
@@ -106,6 +107,7 @@ $(document).ready(function(){
        			        	
        			 },
        			    error : function(xhr) {
+       			    	/*Buscar la id de inicio de sesion en la tabla de entrenadores*/
        			    	$.ajax({
        			    	    type:"GET",
        			    	    url: "../controller/cPerfilEntrenador.php", 
@@ -114,7 +116,7 @@ $(document).ready(function(){
        			    	 success: function(result){
        			    		 	
 	       			    		var idEquipo=result.id_equipo;
-	           			        
+	       			    		/*Saca las fotos de la galeria publica y las privadas del equipo al que pertenece*/   
 	   	       			     $.ajax({
 	   	 	    	    	    type:"GET",
 	   	 	    	    	    data:{'idEquipo':idEquipo},
@@ -154,6 +156,7 @@ $(document).ready(function(){
 	   	 	    	    	});
        			    	 },
        			    	    error : function(xhr) {
+       			    	    	/*Buscar la id de inicio de sesion en la tabla de cuerpo medico*/
        			    	    	$.ajax({
        			    	    	    type:"GET",
        			    	    	    url: "../controller/cPerfilCuerpoMedico.php", 
@@ -164,7 +167,8 @@ $(document).ready(function(){
        			    	    	        console.log(result);
        			    	    	        
        			    	    	     var idEquipo=result.id_equipo;
-       		       			        
+       			    	    	     
+       			    	    	     /*Saca las fotos de la galeria publica y las privadas del equipo al que pertenece*/
        			       			     $.ajax({
        			 	    	    	    type:"GET",
        			 	    	    	    data:{'idEquipo':idEquipo},
@@ -216,7 +220,7 @@ $(document).ready(function(){
 
     			
        		} else {
-
+       			/*Saca las fotos de la galeria publica*/
        			$.ajax({
 	    	    	    type:"GET",
 	    	    	    url: "../controller/cGaleriaPublico.php", 
