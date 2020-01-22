@@ -72,7 +72,7 @@ app.controller('vAdminControlador', ['$scope', '$http', function ($scope, $http)
 
 }]);
 $( ".selector" ).change(function() {
-    alert( this.value);
+   
     if(this.value=="jugador"){
         $(".inscribirJugador").css("display", "block");
         $(".inscribirEntrenador").css("display", "none");

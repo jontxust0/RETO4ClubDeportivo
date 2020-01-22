@@ -287,6 +287,25 @@ class jugadoresModel extends jugadoresClass{
         
         $this->CloseConnect();
     }
+    public function checkJugador(){
+        $idUser=$this->getId_usuario();
+        
+        $this->OpenConnect();
+        
+        //$sql = "CALL sp_find_user('$name','$password')";
+        $sql = "call spCheckJugador($idUser)";
+        
+        $result = $this->link->query($sql);
+        
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+            return true;
+            
+        } else{
+            return false;
+        }
+        $this->CloseConnect();
+    }
     
     
     public function setRankingList(int $idCategoria){

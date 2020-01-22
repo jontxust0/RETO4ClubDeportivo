@@ -151,6 +151,26 @@ class entrenadoresModel extends entrenadoresClass{
         $this->CloseConnect();
     }
     
+    public function checkEntrenador(){
+        $idUser=$this->getId_usuario();
+        
+        $this->OpenConnect();
+        
+        //$sql = "CALL sp_find_user('$name','$password')";
+        $sql = "call spCheckEntrenadores($idUser)";
+        
+        $result = $this->link->query($sql);
+        
+        if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            
+            return true;
+            
+        } else{
+            return false;
+        }
+        $this->CloseConnect();
+    }
+    
     public function setEntrenadorById(){
         $id=$this->getId();
         $this->OpenConnect();
@@ -184,13 +204,12 @@ class entrenadoresModel extends entrenadoresClass{
         $tlf=$this->tlf;
         $direccion=$this->direccion;
         $sueldo=$this->sueldo;
-        $fechaContratacion=$this->fechaContratacion;
         $id_usuario=$this->id_usuario;
         $id_equipo=$this->id_equipo;
         
         
         
-        $sql="call spInsertNewEntrenador('$tlf','$direccion','$sueldo','$fechaContratacion','$id_usuario','$id_equipo')";
+        $sql="call spInsertNewEntrenador('$tlf','$direccion','$sueldo','$id_usuario','$id_equipo')";
         $result= $this->link->query($sql);
         
         return $this->link->affected_rows;

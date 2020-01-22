@@ -53,7 +53,7 @@
         <li class="nav-item ">
           <a class="nav-link" href="../index.html">Inicio <span class="sr-only"></span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="vPresentacion.html">Presentación <span class="sr-only">(current)</span></a>
         </li>
 
@@ -140,14 +140,16 @@
         <div>
           <table class='table table-hover table-dark'>
             <tr>
-           
+              <th scope='col'>NOMBRE</th>
+              <th scope='col'>APELLIDO</th>
               <th scope='col'>TELEFONO</th>
               <th scope='col'>DIRECCION</th>
               <th scope='col'>SUELDO</th>
               <th scope='col'>FECHA CONTRATACION</th>
             </tr>
             <tr ng-repeat="entrenador in listaEntrenadores| filter:TEXTObusqueda">
-              
+              <td>{{entrenador.objUser.name}}</td>
+              <td>{{entrenador.objUser.surname}}</td>
               <td>{{entrenador.tlf}}</td>
               <td>{{entrenador.direccion}}</td>
               <td>{{entrenador.sueldo}}</td>
@@ -355,23 +357,23 @@
                   </select>
                   <br>
                   Telefono:<br>
-                      <input type="text" id="insETelefono">
+                      <input type="text" id="insTelefono" class="form-control">
                       <br>
                       Dirección:<br>
-                      <input type="text" id="insEDireccion">
+                      <input type="text" id="insDireccion" class="form-control">
                       <br>
                   <div class="inscribirseCategorias">
 
                     <div class="inscribirJugador">
 
                       Dorsal:<br>
-                      <input type="text" id="insJDorsal">
+                      <input type="text" id="insJDorsal" class="form-control">
                       <br>
                       Posición:<br>
-                      <input type="text" id="insJPosicion">
+                      <input type="text" id="insJPosicion" class="form-control">
                       <br>
                       Altura:<br>
-                      <input type="text" id="insJAltura">
+                      <input type="text" id="insJAltura" class="form-control">
                       <br>
                       <button id="inscribirJugadorButton" >Inscribirse</button>
 
@@ -379,17 +381,14 @@
                     <div class="inscribirEntrenador">
                       
                       Sueldo:<br>
-                      <input type="text" id="insESueldo">
-                      <br>
-                      Fecha Contratación:<br>
-                      <input type="text" id="insEFechaContratacion">
+                      <input type="text" id="insESueldo" class="form-control">
                       <br>
                       <button id="inscribirEntrenadorButton" >Inscribirse</button>
 
                     </div>
                     <div class="inscribirCuerpoMedico">
                       Función:<br>
-                      <input type="text" id="insCMFuncion">
+                      <input type="text" id="insCMFuncion" class="form-control">
                       <br>
                       <button id="inscribirCuerpoButton" >Inscribirse</button>
                     </div>

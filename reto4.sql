@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-01-2020 a las 14:51:27
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Tiempo de generación: 22-01-2020 a las 21:06:26
+-- Versión del servidor: 10.1.40-MariaDB
+-- Versión de PHP: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -56,6 +56,12 @@ SELECT * FROM votos$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spCheckCuerpoMedico` (IN `inId` INT)  NO SQL
 SELECT * FROM `cuerpomedico` WHERE inId=id_usuario$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spCheckEntrenadores` (IN `inId` INT)  NO SQL
+SELECT * FROM entrenadores WHERE inId=id_usuario$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spCheckJugador` (IN `inId` INT)  NO SQL
+SELECT * FROM jugadores WHERE inId=id_usuario$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spCheckVote` (IN `idUser` INT, IN `idCat` INT)  NO SQL
 SELECT * FROM `votos` WHERE id_usuario=idUser AND id_categoria=idCat$$
@@ -112,9 +118,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertNewCuerpoMedico` (IN `pFunc
 INSERT INTO cuerpomedico(cuerpomedico.funcion,cuerpomedico.direccion,cuerpomedico.tlf,cuerpomedico.id_usuario,cuerpomedico.id_equipo) VALUES
 (pFuncion,pDireccion,pTlf,pIdUsuario,pIdEquipo)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertNewEntrenador` (IN `pTlf` VARCHAR(50), IN `pDireccion` VARCHAR(100), IN `pSueldo` DECIMAL, IN `pFechaContratacion` DECIMAL, IN `pIdUsuario` INT, IN `pIdEquipo` INT)  NO SQL
-INSERT INTO entrenadores(entrenadores.tlf,entrenadores.direccion,entrenadores.sueldo,entrenadores.fechaContratacion,entrenadores.id_usuario,entrenadores.id_equipo) VALUES
-(pTlf,pDireccion,pSueldo,pFechaContratacion,pIdUsuario,pIdEquipo)$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertNewEntrenador` (IN `pTlf` VARCHAR(50), IN `pDireccion` VARCHAR(100), IN `pSueldo` DECIMAL, IN `pIdUsuario` INT, IN `pIdEquipo` INT)  NO SQL
+INSERT INTO entrenadores(entrenadores.tlf,entrenadores.direccion,entrenadores.sueldo,entrenadores.id_usuario,entrenadores.id_equipo) VALUES
+(pTlf,pDireccion,pSueldo,pIdUsuario,pIdEquipo)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spInsertNewJugador` (IN `pDireccion` VARCHAR(100), IN `pDorsal` INT, IN `pPosicion` VARCHAR(50), IN `pTlf` VARCHAR(50), IN `pAltura` DECIMAL, IN `pIdDatosMedico` INT, IN `pIdUsuario` INT, IN `pIdEquipo` INT)  NO SQL
 INSERT INTO jugadores(jugadores.direccion,jugadores.dorsal,jugadores.posicion,jugadores.tlf,jugadores.altura,jugadores.id_datosMedicos,jugadores.id_usuario, jugadores.id_equipo) VALUES
@@ -203,7 +209,9 @@ INSERT INTO `cuerpomedico` (`id`, `funcion`, `direccion`, `tlf`, `id_usuario`, `
 (5, 'Fisio', 'Bilbao', '686546012', 17, 2),
 (6, 'Psicologo', 'Bermeo', '66513442', 22, 3),
 (7, 'Fisio', 'Gernika', '662109803', 21, 3),
-(8, 'Psicologo', 'Zornotza', '634999022', 20, 2);
+(8, 'Psicologo', 'Zornotza', '634999022', 20, 2),
+(9, 'dasasd', 'dassda', 'fddsa', 1, 1),
+(10, 'dasdsa', '13231', '12312', 7, 1);
 
 -- --------------------------------------------------------
 
@@ -224,8 +232,7 @@ CREATE TABLE `datosmedicos` (
 --
 
 INSERT INTO `datosmedicos` (`id`, `lesiones`, `tipoSangre`, `enfermedades`, `id_jugador`) VALUES
-(1, 'Rotura de femur', 'B-', 'Asma', 2),
-(2, 'Traumatismo leve', 'B-', 'Ninguna', 3);
+(1, 'Rotura de femur', 'B-', 'Asma', 2);
 
 -- --------------------------------------------------------
 
@@ -238,7 +245,7 @@ CREATE TABLE `entrenadores` (
   `tlf` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
   `direccion` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `sueldo` decimal(10,0) NOT NULL,
-  `fechaContratacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `fechaContratacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_usuario` int(11) DEFAULT NULL,
   `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -251,7 +258,8 @@ INSERT INTO `entrenadores` (`id`, `tlf`, `direccion`, `sueldo`, `fechaContrataci
 (1, '652632452', 'Bermeo', '2005', '2019-12-18 07:41:18', 2, 1),
 (3, '644120334', 'Bilbao', '2500', '2019-12-20 08:00:08', 14, 3),
 (7, '655172879', 'Zornotza', '2900', '2019-12-19 13:30:45', 23, 2),
-(8, '123123123', 'Lekeitio', '0', '2019-12-20 08:01:15', 4, 1);
+(8, '123123123', 'Lekeitio', '0', '2019-12-20 08:01:15', 4, 1),
+(10, '12312', '13231', '12', '2020-01-22 20:04:46', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -283,7 +291,7 @@ INSERT INTO `equipos` (`id`, `femenino/masculino`, `nombre`, `id_categoria`) VAL
 
 CREATE TABLE `fotosequipo` (
   `id` int(11) NOT NULL,
-  `privado` tinyint(1) NOT NULL DEFAULT 0,
+  `privado` tinyint(1) NOT NULL DEFAULT '0',
   `name` varchar(50) COLLATE utf8_bin NOT NULL,
   `pic` varchar(254) COLLATE utf8_bin NOT NULL,
   `id_equipo` int(11) NOT NULL
@@ -321,7 +329,6 @@ CREATE TABLE `jugadores` (
 INSERT INTO `jugadores` (`id`, `direccion`, `dorsal`, `posicion`, `tlf`, `altura`, `id_datosMedicos`, `id_usuario`, `id_equipo`) VALUES
 (1, 'Avenida Sin Nombre ', 12, 'medio', '94654654', '1.59', 1, 2, 1),
 (2, 'Avenida Ceda el paso', 14, 'alero', '123123123', '1.90', 2, 3, 2),
-(3, 'Calle Falsa 123', 99, 'central', '666666666', '1.00', NULL, 1, 2),
 (4, 'Planeta Tsufur', 17, 'Defensa', '666345123', '1.70', NULL, 7, 3),
 (5, 'Even green Terrace 10', 19, 'Alero', '689002792', '1.64', NULL, 9, 2),
 (6, 'Elk river', 66, 'alero', '644420925', '1.74', NULL, 11, 2),
@@ -332,7 +339,8 @@ INSERT INTO `jugadores` (`id`, `direccion`, `dorsal`, `posicion`, `tlf`, `altura
 (12, 'Gamiz-Fika', 12, 'Defensa', '1.72', '1.00', 2, 25, 1),
 (13, 'Bermeo', 7, 'Delantero', '662879001', '1.79', 1, 28, 3),
 (14, 'Zornotza', 9, 'Defensa', '662012366', '1.76', 1, 25, 2),
-(15, 'Bermeo', 6, 'Alero', '66298772', '1.76', 2, 25, 2);
+(15, 'Bermeo', 6, 'Alero', '66298772', '1.76', 2, 25, 2),
+(24, 'dsadsaads', 0, 'asdsda', 'dsasddsa', '1.00', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -428,6 +436,14 @@ CREATE TABLE `votos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
+-- Volcado de datos para la tabla `votos`
+--
+
+INSERT INTO `votos` (`id`, `id_usuario`, `id_categoria`, `id_jugadorVotado`) VALUES
+(29, 3, 3, 1),
+(30, 3, 4, 6);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -518,7 +534,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `cuerpomedico`
 --
 ALTER TABLE `cuerpomedico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `datosmedicos`
@@ -530,7 +546,7 @@ ALTER TABLE `datosmedicos`
 -- AUTO_INCREMENT de la tabla `entrenadores`
 --
 ALTER TABLE `entrenadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
@@ -548,7 +564,7 @@ ALTER TABLE `fotosequipo`
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `quejas`
@@ -566,7 +582,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `votos`
 --
 ALTER TABLE `votos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Restricciones para tablas volcadas
