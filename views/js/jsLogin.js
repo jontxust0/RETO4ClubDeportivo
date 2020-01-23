@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$.ajax({
 		type:"GET",
-       	url: "../controller/cValidarSesion.php", 
+       	url: "http://tres.fpz1920.com/controller/cValidarSesion.php", 
        	dataType:"text",
     	success: function(result){ 
     		
@@ -46,7 +46,7 @@ $(document).ready(function(){
 			$.ajax({
 				type:"GET",
 				data:{'name':name,'password':password},
-		       	url: "../controller/cSessionVars.php", 
+		       	url: "http://tres.fpz1920.com/controller/cSessionVars.php", 
 		       	dataType:"text",
 		    	success: function(result){ 
 		    		
@@ -83,7 +83,7 @@ $(document).ready(function(){
 		
 		
 		$.ajax({
-	       	url: "../controller/cSessionLogout.php", 
+	       	url: "http://tres.fpz1920.com/controller/cSessionLogout.php", 
 	       	dataType:"text",
 	    	success: function(result){  
 	       		
@@ -111,7 +111,7 @@ $(document).ready(function(){
 		$.ajax({
 			type:"POST",
 			data:{'username':username, 'password':password,'name':name,'surname':surname,'email':email,'admin':admin},
-	       	url: "../controller/cInsertNewUser.php", 
+	       	url: "http://tres.fpz1920.com/controller/cInsertNewUser.php", 
 	       	dataType:"json",
 	       	
 	    	success: function(result){  

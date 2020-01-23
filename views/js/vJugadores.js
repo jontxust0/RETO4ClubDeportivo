@@ -46,7 +46,7 @@ $(document).ready(function(){
 	$.ajax({
         type: "GET",
 		//url: "http://192.168.56.1:3000/controller/cMostrarEquipos.php",
-		url: "../controller/cMostrarEquipos.php",
+		url: "http://tres.fpz1920.com/controller/cMostrarEquipos.php",
         dataType: "json",  //type of the result
     	success: function(result){
 			   console.log(result);
@@ -154,7 +154,7 @@ $(document).ready(function(){
 			//si el tipo es 3 entonces es el cuerpo medico
 			$.ajax({
 				type: "GET",
-				url: "../controller/cMostrarDatos.php",
+				url: "http://tres.fpz1920.com/controller/cMostrarDatos.php",
 				dataType: "json",  //type of the result
 				data: { "id": id, "tipo":tipo},
 				success: function(result){

@@ -2,7 +2,7 @@ $(document).ready(function(){
     $.ajax({
         type:"GET",
         
-       	url: "../controller/cMostrarCategorias.php", 
+       	url: "http://tres.fpz1920.com/controller/cMostrarCategorias.php", 
        	dataType:"JSON",
     	success: function(result){ 
             htmlcategorias="";

@@ -8,7 +8,7 @@ $(document).ready(function(){
 		$.ajax({
     	    type:"POST",
     	    data:{ 'idUser':idUser, 'filename':filename,'savedFileBase64':savedFileBase64},
-    	    url: "../controller/cUpadeteFotoPerfil.php", 
+    	    url: "http://tres.fpz1920.com/controller/cUpadeteFotoPerfil.php", 
     	    dataType: "json",  //type of the result
     	    
     	 success: function(result){
@@ -26,7 +26,7 @@ $(document).ready(function(){
 	   
 	});
 	$.ajax({
-       	url: "../controller/cSessionVerVars.php", 
+       	url: "http://tres.fpz1920.com/controller/cSessionVerVars.php", 
        	dataType:"json",
     	success: function(result){ 
     		
@@ -85,7 +85,7 @@ $(document).ready(function(){
 	/*Buscar la id de inicio de sesion en la tabla de jugadores*/
 	$.ajax({
 	    type:"GET",
-	    url: "../controller/cPerfil.php", 
+	    url: "http://tres.fpz1920.com/controller/cPerfil.php", 
 	    dataType: "json",  //type of the result
 	    
 	 success: function(result){
@@ -163,7 +163,7 @@ $(document).ready(function(){
 	    	/*Buscar la id de inicio de sesion en la tabla de entrenadores*/
 	    	$.ajax({
 	    	    type:"GET",
-	    	    url: "../controller/cPerfilEntrenador.php", 
+	    	    url: "http://tres.fpz1920.com/controller/cPerfilEntrenador.php", 
 	    	    dataType: "json",  //type of the result
 	    	    
 	    	 success: function(result){
@@ -204,7 +204,7 @@ $(document).ready(function(){
 	    	    	/*Buscar la id de inicio de sesion en la tabla de cuerpo medico*/
 	    	    	$.ajax({
 	    	    	    type:"GET",
-	    	    	    url: "../controller/cPerfilCuerpoMedico.php", 
+	    	    	    url: "http://tres.fpz1920.com/controller/cPerfilCuerpoMedico.php", 
 	    	    	    dataType: "json",  //type of the result
 	    	    	    
 	    	    	 success: function(result){

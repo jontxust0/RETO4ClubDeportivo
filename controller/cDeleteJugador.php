@@ -1,5 +1,4 @@
 <?php
-
 include_once ("../model/jugadoresModel.php");
 
 $jugador=new jugadoresModel();

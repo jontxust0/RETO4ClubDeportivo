@@ -1,5 +1,4 @@
 <?php
-
 include_once ("../model/entrenadoresModel.php");
 
 $entrenador=new entrenadoresModel();

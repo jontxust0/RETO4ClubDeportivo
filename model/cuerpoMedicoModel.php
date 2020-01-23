@@ -197,6 +197,31 @@ class cuerpoMedicoModel extends cuerpoMedicoClass{
         $this->CloseConnect();
     }
     
+    public function Update(){
+        
+        $this->OpenConnect();  // konexio zabaldu  - abrir conexión
+        
+        $id=$this->getId();
+        $funcion=$this->getFuncion();
+        $direccion=$this->getDireccion();
+        $tlf=$this->getTlf();
+
+        
+        
+        
+        $sql="CALL spUpdateCuerpoMedico('$id','$funcion','$direccion','$tlf')";
+        
+        $numFilas=$this->link->query($sql);
+        
+        if ($numFilas>=1){
+            return "cambiado";
+        } else {
+            return "Error al cambiar".$sql.print_r($numFilas,true);
+        }
+        
+        $this->CloseConnect();
+    }
+    
     
     /**
      * @return mixed

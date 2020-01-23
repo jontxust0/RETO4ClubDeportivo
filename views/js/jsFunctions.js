@@ -1,10 +1,25 @@
 
 $(document).ready(function(){
 	
+	/*Comprobar si hay PHPSESSID*/
+	/*phpSessId = (localStorage.getItem('PHPSESSID') || '');
+    
+    if (phpSessId.length!==26) // session id has 26 characters
+    {
+        $("#divLoginForm").show();
+        $("#divLogout").hide();
+    } else
+    {
+        checkSession();
+    }*/
+	
 	/*Comprobar si hay alguien conectado*/
+	
+	PHPSESSID = localStorage.getItem('PHPSESSID');
 	$.ajax({
 		type:"GET",
-       	url: "controller/cValidarSesion.php", 
+		data: {PHPSESSID: PHPSESSID},
+       	url: "http://tres.fpz1920.com/controller/cValidarSesion.php", 
        	dataType:"text",
     	success: function(result){ 
     		
@@ -49,7 +64,7 @@ $(document).ready(function(){
 			$.ajax({
 				type:"GET",
 				data:{'name':name,'password':password},
-		       	url: "controller/cSessionVars.php", 
+		       	url: "http://tres.fpz1920.com/controller/cSessionVars.php", 
 		       	dataType:"text",
 		    	success: function(result){ 
 		    		
@@ -58,7 +73,7 @@ $(document).ready(function(){
 		       		if (result !=0)
 		       		{
 		       			alert("Sesion iniciada")
-		       			
+		       			localStorage.setItem('PHPSESSID', result);
 		       			newRow="";
 		
 		    			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0 '>"+result+"</button>";
@@ -120,7 +135,7 @@ $(document).ready(function(){
 	    	$.ajax({
 				type:"POST",
 				data:{'username':username, 'password':password,'name':name,'surname':surname,'email':email,'admin':admin},
-		       	url: "controller/cInsertNewUser.php", 
+		       	url: "http://tres.fpz1920.com/controller/cInsertNewUser.php", 
 		       	dataType:"json",
 		       	
 		    	success: function(result){  
@@ -150,7 +165,7 @@ $(document).ready(function(){
 		
 		
 		$.ajax({
-	       	url: "controller/cSessionLogout.php", 
+	       	url: "http://tres.fpz1920.com/controller/cSessionLogout.php", 
 	       	dataType:"text",
 	    	success: function(result){  
 	       		

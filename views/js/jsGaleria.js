@@ -41,7 +41,7 @@ $(document).ready(function(){
 			 popup.init()
 	
 	$.ajax({
-       	url: "../controller/cSessionVerVars.php", 
+       	url: "http://tres.fpz1920.com/controller/cSessionVerVars.php", 
        	dataType:"json",
     	success: function(result){ 
     		
@@ -52,7 +52,7 @@ $(document).ready(function(){
        			/*Buscar la id de inicio de sesion en la tabla de jugadores*/
        			$.ajax({
        			    type:"GET",
-       			    url: "../controller/cPerfil.php", 
+       			    url: "http://tres.fpz1920.com/controller/cPerfil.php", 
        			    dataType: "json",  //type of the result
        			    
        			 success: function(result){
@@ -64,7 +64,7 @@ $(document).ready(function(){
 	       			     $.ajax({
 	 	    	    	    type:"GET",
 	 	    	    	    data:{'idEquipo':idEquipo},
-	 	    	    	    url: "../controller/cGaleria.php", 
+	 	    	    	    url: "http://tres.fpz1920.com/controller/cGaleria.php", 
 	 	    	    	    dataType: "json",  //type of the result
 	 	    	    	    
 	 	    	    	 success: function(result){
@@ -110,7 +110,7 @@ $(document).ready(function(){
        			    	/*Buscar la id de inicio de sesion en la tabla de entrenadores*/
        			    	$.ajax({
        			    	    type:"GET",
-       			    	    url: "../controller/cPerfilEntrenador.php", 
+       			    	    url: "http://tres.fpz1920.com/controller/cPerfilEntrenador.php", 
        			    	    dataType: "json",  //type of the result
        			    	    
        			    	 success: function(result){
@@ -120,7 +120,7 @@ $(document).ready(function(){
 	   	       			     $.ajax({
 	   	 	    	    	    type:"GET",
 	   	 	    	    	    data:{'idEquipo':idEquipo},
-	   	 	    	    	    url: "../controller/cGaleria.php", 
+	   	 	    	    	    url: "http://tres.fpz1920.com/controller/cGaleria.php", 
 	   	 	    	    	    dataType: "json",  //type of the result
 	   	 	    	    	    
 	   	 	    	    	 success: function(result){
@@ -159,7 +159,7 @@ $(document).ready(function(){
        			    	    	/*Buscar la id de inicio de sesion en la tabla de cuerpo medico*/
        			    	    	$.ajax({
        			    	    	    type:"GET",
-       			    	    	    url: "../controller/cPerfilCuerpoMedico.php", 
+       			    	    	    url: "http://tres.fpz1920.com/controller/cPerfilCuerpoMedico.php", 
        			    	    	    dataType: "json",  //type of the result
        			    	    	    
        			    	    	 success: function(result){
@@ -172,7 +172,7 @@ $(document).ready(function(){
        			       			     $.ajax({
        			 	    	    	    type:"GET",
        			 	    	    	    data:{'idEquipo':idEquipo},
-       			 	    	    	    url: "../controller/cGaleria.php", 
+       			 	    	    	    url: "http://tres.fpz1920.com/controller/cGaleria.php", 
        			 	    	    	    dataType: "json",  //type of the result
        			 	    	    	    
        			 	    	    	 success: function(result){
@@ -210,7 +210,33 @@ $(document).ready(function(){
        			    	    		
        			    	    	 },
        			    	    	    error : function(xhr) {
-       			    	    	        alert("An error occured: " + xhr.status + " " + xhr.statusText);
+       			    	    	    	$.ajax({
+       			 	    	    	    type:"GET",
+       			 	    	    	    url: "http://tres.fpz1920.com/controller/cGaleriaPublico.php", 
+       			 	    	    	    dataType: "json",  //type of the result
+       			 	    	    	    
+       			 	    	    	 success: function(result){
+
+       			 	    	    		 for($i=0; $i<result.length; $i++){
+       			 	 	    	    	    	newrowImg="";
+       			 	 	    	    	    	newrowImg="<figure><img src='"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
+       			 		 	    	    	   
+       			 		 	    	    	    $("#galeriaPublica").append(newrowImg);
+       			 		 	    	    	    
+       			 		 	    	    	   
+       			 	 	    	    	    }
+       			 	    	    		 $('figure').click(function(){
+       			 	 	    	    		   popup.open($(this));
+       			 	 	   			     	});
+       			 	    	    		 
+       			 	    	    		 newrow="";
+       			 	    	    		 newrow="<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' style='display:none;'><symbol id='close' viewBox='0 0 18 18'><path fill-rule='evenodd' clip-rule='evenodd' fill='#FFFFFF' d='M9,0.493C4.302,0.493,0.493,4.302,0.493,9S4.302,17.507,9,17.507S17.507,13.698,17.507,9S13.698,0.493,9,0.493z M12.491,11.491c0.292,0.296,0.292,0.773,0,1.068c-0.293,0.295-0.767,0.295-1.059,0l-2.435-2.457L6.564,12.56c-0.292,0.295-0.766,0.295-1.058,0c-0.292-0.295-0.292-0.772,0-1.068L7.94,9.035L5.435,6.507c-0.292-0.295-0.292-0.773,0-1.068c0.293-0.295,0.766-0.295,1.059,0l2.504,2.528l2.505-2.528c0.292-0.295,0.767-0.295,1.059,0s0.292,0.773,0,1.068l-2.505,2.528L12.491,11.491z'/></symbol></svg>";
+       			 	    	    		 $("#svg").append(newrow);
+       			 	    	    	 },
+       			 	    	    	    error : function(xhr) {
+       			 	    	    	        alert("An error occured: " + xhr.status + " " + xhr.statusText);
+       			 	    	    	    }
+       			 	    	    	});
        			    	    	    }
        			    	    	});
        			    	    }
@@ -223,7 +249,7 @@ $(document).ready(function(){
        			/*Saca las fotos de la galeria publica*/
        			$.ajax({
 	    	    	    type:"GET",
-	    	    	    url: "../controller/cGaleriaPublico.php", 
+	    	    	    url: "http://tres.fpz1920.com/controller/cGaleriaPublico.php", 
 	    	    	    dataType: "json",  //type of the result
 	    	    	    
 	    	    	 success: function(result){

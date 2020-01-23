@@ -58,6 +58,10 @@ app.controller('vAdminControlador', ['$scope', '$http', function ($scope, $http)
     $scope.deleteFunctionCuerpo =function (cuerpo, $index) {
         deleteCuerpo(cuerpo.id);        
     }
+    
+    $scope.updateFunctionCuerpo =function (cuerpo, $index) {
+        updateCuerpo(cuerpo.id);        
+    }
 
     $scope.deleteFunctionJugadores = function (jugadores, $index) {
         deletejugador(jugadores.id);
@@ -385,5 +389,49 @@ function updateusuarios(usuario) {
     $('#emailUpdate').val(email);
 
 }
+
+
+//update cuerpoMedico
+function updateCuerpo(cuerpo) {
+    id = cuerpo.id;
+    funcion = cuerpo.funcion;
+    direccion = cuerpo.direccion;
+    tlf = cuerpo.tlf;
+
+
+    $('#idUpdateCuerpo').val(id);
+    $('#funcionUpdateCuerpo').val(direccion);
+    $('#direccionUpdateCuerpo').val(dorsal);
+    $('#tlfUpdateCuerpo').val(posicion);
+    
+}
+
+$("#btnExecUpdateCuerpo").click(function(){
+
+    var id=$('#idUpdateCuerpo').val();
+    var funcion=$('#funcionUpdateCuerpo').val();
+    var direccion=$('#direccionUpdateCuerpo').val();
+    var tlf=$('#tlfUpdateCuerpo').val();
+   
+
+      $.ajax({
+           type: "GET",
+           data:{ 'id':id, 'funcion':funcion, 'direccion':direccion, 'tlf':tlf},
+           url: "../controller/cUpdateCuerpoMedico.php", 
+           dataType: "text",  //type of the result
+           success: function(result){  
+               
+               console.log(result);
+               location.reload(true);  //recarga la pagina
+               
+               //Boton delete
+            
+           },
+           error : function(xhr) {
+               alert("An error occured: " + xhr.status + " " + xhr.statusText);
+           }
+    });
+          
+ });
 
   

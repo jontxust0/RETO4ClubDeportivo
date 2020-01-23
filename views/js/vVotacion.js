@@ -2,7 +2,7 @@
 $(document).ready(function(){
  $.ajax({
             type:"GET",
-        	url: "../controller/cVotar.php", 
+        	url: "http://tres.fpz1920.com/controller/cVotar.php", 
         	dataType:"json",
      	success: function(result){
         		console.log(result)
@@ -97,7 +97,7 @@ $(document).ready(function(){
 				$.ajax({
 					type:"GET",
 					data:{'arrCategorias':JSON.stringify(arrCategorias),'arrJugadores':JSON.stringify(arrJugadores)},
-					   url: "../controller/cInsertVotos.php", 
+					   url: "http://tres.fpz1920.com/controller/cInsertVotos.php", 
 					   dataType:"text",
 					success: function(result){ 
 						console.log(result);

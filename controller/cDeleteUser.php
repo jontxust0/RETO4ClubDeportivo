@@ -1,5 +1,4 @@
 <?php
-
 include_once ("../model/userModel.php");
 
 $usuario=new userModel();
