@@ -196,6 +196,21 @@ class cuerpoMedicoModel extends cuerpoMedicoClass{
         
         $this->CloseConnect();
     }
+    public function deleteCuerpo(){
+        $this->OpenConnect();
+        $id = $this->getId();
+        
+        $sql="call spDeleteCuerpo($id)";
+        $numFilas=$this->link->query($sql);
+        
+        if ($numFilas>=1)
+        {
+            echo "borrado";
+        } else {
+            echo "Error al borrar";
+        }
+        $this->CloseConnect();
+    }
     
     
     /**

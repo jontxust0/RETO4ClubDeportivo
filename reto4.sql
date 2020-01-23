@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-01-2020 a las 13:53:32
+-- Tiempo de generación: 23-01-2020 a las 14:49:00
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -68,6 +68,9 @@ SELECT * FROM jugadores WHERE inId=id_usuario$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spCheckVote` (IN `idUser` INT, IN `idCat` INT)  NO SQL
 SELECT * FROM `votos` WHERE id_usuario=idUser AND id_categoria=idCat$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spDeleteCuerpo` (IN `inId` INT)  NO SQL
+DELETE FROM `cuerpomedico` WHERE inId=`id`$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spDeleteEntrenador` (IN `pId` INT)  NO SQL
 DELETE FROM entrenadores WHERE entrenadores.id=pId$$
@@ -139,6 +142,11 @@ INSERT INTO `votos`( `id_usuario`, `id_categoria`, `id_jugadorVotado`) VALUES (i
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spRankingByIdCategoria` (IN `inId` INT)  NO SQL
 SELECT jugadores.id, jugadores.direccion, jugadores.dorsal, jugadores.posicion, jugadores.tlf, jugadores.altura, jugadores.id_datosMedicos, jugadores.id_usuario, jugadores.id_equipo, COUNT(votos.id_jugadorVotado) AS votos FROM jugadores JOIN votos ON jugadores.id = votos.id_jugadorVotado WHERE votos.id_categoria = inId GROUP BY votos.id_jugadorVotado ORDER BY votos DESC$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateCuerpoMedico` (IN `pId` INT, IN `pFuncion` VARCHAR(50), IN `pDireccion` VARCHAR(50), IN `pTlf` INT)  NO SQL
+UPDATE cuerpomedico
+SET cuerpomedico.id = pId, cuerpomedico.funcion = pFuncion,cuerpomedico.direccion=pDireccion,cuerpomedico.tlf=pTlf
+WHERE cuerpomedico.id=pId$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateEntrenador` (IN `pId` INT, IN `pTlf` VARCHAR(50), IN `pDireccion` VARCHAR(100), IN `pSueldo` DECIMAL, IN `pFechaContratacion` TIMESTAMP)  NO SQL
 UPDATE entrenadores
 SET entrenadores.id = pId, entrenadores.tlf = pTlf,entrenadores.direccion=pDireccion,entrenadores.sueldo=pSueldo,
@@ -207,7 +215,6 @@ CREATE TABLE `cuerpomedico` (
 --
 
 INSERT INTO `cuerpomedico` (`id`, `funcion`, `direccion`, `tlf`, `id_usuario`, `id_equipo`) VALUES
-(1, 'Fisio', 'Lekeitio', '658965478', 18, 1),
 (4, 'Psicologo', 'Durango', '667123907', 19, 1),
 (5, 'Fisio', 'Bilbao', '686546012', 17, 2),
 (6, 'Psicologo', 'Bermeo', '66513442', 22, 3),
