@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-01-2020 a las 21:06:26
--- Versión del servidor: 10.1.40-MariaDB
--- Versión de PHP: 7.3.5
+-- Tiempo de generación: 23-01-2020 a las 13:53:32
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,6 +32,9 @@ from user$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllCategorias` ()  NO SQL
 SELECT * FROM categorias$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllCuerpoMedico` ()  NO SQL
+SELECT * FROM cuerpomedico$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spAllEntrenadores` ()  NO SQL
 SELECT * FROM entrenadores$$
@@ -210,8 +213,8 @@ INSERT INTO `cuerpomedico` (`id`, `funcion`, `direccion`, `tlf`, `id_usuario`, `
 (6, 'Psicologo', 'Bermeo', '66513442', 22, 3),
 (7, 'Fisio', 'Gernika', '662109803', 21, 3),
 (8, 'Psicologo', 'Zornotza', '634999022', 20, 2),
-(9, 'dasasd', 'dassda', 'fddsa', 1, 1),
-(10, 'dasdsa', '13231', '12312', 7, 1);
+(9, '123', 'dsads', '12312', 2, 1),
+(10, 'asdsa', 'adssda', 'adsdas', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -245,7 +248,7 @@ CREATE TABLE `entrenadores` (
   `tlf` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
   `direccion` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `sueldo` decimal(10,0) NOT NULL,
-  `fechaContratacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fechaContratacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_usuario` int(11) DEFAULT NULL,
   `id_equipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -255,11 +258,10 @@ CREATE TABLE `entrenadores` (
 --
 
 INSERT INTO `entrenadores` (`id`, `tlf`, `direccion`, `sueldo`, `fechaContratacion`, `id_usuario`, `id_equipo`) VALUES
-(1, '652632452', 'Bermeo', '2005', '2019-12-18 07:41:18', 2, 1),
 (3, '644120334', 'Bilbao', '2500', '2019-12-20 08:00:08', 14, 3),
 (7, '655172879', 'Zornotza', '2900', '2019-12-19 13:30:45', 23, 2),
 (8, '123123123', 'Lekeitio', '0', '2019-12-20 08:01:15', 4, 1),
-(10, '12312', '13231', '12', '2020-01-22 20:04:46', 1, 1);
+(9, 'sdasdds', 'dsadasdsa', '12', '2020-01-23 09:40:56', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -291,7 +293,7 @@ INSERT INTO `equipos` (`id`, `femenino/masculino`, `nombre`, `id_categoria`) VAL
 
 CREATE TABLE `fotosequipo` (
   `id` int(11) NOT NULL,
-  `privado` tinyint(1) NOT NULL DEFAULT '0',
+  `privado` tinyint(1) NOT NULL DEFAULT 0,
   `name` varchar(50) COLLATE utf8_bin NOT NULL,
   `pic` varchar(254) COLLATE utf8_bin NOT NULL,
   `id_equipo` int(11) NOT NULL
@@ -327,7 +329,6 @@ CREATE TABLE `jugadores` (
 --
 
 INSERT INTO `jugadores` (`id`, `direccion`, `dorsal`, `posicion`, `tlf`, `altura`, `id_datosMedicos`, `id_usuario`, `id_equipo`) VALUES
-(1, 'Avenida Sin Nombre ', 12, 'medio', '94654654', '1.59', 1, 2, 1),
 (2, 'Avenida Ceda el paso', 14, 'alero', '123123123', '1.90', 2, 3, 2),
 (4, 'Planeta Tsufur', 17, 'Defensa', '666345123', '1.70', NULL, 7, 3),
 (5, 'Even green Terrace 10', 19, 'Alero', '689002792', '1.64', NULL, 9, 2),
@@ -340,7 +341,8 @@ INSERT INTO `jugadores` (`id`, `direccion`, `dorsal`, `posicion`, `tlf`, `altura
 (13, 'Bermeo', 7, 'Delantero', '662879001', '1.79', 1, 28, 3),
 (14, 'Zornotza', 9, 'Defensa', '662012366', '1.76', 1, 25, 2),
 (15, 'Bermeo', 6, 'Alero', '66298772', '1.76', 2, 25, 2),
-(24, 'dsadsaads', 0, 'asdsda', 'dsasddsa', '1.00', 0, 1, 1);
+(19, 'dasasd', 0, 'sdadsa', 'sdsads', '12.00', 0, 1, 1),
+(20, 'dsaasd', 12, 'sadsda', 'dsadsa', '1.00', 0, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -388,7 +390,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`idUser`, `username`, `password`, `name`, `surname`, `email`, `admin`, `pic`) VALUES
 (1, 'AdminUser', 'AdminUser', 'Carl', 'Johnson', 'CJ@gmail.com', 1, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
 (2, 'jone_12', '$2y$10$v0ol6pRtlxNu7tcyvfVi3ei7FfjXG4fhzgC6fLo3GoJFaRLfKrPTe', 'Jone', 'Etxandio', 'jone_12@gmail.es', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
-(3, 'gotzon95', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Gotzon', 'Galletebeitia', 'gotzon@gmail.com', 1, 'https://upload.wikimedia.org/wikipedia/commons/9/96/Kobe_Bryant_8.jpg'),
+(3, 'gotzon95', '$2y$10$H7PhAgZ6RNSiAOeMNc0SsuawLhofoRLF8eiRoO1/zoPoqGilbpSRu', 'Gotzon', 'Galletebeitia', 'gotzon@gmail.com', 1, 'fly.png'),
 (4, 'xarles', '$2y$10$mE69YDOZAMmQ36OaMRVMdeXUdaDf2oNsRIjkXrn80kKkIGa34mZyi', 'Xarles', 'Goitiz', 'xarles@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
 (5, 'markel84', '$2y$10$/BnTaXzShVsmqgva2cwuvOe/vhvJHtT2sLE2dzrBMl5emJMei94Li', 'Markel', 'Fernandez', 'markel84@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
 (6, 'Aitortilla19', 'S0lñW?#1849-aSW', 'Aitor', 'Ercoreca', 'Aitortilla19@gmail.com', 0, 'https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png'),
@@ -440,8 +442,8 @@ CREATE TABLE `votos` (
 --
 
 INSERT INTO `votos` (`id`, `id_usuario`, `id_categoria`, `id_jugadorVotado`) VALUES
-(29, 3, 3, 1),
-(30, 3, 4, 6);
+(32, 3, 1, 8),
+(34, 3, 4, 5);
 
 --
 -- Índices para tablas volcadas
@@ -546,7 +548,7 @@ ALTER TABLE `datosmedicos`
 -- AUTO_INCREMENT de la tabla `entrenadores`
 --
 ALTER TABLE `entrenadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
@@ -564,7 +566,7 @@ ALTER TABLE `fotosequipo`
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `quejas`
@@ -582,7 +584,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `votos`
 --
 ALTER TABLE `votos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Restricciones para tablas volcadas
