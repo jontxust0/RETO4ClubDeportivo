@@ -20,9 +20,33 @@ class cuerpoMedicoModel extends cuerpoMedicoClass{
     /**
      * @param mixed $list
      */
-    public function setList($list)
+    public function setList()
     {
-        $this->list = $list;
+        $this->OpenConnect();
+
+        $sql="call  spAllCuerpoMedico()";
+        $result= $this->link->query($sql);
+        
+        
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $new = new self();
+            $new->setId($row['id']);
+            $new->setFuncion($row['funcion']);
+            $new->setDireccion($row['direccion']);
+            $new->setTlf($row['tlf']);
+            $new->setId_equipo($row['id_equipo']);
+            $new->setId_usuario($row['id_usuario']);
+            $newUser = new userModel();
+            $newUser->setIdUser($new->getId_usuario());
+            $newUser->findUserByIdUser();
+            $new->setObjUser($newUser);
+            
+            array_push($this->list, $new);
+            
+        }
+        
+        mysqli_free_result($result);
+        $this->CloseConnect();
     }
 
     public function OpenConnect() {
@@ -196,7 +220,7 @@ class cuerpoMedicoModel extends cuerpoMedicoClass{
         foreach ($this->list as $object)
         {
             $vars = get_object_vars($object);
-            $vars["objUser"]=$this->getObjUser()->getObjectVars();
+            $vars["objUser"]=$object->getObjUser()->getObjectVars();
             array_push($arr, $vars);
         }
         return json_encode($arr);

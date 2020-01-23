@@ -57,6 +57,7 @@ $writable_dir = '../uploads/';
 if(!is_dir($writable_dir)){mkdir($writable_dir);}
 
 //Se escribe el archivo
+
 file_put_contents($writable_dir.$filename, $file,  LOCK_EX);
 $resultado=$user->UpdateFoto();
 $_SESSION['img']="../uploads/".$filename;

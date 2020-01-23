@@ -72,13 +72,16 @@
 
   <div class="container containerButtons">
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <button type="button" id="btnJugadores" class="btn custom-btn btn-secondary">Jugadores</button>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <button type="button" id="btnEntrenadores" class="btn custom-btn btn-secondary">Entrenadores</button>
       </div>
-      <div class="col-4"><button type="button" id="btnUsuarios" class="btn custom-btn btn-secondary">Usuarios</button>
+      <div class="col-3">
+        <button type="button" id="btnCuerpo" class="btn custom-btn btn-secondary">Cuerpomedico</button>
+      </div>
+      <div class="col-3"><button type="button" id="btnUsuarios" class="btn custom-btn btn-secondary">Usuarios</button>
       </div>
     </div>
   </div>
@@ -212,6 +215,43 @@
       </div>
     </div>
 
+    <div id="tablaCuerpo" class="container adminCuerpo col-12">
+      <!--Entrenadores-->
+      <div ng-controller="vAdminControlador">
+        <h1>Cuerpo medico</h1>
+        <br>
+        <label for="Name">Buscar: </label><input type="text" value="" placeholder="buscar..."
+                        ng-model="TEXTObusqueda">
+        <div>
+          <table class='table table-hover table-dark'>
+            <tr>
+              <th scope='col'>NOMBRE</th>
+              <th scope='col'>APELLIDO</th>
+              <th scope='col'>TELEFONO</th>
+              <th scope='col'>DIRECCION</th>
+              <th scope='col'>FUNCION</th>
+            </tr>
+            <tr ng-repeat="cuerpo in listaCuerpo| filter:TEXTObusqueda">
+              <td>{{cuerpo.objUser.name}}</td>
+              <td>{{cuerpo.objUser.surname}}</td>
+              <td>{{cuerpo.tlf}}</td>
+              <td>{{cuerpo.direccion}}</td>
+              <td>{{cuerpo.funcion}}</td>
+
+              <td>
+                <button type='button' class='btnUpdateEntrenadores btn-warning' ng-click="updateFunctionCuerpo(cuerpo,$index)"  data-toggle='modal'
+                  data-target='#updateCuerpo'>Editar</button>
+              </td>
+              <td>
+                <button type='button' class='btnDeleteJugadores btn-danger' ng-click="deleteFunctionCuerpo(cuerpo,$index)" >Borrar</button>
+              </td>
+            </tr>
+
+          </table>
+        </div>
+      </div>
+    </div>
+
   </div>
   
   <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -228,22 +268,22 @@
                         <h4>Modificar Usuario:</h4>
         	
 			         	
-			          <input type="hidden"  id="idUpdate" >
+			          <input type="hidden"  id="idUpdate"  class="form-control">
 			         
 			          Nombre de Usuario:<br>
-			          <input type="text" id="usernameUpdate" >
+			          <input type="text" id="usernameUpdate" class="form-control" >
 			          <br>
 			          <!-- Contraseña:<br>
 			          <input type="text" id="contraseniaUpdate">
 			          <br> -->
 			          Nombre:<br>
-			          <input type="text" id="nameUpdate">
+			          <input type="text" id="nameUpdate" class="form-control">
 			          <br>
 			          Apellido:<br>
-			          <input type="text" id="surnameUpdate">
+			          <input type="text" id="surnameUpdate" class="form-control">
 			          <br>
 			          Email:<br>
-			          <input type="text" id="emailUpdate">
+			          <input type="text" id="emailUpdate" class="form-control">
 			          <br>
 			          
 			          <br>
@@ -273,16 +313,16 @@
 			          <input type="hidden"  id="idUpdateEntrenadores" >
 			         
 			          Telefono:<br>
-			          <input type="text" id="tlfUpdateEntrenadores" >
+			          <input type="text" id="tlfUpdateEntrenadores"  class="form-control">
 			          <br>
 			          Direccion:<br>
-			          <input type="text" id="direccionUpdateEntrenadores">
+			          <input type="text" id="direccionUpdateEntrenadores" class="form-control">
 			          <br>
 			          Sueldo:<br>
-			          <input type="text" id="sueldoUpdateEntrenadores">
+			          <input type="text" id="sueldoUpdateEntrenadores" class="form-control">
 			          <br>
 			          Fecha de Contratacion:<br>
-			          <input type="text" id="contratacionUpdateEntrenadores">
+			          <input type="text" id="contratacionUpdateEntrenadores" class="form-control">
 			          
 			          <br>
 			          <button id="btnExecUpdateEntrenador" >Execute Update</button>
@@ -306,22 +346,22 @@
                     <h4>Modificar Jugadores:</h4>
 
 
-                  <input type="hidden"  id="idUpdateJugadores" >
+                  <input type="hidden"  id="idUpdateJugadores"  class="form-control">
 
                   Dirección:<br>
-                  <input type="text" id="direccionUpdateJugadores" >
+                  <input type="text" id="direccionUpdateJugadores" class="form-control" >
                   <br>
                   Dorsal:<br>
-                  <input type="text" id="dorsalUpdateJugadores">
+                  <input type="text" id="dorsalUpdateJugadores" class="form-control">
                   <br>
                   Posicion:<br>
-                  <input type="text" id="posicionUpdateJugadores">
+                  <input type="text" id="posicionUpdateJugadores" class="form-control">
                   <br>
                   Telefono:<br>
-                  <input type="text" id="tlfUpdateJugadores">
+                  <input type="text" id="tlfUpdateJugadores" class="form-control">
                   <br>
                   Altura:<br>
-                  <input type="text" id="alturaUpdateJugadores">
+                  <input type="text" id="alturaUpdateJugadores" class="form-control">
                   <br>
 
                   <br>

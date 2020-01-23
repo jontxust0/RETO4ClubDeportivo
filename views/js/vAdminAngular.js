@@ -42,7 +42,22 @@ app.controller('vAdminControlador', ['$scope', '$http', function ($scope, $http)
 
         });
 
+    //CUERPO MEDICO
+    $http.get("../controller/cMostrarCuerpo.php")
+    .then(function (response) {
+        console.log(response);
+        $scope.listaCuerpo = response.data;
 
+    }).catch(function (response) {
+        console.error('error ocurred: ', response.status, response.data);
+    }).finally(function () {
+
+
+    });
+
+    $scope.deleteFunctionCuerpo =function (cuerpo, $index) {
+        deleteCuerpo(cuerpo.id);        
+    }
 
     $scope.deleteFunctionJugadores = function (jugadores, $index) {
         deletejugador(jugadores.id);
@@ -128,16 +143,26 @@ $("#btnJugadores").click(function () {
     $(".adminJugadores").css("display", "block");
     $(".adminEntrenadores").css("display", "none");
     $(".adminUsuario").css("display", "none");
+    $(".adminCuerpo").css("display", "none");
 });
 $("#btnEntrenadores").click(function () {
     $(".adminJugadores").css("display", "none");
     $(".adminEntrenadores").css("display", "block");
     $(".adminUsuario").css("display", "none");
+    $(".adminCuerpo").css("display", "none");
 });
 $("#btnUsuarios").click(function () {
     $(".adminJugadores").css("display", "none");
     $(".adminEntrenadores").css("display", "none");
     $(".adminUsuario").css("display", "block");
+    $(".adminCuerpo").css("display", "none");
+});
+
+$('#btnCuerpo').click(function(){
+    $(".adminJugadores").css("display", "none");
+    $(".adminEntrenadores").css("display", "none");
+    $(".adminUsuario").css("display", "none");
+    $(".adminCuerpo").css("display", "block");
 });
 
 //JUGADORES
@@ -173,6 +198,27 @@ $("#btnExecUpdateJugador").click(function () {
 });
 
 //delete jugador
+
+
+function deleteCuerpo(id) {
+    $.ajax({
+        type: "GET",
+        data: { 'id': id },
+        url: "../controller/cDeleteCuerpo.php",
+
+        success: function (result) {
+
+            console.log(result);
+            
+            location.reload(true);
+        },
+        error: function (xhr) {
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+
+}
+
 function deletejugador(id) {
     $.ajax({
         type: "GET",
