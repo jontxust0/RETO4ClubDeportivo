@@ -1,57 +1,52 @@
 
 $(document).ready(function(){
 	
-	/*Comprobar si hay PHPSESSID*/
-	/*phpSessId = (localStorage.getItem('PHPSESSID') || '');
-    
-    if (phpSessId.length!==26) // session id has 26 characters
-    {
-        $("#divLoginForm").show();
-        $("#divLogout").hide();
-    } else
-    {
-        checkSession();
-    }*/
+
 	
 	/*Comprobar si hay alguien conectado*/
+
+    	PHPSESSID = localStorage.getItem('PHPSESSID');
+
+ 	
+    	$.ajax({
+    		type:"POST",
+    		data: {PHPSESSID: PHPSESSID},
+           	url: "http://tres.fpz1920.com/controller/cValidarSesion.php", 
+           	dataType:"json",
+        	success: function(response){ 
+        		
+        		console.log(response);
+        		
+           		if (response.err === "Ok")
+           		{
+           			
+           			localStorage.setItem('PHPSESSID', response.PHPSESSIONID);
+                    localStorage.setItem('name', response.name);	
+           			newRow="";
+           			
+        			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0'>"+response.name+"</button>";
+        			$("#btnUsuario").append(newRow);
+        			
+        			votarRow="";
+           			
+        			votarRow+="<button id='btnVotarMVP' class='btn btn-login btn-outline-light my-2 my-sm-0'>Votar</button>";
+        			$("#btnVotar").append(votarRow);
+        			
+        			$("#btnLogin").css("display", "none");
+           			$("#btnLogout").css("display", "block");
+           			
+           			
+           		} else {
+           			
+           		
+           		}	
+    		},
+           	error : function(xhr) {
+       			alert("An error occured: " + xhr.status + " " + xhr.statusText);
+       		}
+    	});
+    
 	
-	PHPSESSID = localStorage.getItem('PHPSESSID');
-	$.ajax({
-		type:"GET",
-		data: {PHPSESSID: PHPSESSID},
-       	url: "http://tres.fpz1920.com/controller/cValidarSesion.php", 
-       	dataType:"text",
-    	success: function(result){ 
-    		
-    		console.log(result);
-    		
-       		if (result !=0)
-       		{
-       			
-       			
-       			newRow="";
-       			
-    			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0'>"+result+"</button>";
-    			$("#btnUsuario").append(newRow);
-    			
-    			votarRow="";
-       			
-    			votarRow+="<button id='btnVotarMVP' class='btn btn-login btn-outline-light my-2 my-sm-0'>Votar</button>";
-    			$("#btnVotar").append(votarRow);
-    			
-    			$("#btnLogin").css("display", "none");
-       			$("#btnLogout").css("display", "block");
-       			
-       			
-       		} else {
-       			
-       		
-       		}	
-		},
-       	error : function(xhr) {
-   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
-   		}
-	});
 
 	/*Login del usuario*/
 	$("#login").click(function(){	
@@ -65,18 +60,19 @@ $(document).ready(function(){
 				type:"GET",
 				data:{'name':name,'password':password},
 		       	url: "http://tres.fpz1920.com/controller/cSessionVars.php", 
-		       	dataType:"text",
-		    	success: function(result){ 
+		       	dataType:"json",
+		    	success: function(response){ 
 		    		
-		    		console.log(result);
+		    		console.log(response.PHPSESSIONID);
 		    		
-		       		if (result !=0)
+		       		if (response.err === "Ok")
 		       		{
-		       			alert("Sesion iniciada")
-		       			localStorage.setItem('PHPSESSID', result);
+		       			
+		       			localStorage.setItem('PHPSESSID', response.PHPSESSIONID);
+		       			localStorage.setItem('name', response.name);
 		       			newRow="";
 		
-		    			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0 '>"+result+"</button>";
+		    			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0 '>"+response.name+"</button>";
 		    			$("#btnUsuario").html(newRow);
 		    			
 		    			votarRow="";
@@ -171,6 +167,8 @@ $(document).ready(function(){
 	       		
 	    		console.log(result);
 	    		alert("Sesion cerrada")
+	    		localStorage.removeItem('PHPSESSID');
+	    		localStorage.removeItem('name');
 	    		window.location.reload();
 			},
 	       	error : function(xhr) {
@@ -183,8 +181,7 @@ $(document).ready(function(){
 	
 	
 	/*Perfil del usuario*/
-	$('#btnUsuario').on('click', '#btnPerfil', function(){	
-		
+	$('#btnUsuario').on('click', '#btnPerfil', function(){			
 		window.location.href="views/vPerfil.html";
 		
 
@@ -192,7 +189,6 @@ $(document).ready(function(){
 	
 	/*Votar con la id del usuario*/
 	$('#btnVotar').on('click', '#btnVotarMVP', function(){	
-		
 		window.location.href="views/vVotacion.html";
 		
 

@@ -5,7 +5,7 @@ var app = angular.module('vAdminAngular', []);
 // JUGADORES
 app.controller('vAdminControlador', ['$scope', '$http', function ($scope, $http) {
 
-    $http.get("../controller/cMostrarJugadores.php")
+    $http.get("http://tres.fpz1920.com/controller/cMostrarJugadores.php")
         .then(function (response) {
             console.log(response);
             $scope.listaJugadores = response.data;
@@ -18,7 +18,7 @@ app.controller('vAdminControlador', ['$scope', '$http', function ($scope, $http)
         });
 
     // ENTRENADORES
-    $http.get("../controller/cMostrarEntrenadores.php")
+    $http.get("http://tres.fpz1920.com/controller/cMostrarEntrenadores.php")
         .then(function (response) {
             $scope.listaEntrenadores = response.data;
 
@@ -30,7 +30,7 @@ app.controller('vAdminControlador', ['$scope', '$http', function ($scope, $http)
         });
 
     // USUARIOS    
-    $http.get("../controller/cMostrarUsuarios.php")
+    $http.get("http://tres.fpz1920.com/controller/cMostrarUsuarios.php")
         .then(function (response) {
             $scope.listaUsuarios = response.data;
 
@@ -183,7 +183,7 @@ $("#btnExecUpdateJugador").click(function () {
     $.ajax({
         type: "GET",
         data: { 'id': id, 'direccion': direccion, 'dorsal': dorsal, 'posicion': posicion, 'tlf': tlf, 'altura': altura },
-        url: "../Controller/cUpdateJugador.php",
+        url: "http://tres.fpz1920.com/controller/cUpdateJugador.php",
         dataType: "text",  //type of the result
         success: function (result) {
 
@@ -227,7 +227,7 @@ function deletejugador(id) {
     $.ajax({
         type: "GET",
         data: { 'id': id },
-        url: "../controller/cDeleteJugador.php",
+        url: "http://tres.fpz1920.com/controller/cDeleteJugador.php",
 
         success: function (result) {
 
@@ -271,7 +271,7 @@ $("#btnExecUpdateEntrenador").click(function(){
       $.ajax({
            type: "GET",
            data:{ 'id':id, 'telefono':telefono, 'direccion':direccion, 'sueldo':sueldo,'contratacion':contratacion},
-           url: "../controller/cUpdateEntrenador.php", 
+           url: "http://tres.fpz1920.com/controller/cUpdateEntrenador.php", 
            dataType: "text",  //type of the result
            success: function(result){  
                
@@ -293,7 +293,7 @@ function deleteentrenador(id) {
     $.ajax({
         type: "GET",
         data: { 'id': id },
-        url: "../controller/cDeleteEntrenador.php",
+        url: "http://tres.fpz1920.com/controller/cDeleteEntrenador.php",
 
         success: function (result) {
 
@@ -334,7 +334,7 @@ $("#btnExecUpdate").click(function(){
       $.ajax({
            type: "GET",
            data:{ 'id':id, 'username':username, 'contrasenia':contrasenia, 'name':name,'surname':surname,'email':email},
-           url: "../Controller/cUpdateUser.php", 
+           url: "http://tres.fpz1920.com/controller/cUpdateUser.php", 
            dataType: "text",  //type of the result
            success: function(result){  
                
@@ -357,7 +357,7 @@ function deleteusuarios(id) {
     $.ajax({
         type: "GET",
         data: { 'id': id },
-        url: "../controller/cDeleteUser.php",
+        url: "http://tres.fpz1920.com/controller/cDeleteUser.php",
 
         success: function (result) {
 

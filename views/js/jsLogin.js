@@ -1,19 +1,24 @@
 $(document).ready(function(){
+	PHPSESSID = localStorage.getItem('PHPSESSID');
+
+ 	
 	$.ajax({
-		type:"GET",
+		type:"POST",
+		data: {PHPSESSID: PHPSESSID},
        	url: "http://tres.fpz1920.com/controller/cValidarSesion.php", 
-       	dataType:"text",
-    	success: function(result){ 
+       	dataType:"json",
+    	success: function(response){ 
     		
-    		console.log(result);
+    		console.log(response);
     		
-       		if (result !=0)
+       		if (response.err === "Ok")
        		{
        			
-       			
+       			localStorage.setItem('PHPSESSID', response.PHPSESSIONID);
+                localStorage.setItem('name', response.name);	
        			newRow="";
        			
-    			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0'>"+result+"</button>";
+    			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0'>"+response.name+"</button>";
     			$("#btnUsuario").append(newRow);
     			
     			votarRow="";
@@ -34,51 +39,54 @@ $(document).ready(function(){
    			alert("An error occured: " + xhr.status + " " + xhr.statusText);
    		}
 	});
+
+
+
+/*Login del usuario*/
+$("#login").click(function(){	
 	
-
-	$("#login").click(function(){	
+	
+		var name=$("#name").val();
+		var password=$("#password").val();
 		
 		
-			var name=$("#name").val();
-			var password=$("#password").val();
-			
-			
-			$.ajax({
-				type:"GET",
-				data:{'name':name,'password':password},
-		       	url: "http://tres.fpz1920.com/controller/cSessionVars.php", 
-		       	dataType:"text",
-		    	success: function(result){ 
-		    		
-		    		console.log(result);
-		    		
-		       		if (result !=0)
-		       		{
-		       			alert("Sesion iniciada")
-		       			
-		       			newRow="";
-		       			
-		    			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0 '>"+result+"</button>";
-		    			$("#btnUsuario").html(newRow);
-		    			
-		    			votarRow="";
-		       			
-		    			votarRow+="<button id='btnVotarMVP' class='btn btn-login btn-outline-light my-2 my-sm-0'>Votar</button>";
-		    			$("#btnVotar").append(votarRow);
-		       						
-		       			window.location.reload();
-		       			
-		       		} else {
-		       			alert("Usuario o contraseña incorrectas");
-		       		
-		       		}	
-				},
-		       	error : function(xhr) {
-		   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
-		   		}
-			});
+		$.ajax({
+			type:"GET",
+			data:{'name':name,'password':password},
+	       	url: "http://tres.fpz1920.com/controller/cSessionVars.php", 
+	       	dataType:"json",
+	    	success: function(response){ 
+	    		
+	    		console.log(response.PHPSESSIONID);
+	    		
+	       		if (response.err === "Ok")
+	       		{
+	       			
+	       			localStorage.setItem('PHPSESSID', response.PHPSESSIONID);
+	       			localStorage.setItem('name', response.name);
+	       			newRow="";
+	
+	    			newRow+="<button id='btnPerfil' class='btn btn-login btn-outline-light my-2 my-sm-0 '>"+response.name+"</button>";
+	    			$("#btnUsuario").html(newRow);
+	    			
+	    			votarRow="";
+	       			
+	    			votarRow+="<button id='btnVotarMVP' class='btn btn-login btn-outline-light my-2 my-sm-0'>Votar</button>";
+	    			$("#btnVotar").append(votarRow);
+	       						
+	       			window.location.reload();
+	       			
+	       		} else {
+	       			alert("Usuario o contraseña incorrectas");
+	       		
+	       		}	
+			},
+	       	error : function(xhr) {
+	   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
+	   		}
+		});
 
-	});
+});
 	$("#btnLogout").click(function(){	
 		
 		
@@ -89,6 +97,8 @@ $(document).ready(function(){
 	       		
 	    		console.log(result);
 	    		alert("Sesion cerrada")
+	    		localStorage.removeItem('PHPSESSID');
+	    		localStorage.removeItem('name');
 	    		window.location.reload();
 			},
 	       	error : function(xhr) {

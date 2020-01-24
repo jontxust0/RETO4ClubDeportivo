@@ -3,6 +3,67 @@ var filename;
 var idUser;
 $(document).ready(function(){
 	
+	
+	
+PHPSESSID = localStorage.getItem('PHPSESSID');
+
+ 	
+	$.ajax({
+		type:"POST",
+		data: {PHPSESSID: PHPSESSID},
+       	url: "http://tres.fpz1920.com/controller/cValidarSesion.php", 
+       	dataType:"json",
+    	success: function(response){ 
+    		
+    		console.log(response);
+    		
+       		if (response.err === "Ok")
+       		{
+
+       			if(response.admin==1){
+       				admin="";
+       				admin="<button id='btnAdmin'>Admin</button>";
+        			$("#admin").append(admin);
+       			}
+       			
+       			idUser= response.id;
+       			nameSurname="";
+       			nameSurname+= response.nombre + " " +response.surname;
+    			$("#nameSurname").append(nameSurname);
+    			
+    			
+    			img="";
+    			img="<img id='imgPerfil' src='../uploads/"+response.img+"'/>";
+    			$("#img").append(img);
+    			
+    			username="";
+    			username+="<p>"+response.name+"</p>";
+    			$("#username").append(username);
+    			
+    			email="";
+    			email+="<p>"+response.email+"</p>";
+    			$("#email").append(email);
+    			
+    			nombre="";
+    			nombre+="<p>"+response.nombre+"</p>";
+    			$("#nombre").append(nombre);
+    			
+    			apellido="";
+    			apellido+="<p>"+response.surname+"</p>";
+    			$("#apellido").append(apellido);
+       			
+       			
+       		} else {
+       			
+       		
+       		}	
+		},
+       	error : function(xhr) {
+   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
+   		}
+	});
+	
+	
 	/*Cambiar imagen de perfil del usuario*/
 	$("#changeImg").click(function(){
 		$.ajax({
@@ -25,58 +86,7 @@ $(document).ready(function(){
     	});
 	   
 	});
-	$.ajax({
-       	url: "http://tres.fpz1920.com/controller/cSessionVerVars.php", 
-       	dataType:"json",
-    	success: function(result){ 
-    		
-    		//console.log(result);
-    		
-       		if (result !=0)
-       		{
-       			if(result.admin==1){
-       				admin="";
-       				admin="<button id='btnAdmin'>Admin</button>";
-        			$("#admin").append(admin);
-       			}
-       			
-       			idUser= result.id;
-       			nameSurname="";
-       			nameSurname+= result.nombre + " " +result.surname;
-    			$("#nameSurname").append(nameSurname);
-    			
-    			
-    			img="";
-    			img="<img id='imgPerfil' src='../uploads/"+result.img+"'/>";
-    			$("#img").append(img);
-    			
-    			username="";
-    			username+="<p>"+result.name+"</p>";
-    			$("#username").append(username);
-    			
-    			email="";
-    			email+="<p>"+result.email+"</p>";
-    			$("#email").append(email);
-    			
-    			nombre="";
-    			nombre+="<p>"+result.nombre+"</p>";
-    			$("#nombre").append(nombre);
-    			
-    			apellido="";
-    			apellido+="<p>"+result.surname+"</p>";
-    			$("#apellido").append(apellido);
-    			
-
-    			
-       		} else {
-       			
-       		
-       		}	
-		},
-       	error : function(xhr) {
-   			alert("An error occured: " + xhr.status + " " + xhr.statusText);
-   		}
-	});
+	
 
 	
 
@@ -84,7 +94,8 @@ $(document).ready(function(){
 	
 	/*Buscar la id de inicio de sesion en la tabla de jugadores*/
 	$.ajax({
-	    type:"GET",
+	    type:"POST",
+	    data: {PHPSESSID: PHPSESSID},
 	    url: "http://tres.fpz1920.com/controller/cPerfil.php", 
 	    dataType: "json",  //type of the result
 	    
@@ -162,7 +173,8 @@ $(document).ready(function(){
 	    error : function(xhr) {
 	    	/*Buscar la id de inicio de sesion en la tabla de entrenadores*/
 	    	$.ajax({
-	    	    type:"GET",
+	    		type:"POST",
+	    		data: {PHPSESSID: PHPSESSID},
 	    	    url: "http://tres.fpz1920.com/controller/cPerfilEntrenador.php", 
 	    	    dataType: "json",  //type of the result
 	    	    
@@ -203,7 +215,8 @@ $(document).ready(function(){
 	    	    error : function(xhr) {
 	    	    	/*Buscar la id de inicio de sesion en la tabla de cuerpo medico*/
 	    	    	$.ajax({
-	    	    	    type:"GET",
+	    	    		type:"POST",
+	    	    		data: {PHPSESSID: PHPSESSID},
 	    	    	    url: "http://tres.fpz1920.com/controller/cPerfilCuerpoMedico.php", 
 	    	    	    dataType: "json",  //type of the result
 	    	    	    
@@ -237,7 +250,7 @@ $(document).ready(function(){
 	    	    		
 	    	    	 },
 	    	    	    error : function(xhr) {
-	    	    	        alert("An error occured: " + xhr.status + " " + xhr.statusText);
+	    	    	        alert("An error occuredaaaa: " + xhr.status + " " + xhr.statusText);
 	    	    	    }
 	    	    	});
 	    	    }

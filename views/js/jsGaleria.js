@@ -39,28 +39,34 @@ $(document).ready(function(){
 			 }
 
 			 popup.init()
-	
+	PHPSESSID = localStorage.getItem('PHPSESSID');
 	$.ajax({
-       	url: "http://tres.fpz1920.com/controller/cSessionVerVars.php", 
+		type:"POST",
+		data: {PHPSESSID: PHPSESSID},
+       	url: "http://tres.fpz1920.com/controller/cValidarSesion.php", 
        	dataType:"json",
-    	success: function(result){ 
+    	success: function(response){ 
     		
     		//console.log(result);
     		
-       		if (result !=0)
+       		if (response.err === "Ok")
        		{
+       			
        			/*Buscar la id de inicio de sesion en la tabla de jugadores*/
+       			PHPSESSID = localStorage.getItem('PHPSESSID');
        			$.ajax({
-       			    type:"GET",
+       			    type:"POST",
+       			    data: {PHPSESSID: PHPSESSID},
        			    url: "http://tres.fpz1920.com/controller/cPerfil.php", 
        			    dataType: "json",  //type of the result
        			    
        			 success: function(result){
-       				 	
+       				
        			        console.log(result);
        			        
        			        var idEquipo=result.id_equipo;
        			        /*Saca las fotos de la galeria publica y las privadas del equipo al que pertenece*/
+       			         
 	       			     $.ajax({
 	 	    	    	    type:"GET",
 	 	    	    	    data:{'idEquipo':idEquipo},
@@ -68,7 +74,7 @@ $(document).ready(function(){
 	 	    	    	    dataType: "json",  //type of the result
 	 	    	    	    
 	 	    	    	 success: function(result){
-	 	    	    		 
+	 	    	    		
 	 	    	    		for($i=0; $i<result.length; $i++){
 	 	    	    			if(result[$i].privado==0){
 	 	    	    				newrowImg="";
@@ -108,8 +114,10 @@ $(document).ready(function(){
        			 },
        			    error : function(xhr) {
        			    	/*Buscar la id de inicio de sesion en la tabla de entrenadores*/
+       			    	PHPSESSID = localStorage.getItem('PHPSESSID');
        			    	$.ajax({
-       			    	    type:"GET",
+       			    	    type:"POST",
+       			    	    data: {PHPSESSID: PHPSESSID},
        			    	    url: "http://tres.fpz1920.com/controller/cPerfilEntrenador.php", 
        			    	    dataType: "json",  //type of the result
        			    	    
@@ -158,7 +166,8 @@ $(document).ready(function(){
        			    	    error : function(xhr) {
        			    	    	/*Buscar la id de inicio de sesion en la tabla de cuerpo medico*/
        			    	    	$.ajax({
-       			    	    	    type:"GET",
+       			    	    	    type:"POST",
+       			    	    	    data: {PHPSESSID: PHPSESSID},
        			    	    	    url: "http://tres.fpz1920.com/controller/cPerfilCuerpoMedico.php", 
        			    	    	    dataType: "json",  //type of the result
        			    	    	    
