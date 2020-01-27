@@ -28,6 +28,12 @@ body {
     display: flex;
     justify-content: center;
 }
+#mvp{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    cursor: pointer;
+}
 
 
 	

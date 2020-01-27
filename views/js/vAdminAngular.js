@@ -412,7 +412,7 @@ $("#btnExecUpdateCuerpo").click(function(){
     var funcion=$('#funcionUpdateCuerpo').val();
     var direccion=$('#direccionUpdateCuerpo').val();
     var tlf=$('#tlfUpdateCuerpo').val();
-   
+    alert(funcion);
 
       $.ajax({
            type: "GET",

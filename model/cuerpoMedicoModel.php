@@ -222,10 +222,10 @@ class cuerpoMedicoModel extends cuerpoMedicoClass{
         $tlf=$this->getTlf();
 
         
+
         
-        
-        $sql="CALL spUpdateCuerpoMedico('$id','$funcion','$direccion','$tlf')";
-        
+        $sql="CALL spUpdateCuerpoMedico($id,'$funcion','$direccion','$tlf')";
+      
         $numFilas=$this->link->query($sql);
         
         if ($numFilas>=1){
