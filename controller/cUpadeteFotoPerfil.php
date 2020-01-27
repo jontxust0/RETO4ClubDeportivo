@@ -60,7 +60,7 @@ if(!is_dir($writable_dir)){mkdir($writable_dir);}
 
 file_put_contents($writable_dir.$filename, $file,  LOCK_EX);
 $resultado=$user->UpdateFoto();
-$_SESSION['img']="../uploads/".$filename;
+$_SESSION['img']="http://tres.fpz1920.com/uploads/".$filename;
 $arr['name']=$name;
 $arr['PHPSESSID']=$PHPSESSID;
 $arr['resultado']=$resultado;

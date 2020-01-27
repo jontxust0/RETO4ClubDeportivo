@@ -1,7 +1,10 @@
 
 $(document).ready(function(){
+	PHPSESSID = localStorage.getItem('PHPSESSID');
+	
  $.ajax({
-            type:"GET",
+            type:"POST",
+            data: {PHPSESSID: PHPSESSID},
         	url: "http://tres.fpz1920.com/controller/cVotar.php", 
         	dataType:"json",
      	success: function(result){
@@ -27,7 +30,7 @@ $(document).ready(function(){
 				for (let jugador = 0; jugador < result[categoria].listEquipos[equipo].listJugadores.length; jugador++) {
 					htmlzatia+=`
 					<div class="card w-100">
-					<img src="../uploads/`+result[categoria].listEquipos[equipo].listJugadores[jugador].objUser.pic+`">
+					<img src="http://tres.fpz1920.com/uploads/`+result[categoria].listEquipos[equipo].listJugadores[jugador].objUser.pic+`">
 				  <div class="card-body">
 				    <h5 class="card-title">`+result[categoria].listEquipos[equipo].listJugadores[jugador].objUser.name+` `+result[categoria].listEquipos[equipo].listJugadores[jugador].objUser.surname +`</h5>
 				    <p class="card-text">`+result[categoria].listEquipos[equipo].listJugadores[jugador].posicion+`</p>
@@ -96,7 +99,7 @@ $(document).ready(function(){
 				//aquí enviaría la info
 				$.ajax({
 					type:"GET",
-					data:{'arrCategorias':JSON.stringify(arrCategorias),'arrJugadores':JSON.stringify(arrJugadores)},
+					data:{'arrCategorias':JSON.stringify(arrCategorias),'arrJugadores':JSON.stringify(arrJugadores),PHPSESSID: PHPSESSID},
 					   url: "http://tres.fpz1920.com/controller/cInsertVotos.php", 
 					   dataType:"text",
 					success: function(result){ 
