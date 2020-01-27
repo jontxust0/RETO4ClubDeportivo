@@ -1,0 +1,12 @@
+Options -Indexes
+Deny from all
+
+# Options -Indexes
+
+#<Files ~ "^.*\.png|.*\.jpg">
+# Allow from all
+#</Files>
+
+
+RewriteEngine on
+RewriteRule ^(.*)$ ../enviar_foto2.php?path=$1 [QSA,L]
