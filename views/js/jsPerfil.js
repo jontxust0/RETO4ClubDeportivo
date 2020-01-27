@@ -33,7 +33,7 @@ PHPSESSID = localStorage.getItem('PHPSESSID');
     			
     			
     			img="";
-    			img="<img id='imgPerfil' src='../uploads/"+response.img+"'/>";
+    			img="<img id='imgPerfil' src='http://tres.fpz1920.com/uploads/"+response.img+"'/>";
     			$("#img").append(img);
     			
     			username="";
@@ -68,7 +68,7 @@ PHPSESSID = localStorage.getItem('PHPSESSID');
 	$("#changeImg").click(function(){
 		$.ajax({
     	    type:"POST",
-    	    data:{ 'idUser':idUser, 'filename':filename,'savedFileBase64':savedFileBase64},
+    	    data:{ 'idUser':idUser, 'filename':filename,'savedFileBase64':savedFileBase64,PHPSESSID: PHPSESSID},
     	    url: "http://tres.fpz1920.com/controller/cUpadeteFotoPerfil.php", 
     	    dataType: "json",  //type of the result
     	    

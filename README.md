@@ -3,8 +3,8 @@ proyecto
 EL SERVIDOR DE BASES DE DATOS
 
 Direccion url: http://db.tres.fpz1920.com/index.php
-usuario: tresfpz1_root 
-cntraseña JWB7)}rn)APTFE#VY$)A
+usuario: tresfpz1_reto4 
+cntraseña: FCUB38Cfkx?.PxX1u4PU
 
 
 FTP:
