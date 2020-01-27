@@ -33,7 +33,7 @@ PHPSESSID = localStorage.getItem('PHPSESSID');
     			
     			
     			img="";
-    			img="<img id='imgPerfil' src='"+response.img+"'/>";
+    			img="<img id='imgPerfil' src='http://tres.fpz1920.com/uploads/"+response.img+"'/>";
     			$("#img").append(img);
     			
     			username="";
