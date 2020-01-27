@@ -194,7 +194,11 @@ $(document).ready(function(){
 
 	});
 	
-	
+	$("#mvp").on("click", function () {
+		window.location.href="views/vRanking.html";
+		
+		
+	});
 	
 	
 
