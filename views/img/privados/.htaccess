@@ -1,5 +1,5 @@
-Options -Indexes
-Deny from all
+#Options -Indexes
+#Deny from all
 
 # Options -Indexes
 
@@ -8,5 +8,5 @@ Deny from all
 #</Files>
 
 
-RewriteEngine on
-RewriteRule ^(.*)$ ../enviar_foto2.php?path=$1 [QSA,L]
+#RewriteEngine on
+#RewriteRule ^(.*)$ http://tres.fpz1920.com/controller/enviar_foto2.php?path=$1 [QSA,L]

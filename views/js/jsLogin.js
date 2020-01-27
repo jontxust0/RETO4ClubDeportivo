@@ -92,13 +92,13 @@ $("#login").click(function(){
 		
 		$.ajax({
 	       	url: "http://tres.fpz1920.com/controller/cSessionLogout.php", 
-	       	dataType:"text",
+	       	data:{'PHPSESSID':PHPSESSID},
 	    	success: function(result){  
 	       		
 	    		console.log(result);
 	    		alert("Sesion cerrada")
 	    		localStorage.removeItem('PHPSESSID');
-	    		localStorage.removeItem('name');
+				localStorage.removeItem('name');
 	    		window.location.reload();
 			},
 	       	error : function(xhr) {

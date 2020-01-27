@@ -168,7 +168,8 @@ $(document).ready(function(){
 	    		console.log(result);
 	    		alert("Sesion cerrada")
 	    		localStorage.removeItem('PHPSESSID');
-	    		localStorage.removeItem('name');
+				localStorage.removeItem('name');
+				cookies.removeItem('PHPSESSID');
 	    		window.location.reload();
 			},
 	       	error : function(xhr) {

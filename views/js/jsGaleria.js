@@ -1,7 +1,7 @@
 var savedFileBase64;
 var filename;
 var idUser;
-
+var PHPSESSID;
 
 $(document).ready(function(){
 	
@@ -78,12 +78,12 @@ $(document).ready(function(){
 	 	    	    		for($i=0; $i<result.length; $i++){
 	 	    	    			if(result[$i].privado==0){
 	 	    	    				newrowImg="";
-		 	    	    	    	newrowImg="<figure><img src='"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
+		 	    	    	    	newrowImg="<figure><img src='http://tres.fpz1920.com/galeria/publicos/"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
 			 	    	    	   
 			 	    	    	    $("#galeriaPublica").append(newrowImg);
 	 	    	    			}else{
 	 	    	    				newrowImg1="";
-		 	    	    	    	newrowImg1="<figure><img src='"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
+		 	    	    	    	newrowImg1="<figure><img src='http://tres.fpz1920.com/galeria/privados/"+result[$i].pic+'?PHPSESSID='+PHPSESSID+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
 			 	    	    	   
 			 	    	    	    $("#galeriaPrivada").append(newrowImg1);
 	 	    	    			}
@@ -136,12 +136,12 @@ $(document).ready(function(){
 	   	 	    	    		for($i=0; $i<result.length; $i++){
 		 	    	    			if(result[$i].privado==0){
 		 	    	    				newrowImg="";
-			 	    	    	    	newrowImg="<figure><img src='"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
+			 	    	    	    	newrowImg="<figure><img src='http://tres.fpz1920.com/galeria/publicos/"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
 				 	    	    	   
 				 	    	    	    $("#galeriaPublica").append(newrowImg);
 		 	    	    			}else{
 		 	    	    				newrowImg1="";
-			 	    	    	    	newrowImg1="<figure><img src='"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
+			 	    	    	    	newrowImg1="<figure><img src='http://tres.fpz1920.com/galeria/privados/"+result[$i].pic+'?PHPSESSID='+PHPSESSID+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
 				 	    	    	   
 				 	    	    	    $("#galeriaPrivada").append(newrowImg1);
 		 	    	    			}
@@ -189,12 +189,12 @@ $(document).ready(function(){
        			 	    	    		for($i=0; $i<result.length; $i++){
        			 	    	    			if(result[$i].privado==0){
        			 	    	    				newrowImg="";
-       				 	    	    	    	newrowImg="<figure><img src='"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
+       				 	    	    	    	newrowImg="<figure><img src='http://tres.fpz1920.com/galeria/publicos/"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
        					 	    	    	   
        					 	    	    	    $("#galeriaPublica").append(newrowImg);
        			 	    	    			}else{
        			 	    	    				newrowImg1="";
-       				 	    	    	    	newrowImg1="<figure><img src='"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
+       				 	    	    	    	newrowImg1="<figure><img src='http://tres.fpz1920.com/galeria/privados/"+result[$i].pic+"?PHPSESSID="+PHPSESSID+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
        					 	    	    	   
        					 	    	    	    $("#galeriaPrivada").append(newrowImg1);
        			 	    	    			}
@@ -228,7 +228,7 @@ $(document).ready(function(){
 
        			 	    	    		 for($i=0; $i<result.length; $i++){
        			 	 	    	    	    	newrowImg="";
-       			 	 	    	    	    	newrowImg="<figure><img src='"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
+       			 	 	    	    	    	newrowImg="<figure><img src='http://tres.fpz1920.com/galeria/publicos/"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
        			 		 	    	    	   
        			 		 	    	    	    $("#galeriaPublica").append(newrowImg);
        			 		 	    	    	    
@@ -265,9 +265,10 @@ $(document).ready(function(){
 
 	    	    		 for($i=0; $i<result.length; $i++){
 	 	    	    	    	newrowImg="";
-	 	    	    	    	newrowImg="<figure><img src='"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
+	 	    	    	    	newrowImg="<figure><img src='http://tres.fpz1920.com/galeria/publicos/"+result[$i].pic+"' alt=''/> <figcaption>Daytona Beach <small>United States</small></figcaption></figure>";
 		 	    	    	   
-		 	    	    	    $("#galeriaPublica").append(newrowImg);
+								 $("#galeriaPublica").append(newrowImg);
+								 console.log(newrowImg);
 		 	    	    	    
 		 	    	    	   
 	 	    	    	    }
