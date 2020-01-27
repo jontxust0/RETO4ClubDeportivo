@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     $.ajax({
         type:"GET",
-        url: "../controller/cMostrarSoloCategorias.php", 
+        url: "http://tres.fpz1920.com/controller/cMostrarSoloCategorias.php", 
         dataType:"json",
         success: function(result){ 
             htmlzatia="";
@@ -23,7 +23,7 @@ $(document).ready(function(){
         idCat= $(this).val();
         $.ajax({
             type:"GET",
-            url: "../controller/cMostrarRanking.php",
+            url: "http://tres.fpz1920.com/controller/cMostrarRanking.php",
             data:{'idCat':idCat}, 
             dataType:"json",
             success: function(result){ 
