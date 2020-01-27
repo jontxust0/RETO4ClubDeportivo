@@ -43,7 +43,7 @@ app.controller('vAdminControlador', ['$scope', '$http', function ($scope, $http)
         });
 
     //CUERPO MEDICO
-    $http.get("../controller/cMostrarCuerpo.php")
+    $http.get("http://tres.fpz1920.com/controller/cMostrarCuerpo.php")
     .then(function (response) {
         console.log(response);
         $scope.listaCuerpo = response.data;
@@ -60,7 +60,7 @@ app.controller('vAdminControlador', ['$scope', '$http', function ($scope, $http)
     }
     
     $scope.updateFunctionCuerpo =function (cuerpo, $index) {
-        updateCuerpo(cuerpo.id);        
+        updateCuerpo(cuerpo);        
     }
 
     $scope.deleteFunctionJugadores = function (jugadores, $index) {
@@ -123,7 +123,7 @@ $( ".selector" ).change(function() {
         $.ajax({
             type:"POST",
             data:{'direccion':direccion, 'dorsal':dorsal,'posicion':posicion,'tlf':tlf,'altura':altura,'id_datosMedicos':id_datosMedicos,'id_usuario':id_usuario,'id_equipo':id_equipo},
-            url: "../controller/cInsertNewJugador.php", 
+            url: "http://tres.fpz1920.com/controller/cInsertNewJugador.php", 
             dataType: "json",  //type of the result
                 
             success: function(result){
@@ -208,7 +208,7 @@ function deleteCuerpo(id) {
     $.ajax({
         type: "GET",
         data: { 'id': id },
-        url: "../controller/cDeleteCuerpo.php",
+        url: "http://tres.fpz1920.com/controller/cDeleteCuerpo.php",
 
         success: function (result) {
 
@@ -400,9 +400,9 @@ function updateCuerpo(cuerpo) {
 
 
     $('#idUpdateCuerpo').val(id);
-    $('#funcionUpdateCuerpo').val(direccion);
-    $('#direccionUpdateCuerpo').val(dorsal);
-    $('#tlfUpdateCuerpo').val(posicion);
+    $('#funcionUpdateCuerpo').val(funcion);
+    $('#direccionUpdateCuerpo').val(direccion);
+    $('#tlfUpdateCuerpo').val(tlf);
     
 }
 
@@ -412,12 +412,12 @@ $("#btnExecUpdateCuerpo").click(function(){
     var funcion=$('#funcionUpdateCuerpo').val();
     var direccion=$('#direccionUpdateCuerpo').val();
     var tlf=$('#tlfUpdateCuerpo').val();
-   
+    alert(funcion);
 
       $.ajax({
            type: "GET",
            data:{ 'id':id, 'funcion':funcion, 'direccion':direccion, 'tlf':tlf},
-           url: "../controller/cUpdateCuerpoMedico.php", 
+           url: "http://tres.fpz1920.com/controller/cUpdateCuerpoMedico.php", 
            dataType: "text",  //type of the result
            success: function(result){  
                

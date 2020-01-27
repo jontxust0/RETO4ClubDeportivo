@@ -161,7 +161,7 @@ $(document).ready(function(){
 					console.log(result);
 				var modalhtml="";
 				$("#exampleModal").find(".modal-title").html(result.objUser.name+", "+result.objUser.surname);
-				modalhtml+="<img src="+result.objUser.pic+">";
+				modalhtml+="<img src=http://tres.fpz1920.com/uploads/"+result.objUser.pic+">";
 				if (tipo==1){
 				
 				modalhtml+=`

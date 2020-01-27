@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$.ajax({
 		type: "GET",
 		dataType: "json",
-		url: "../controller/cMostrarSoloEquipos.php", 
+		url: "http://tres.fpz1920.com/controller/cMostrarSoloEquipos.php", 
 
 		success: function(result){  
 			console.log(result);
@@ -39,7 +39,7 @@ $(document).ready(function(){
 						type: "GET",
 				
 						data:{'id':id, 'idEquipo':idEquipo, 'funcion':funcion, 'direccion':direccion, 'telefono':telefono},
-						url: "../controller/cInsertCuerpo.php", 
+						url: "http://tres.fpz1920.com/controller/cInsertCuerpo.php", 
 				
 						success: function(result){  
 							if (result=="si"){
@@ -74,7 +74,7 @@ $(document).ready(function(){
 						type: "GET",
 				
 						data:{'id':id, 'idEquipo':idEquipo, 'posicion':posicion, 'dorsal':dorsal, 'posicion':posicion,'altura':altura,'direccion':direccion, 'telefono':telefono},
-						url: "../controller/cInsertJugador.php", 
+						url: "http://tres.fpz1920.com/controller/cInsertJugador.php", 
 				
 						success: function(result){  
 							console.log(result);
@@ -109,7 +109,7 @@ $(document).ready(function(){
 					$.ajax({
 						type: "GET",
 						data:{'id':id, 'idEquipo':idEquipo,'sueldo':sueldo ,'direccion':direccion, 'telefono':telefono},
-						url: "../controller/cInsertEntrenador.php", 
+						url: "http://tres.fpz1920.com/controller/cInsertEntrenador.php", 
 				
 						success: function(result){  
 							console.log(result);
